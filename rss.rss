@@ -1,6 +1,3 @@
----
-layout: nil
----
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
@@ -9,19 +6,122 @@ layout: nil
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-    <lastBuildDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
+    <pubDate>Sat, 29 Dec 2012 21:13:31 -0500</pubDate>
+    <lastBuildDate>Sat, 29 Dec 2012 21:13:31 -0500</lastBuildDate>
 
-    {% for post in site.posts %}
+    
     <item>
-      <title>{{ post.title }}</title>
-      <link>http://scotthelm.com{{ post.url }}</link>
-      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      <title>Rainbows</title>
+      <link>http://scotthelm.com/2012/12/29/rainbows.html</link>
+      <pubDate>Sat, 29 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
-      <guid>http://scotthelm.com{{ post.id }}</guid>
-      <description>{{ post.content | xml_escape }}</description>
+      <guid>http://scotthelm.com/2012/12/29/rainbows</guid>
+      <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
+
+&lt;p&gt;I had started the melody a while back, but had no lyrics. I put the lyrics together today.&lt;/p&gt;
+
+&lt;p&gt;in a corner of the room&lt;br /&gt;underneath the moving boxes&lt;br /&gt;in a chest of faded memories there&lt;br /&gt;is a picture of us dancing&lt;/p&gt;
+
+&lt;p&gt;after all this time flows&lt;br /&gt;out the door and through the windows&lt;br /&gt;through these tears I look up&lt;br /&gt;and see rainbows&lt;/p&gt;
+
+&lt;p&gt;I often think of you&lt;br /&gt;in my mind I see you smiling&lt;br /&gt;like a vision of the loveliest smile&lt;br /&gt;that anyone has ever&lt;/p&gt;
+
+&lt;p&gt;after all this time flows&lt;br /&gt;out the door and through the windows&lt;br /&gt;through these tears I look up&lt;br /&gt;and see rainbows&lt;/p&gt;
+&lt;iframe frameborder='no' height='166' scrolling='no' src='http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F72984244&amp;amp;show_artwork=true' width='100%' /&gt;</description>
     </item>
-    {% endfor %}
+    
+    <item>
+      <title>It's the end of the world, and I feel fine</title>
+      <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine.html</link>
+      <pubDate>Thu, 20 Dec 2012 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine</guid>
+      <description>&lt;p&gt;I was amazed by how much the world didn&amp;#8217;t end today.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Three Four for Twelve Twelve</title>
+      <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve.html</link>
+      <pubDate>Wed, 12 Dec 2012 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve</guid>
+      <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.&lt;/p&gt;
+
+&lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it. This list is just off the top of my head, and is in no particular order&amp;#8230;and yes, there are 2 Queen songs. Sue me.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=-lG3nXyI41M'&gt;She&amp;#8217;s Leaving Home - Beatles&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=Hvfzrffto2I'&gt;Manic Depression - Jimi Hendirx&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=47leRbuaOxo'&gt;Birdland - Patti Smith&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=qWG2dsXV5HI'&gt;My Favorite Things - John Coltrane&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=k1G1xZsLb3c'&gt;Drowse - Queen&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=qwXtHZeBb7M'&gt;Dead Melodies - Beck&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=1ky1td3_6LY'&gt;Nude - Radiohead&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=04854XqcfCY'&gt;We Are The Champions - Queen&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=GPG3zSgm_Qo'&gt;Christmas Time Is Here - Charlie Brown Christmas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;interestingly, &lt;a href='http://www.youtube.com/watch?v=XrkThaBWa5c'&gt;Waltzing Matilda&lt;/a&gt; isn&amp;#8217;t in 3/4 unless you count it in triplets. But hey, it&amp;#8217;s a great song, so I&amp;#8217;m including it.&lt;/p&gt;
+
+&lt;p&gt;Enjoy your 12/12/12!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Some Postgres Shortcuts</title>
+      <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts.html</link>
+      <pubDate>Tue, 11 Dec 2012 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2012/12/11/some-postgres-shortcuts</guid>
+      <description>&lt;h3 id='command_line'&gt;Command Line&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;
+pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-s Schema only, please. No data&lt;/li&gt;
+
+&lt;li&gt;-O (that&amp;#8217;s an O as in &amp;#8220;Oh&amp;#8221;): don&amp;#8217;t script ownership of objects&lt;/li&gt;
+
+&lt;li&gt;-h the host. If you&amp;#8217;re on the box with the database, then localhost usually works&lt;/li&gt;
+
+&lt;li&gt;-U the username that you want to connect to the database with&lt;/li&gt;
+
+&lt;li&gt;-W prompt me for a password. If you don&amp;#8217;t want this, then you will need to set the PG_PASS environment variable&lt;/li&gt;
+
+&lt;li&gt;-n schema name. Postgres has the concept of schemas. Think of them as namespaces. You can pass a list with multiple -n or leave it blank and get all of them&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The -h, -U and -W work with psql as well&lt;/p&gt;
+
+&lt;h3 id='psql'&gt;psql&lt;/h3&gt;
+
+&lt;p&gt;within psql, \e will open your editor of choice. I usually use vim. It creates a file in &lt;code&gt;
+/tmp/psql.edit.&amp;lt;pid&amp;gt;
+&lt;/code&gt; where pid is the process ID of psql. You edit your sql in that file. When you :wq to write and quit vim, psql will use that file as it&amp;#8217;s command. So if you want it to execute, then make sure it ends with a semicolon; or it won&amp;#8217;t run.&lt;/p&gt;
+
+&lt;p&gt;More to come. These are ones I&amp;#8217;ve used today.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Me and The Boys</title>
+      <link>http://scotthelm.com/2012/12/03/me-and-the-boys.html</link>
+      <pubDate>Mon, 03 Dec 2012 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2012/12/03/me-and-the-boys</guid>
+      <description>&lt;p&gt;Every now and then, I&amp;#8217;m able to get the boys together with me long enough to take a picture. Their reaction to the countdown in the Photobooth app is always unpredictable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='me and the boys' src='http://s3.amazonaws.com/ScottHelm/stuff/pics/20121203.jpg' /&gt;&lt;/p&gt;</description>
+    </item>
+    
 
   </channel> 
 </rss>
