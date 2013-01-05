@@ -6,9 +6,56 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Mon, 31 Dec 2012 13:28:40 -0500</pubDate>
-    <lastBuildDate>Mon, 31 Dec 2012 13:28:40 -0500</lastBuildDate>
+    <pubDate>Sat, 05 Jan 2013 17:13:12 -0500</pubDate>
+    <lastBuildDate>Sat, 05 Jan 2013 17:13:12 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Clojure Is Bending My Brain</title>
+      <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain.html</link>
+      <pubDate>Sat, 05 Jan 2013 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain</guid>
+      <description>&lt;p&gt;My first foray into the world of functional programming is going to be &lt;a href='http://clojure.org/'&gt;Clojure&lt;/a&gt; (pronounced &amp;#8220;closure&amp;#8221;).&lt;/p&gt;
+
+&lt;p&gt;This Lisp derivative is not a purely functional language like Haskell or standard Lisp. It is built on top of the Java Virtual Machine (JVM) which gives it a wide deployment reach, and has some conveniences that make it easier to get into for OO heads like me.&lt;/p&gt;
+
+&lt;p&gt;Functional programming is a REALLY different way of viewing the problem of how to tell a computer what to do. I am seeing some value from learning about functional programming already. Lambdas, for example, make a whole lot more sense to me now. It solves problems of complexity and concurrency that are difficult in object-oriented systems.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m looking forward to learning more about it through &lt;a href='http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/'&gt;Programming Clojure&lt;/a&gt; and will post anything I find interesting.&lt;/p&gt;
+
+&lt;p&gt;My entire career has been spent honing my object-oriented programming skills. When I first started out, I taught myself about relational data. Then I moved to imperative programming, creating data-driven websites with classic asp and vbscript. (ugh). I quickly figured out that sucked and moved into Java. That&amp;#8217;s where my love affair with object-oriented programming was born. I cut my teeth with Jrun after a brief detour into CF.&lt;/p&gt;
+
+&lt;p&gt;I love OO. It provides a fantastic abstraction that has allowed me to think about software in concrete terms that are somewhat relatable to my clients. I spent years doing it in C#. And now I&amp;#8217;m doing it in Ruby.&lt;/p&gt;
+
+&lt;p&gt;To give you an idea how different the implementation is between a statically-typed OO language and a functional language, check this out:&lt;/p&gt;
+
+&lt;h3 id='example'&gt;Example&lt;/h3&gt;
+
+&lt;h4 id='java'&gt;Java&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;public class StringUtils {
+  public static boolean isBlank(String str) {
+    int strLen;
+    if (str == null || (strLen = str.length()) == 0) {
+      return true;
+    }
+    for (int i = 0; i &amp;lt; strLen; i++) {
+      if ((Character.isWhitespace(str.charAt(i)) == false)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='clojure'&gt;Clojure&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;(defn blank? [str]
+  (every? #(Character/isWhitespace %) str))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Expressive and succinct. I am intrigued.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Plans For the New Year</title>

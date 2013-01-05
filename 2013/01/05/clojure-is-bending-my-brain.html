@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Clojure Is Bending My Brain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/">Scott Helm</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <h2> Clojure Is Bending My Brain </h2>
+      <hr/>
+        <p>My first foray into the world of functional programming is going to be <a href='http://clojure.org/'>Clojure</a> (pronounced &#8220;closure&#8221;).</p>
+
+<p>This Lisp derivative is not a purely functional language like Haskell or standard Lisp. It is built on top of the Java Virtual Machine (JVM) which gives it a wide deployment reach, and has some conveniences that make it easier to get into for OO heads like me.</p>
+
+<p>Functional programming is a REALLY different way of viewing the problem of how to tell a computer what to do. I am seeing some value from learning about functional programming already. Lambdas, for example, make a whole lot more sense to me now. It solves problems of complexity and concurrency that are difficult in object-oriented systems.</p>
+
+<p>I&#8217;m looking forward to learning more about it through <a href='http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/'>Programming Clojure</a> and will post anything I find interesting.</p>
+
+<p>My entire career has been spent honing my object-oriented programming skills. When I first started out, I taught myself about relational data. Then I moved to imperative programming, creating data-driven websites with classic asp and vbscript. (ugh). I quickly figured out that sucked and moved into Java. That&#8217;s where my love affair with object-oriented programming was born. I cut my teeth with Jrun after a brief detour into CF.</p>
+
+<p>I love OO. It provides a fantastic abstraction that has allowed me to think about software in concrete terms that are somewhat relatable to my clients. I spent years doing it in C#. And now I&#8217;m doing it in Ruby.</p>
+
+<p>To give you an idea how different the implementation is between a statically-typed OO language and a functional language, check this out:</p>
+
+<h3 id='example'>Example</h3>
+
+<h4 id='java'>Java</h4>
+
+<pre><code>public class StringUtils {
+  public static boolean isBlank(String str) {
+    int strLen;
+    if (str == null || (strLen = str.length()) == 0) {
+      return true;
+    }
+    for (int i = 0; i &lt; strLen; i++) {
+      if ((Character.isWhitespace(str.charAt(i)) == false)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}</code></pre>
+
+<h4 id='clojure'>Clojure</h4>
+
+<pre><code>(defn blank? [str]
+  (every? #(Character/isWhitespace %) str))</code></pre>
+
+<p>Expressive and succinct. I am intrigued.</p>
+      <hr/>
+
+      <footer>
+      <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
