@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>More Postgres Magic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/">Scott Helm</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <h2> More Postgres Magic </h2>
+      <hr/>
+        <p><a href='http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html'>REASSIGN OWNED BY old_role new_role</a></p>
+
+<p>This command saved my bacon today. I had to apply some scripts that dropped a couple of database objects. The role I was using did not have ownership of the objects in question, so the script failed. I needed to change ownership so the scripts would run correctly.</p>
+
+<p>REASSIGN OWNED BY does just what it says - log into the database you want to effect, and run the command. It transfers ownership from the old role to the new role for all objects in the database.</p>
+
+<pre><code>postgres=# create database ownage;
+CREATE DATABASE
+postgres=# grant all on database ownage to old_owner;
+GRANT
+postgres=# grant all on database ownage to owner_wannabe;
+GRANT
+postgres=# \q
+
+psql ownage -U old_owner -h localhost
+
+ownage=# create table users (id serial, username text, password text);
+NOTICE:  CREATE TABLE will create implicit sequence &quot;users_id_seq&quot; for serial column &quot;users.id&quot;
+CREATE TABLE
+ownage=# create table things (id serial, user_id integer, name text);
+NOTICE:  CREATE TABLE will create implicit sequence &quot;things_id_seq&quot; for serial column &quot;things.id&quot;
+CREATE TABLE
+ownage=# \d
+              List of relations
+ Schema |     Name      |   Type   |  Owner
+--------+---------------+----------+----------
+ public | things        | table    | old_owner
+ public | things_id_seq | sequence | old_owner
+ public | users         | table    | old_owner
+ public | users_id_seq  | sequence | old_owner
+(4 rows)
+
+ownage=# reassign owned by old_owner to owner_wannabe;
+REASSIGN OWNED
+ownage=# \d
+                 List of relations
+ Schema |     Name      |   Type   |     Owner     
+--------+---------------+----------+---------------
+ public | things        | table    | owner_wannabe
+ public | things_id_seq | sequence | owner_wannabe
+ public | users         | table    | owner_wannabe
+ public | users_id_seq  | sequence | owner_wannabe
+(4 rows)</code></pre>
+
+<p>With that, we no longer have to iterate over objects one by one and alter owner.</p>
+
+<p>And that, my friends is more Postgres magic.</p>
+      <hr/>
+
+      <footer>
+      <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
