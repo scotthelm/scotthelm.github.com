@@ -6,9 +6,67 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Sun, 20 Jan 2013 23:51:50 -0500</pubDate>
-    <lastBuildDate>Sun, 20 Jan 2013 23:51:50 -0500</lastBuildDate>
+    <pubDate>Sun, 27 Jan 2013 17:20:55 -0500</pubDate>
+    <lastBuildDate>Sun, 27 Jan 2013 17:20:55 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Awk - It's not just a prefix for "ward"</title>
+      <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward.html</link>
+      <pubDate>Sun, 27 Jan 2013 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward</guid>
+      <description>&lt;p&gt;It&amp;#8217;s kind of a joke around where I work. I saw a data import script my boss had written that used &lt;code&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into record-type-specific files for use with BCP. Since then, I have (jokingly) declared that the combination of awk and elasticsearch is my hammer, and all problems are nails.&lt;/p&gt;
+
+&lt;p&gt;I was looking for speed improvements for our index import process. Having made said improvements (by parallelizing the tasks - invoking the import process in multiple forks and datasets separated by modulus math), I needed an easy way to keep track of the progress. I already had the processes writing to a log file with this format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;20755 processed 1000 objects ending with: 18000 in 53 seconds&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first number is the process id or pid. Since I had multiple processes running, I didn&amp;#8217;t want to have to find the last entry for each pid and do math to find out how quickly things were going. So I whipped up this little import_stats.awk script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#! /bin/awk -f
+# this section happens before any lines are read.
+# it allows you to set up variables that you can
+# use as the program executes
+BEGIN {
+  total_seconds = 0;
+  count = 0;
+}
+
+# the unnamed section here is what is executed 
+# for each line. In this case, it&amp;#39;s checking to
+# see if a line begins with a number, and 
+# incrementing counts and totals on if it does.
+# the $9 variable is the ninth column in the 
+# data line
+{
+  if ($1 ~ /^[0-9]*$/) {
+    total_seconds += $9;
+    ++count;
+  }
+}
+
+# The end section allows you to sum up, peforming
+# actions to clean up or print results. In this
+# case I&amp;#39;m printing my results
+END {
+  print &amp;quot;average seconds per thousand: &amp;quot; total_seconds / count;
+  print &amp;quot;total processed_thus far: &amp;quot; count * 1000;
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;now I can check on progress by typing this from the app&amp;#8217;s root:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and I get&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;average seconds per thousand: 50.4306
+total processed_thus far: 432000&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Linux and Unix have so many great tools that have been developed over the years that are rock solid foundations for new things. I found this site to be helpful as I was writing my little script: &lt;a href='http://www.grymoire.com/Unix/Awk.html'&gt;Awk - A Tutorial and Introduction&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It took no time at all to develop this utility. It&amp;#8217;s simple, saves me time and makes me happy.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>More Postgres Magic</title>
