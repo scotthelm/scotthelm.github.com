@@ -38,8 +38,8 @@
     </div>
 
     <div class="container-fluid">
-      <h2></h2>
-      
+      <h2> Awk - It's not just a prefix for "ward" </h2>
+      <hr/>
         <p>It&#8217;s kind of a joke around where I work. I saw a data import script my boss had written that used <code>awk</code> to preprocess massive data files, separating them into record-type-specific files for use with BCP. Since then, I have (jokingly) declared that the combination of awk and elasticsearch is my hammer, and all problems are nails.</p>
 
 <p>I was looking for speed improvements for our index import process. Having made said improvements (by parallelizing the tasks - invoking the import process in multiple forks and datasets separated by modulus math), I needed an easy way to keep track of the progress. I already had the processes writing to a log file with this format:</p>
