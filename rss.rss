@@ -6,9 +6,34 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Sun, 10 Feb 2013 18:16:10 -0500</pubDate>
-    <lastBuildDate>Sun, 10 Feb 2013 18:16:10 -0500</lastBuildDate>
+    <pubDate>Wed, 15 May 2013 10:47:58 -0400</pubDate>
+    <lastBuildDate>Wed, 15 May 2013 10:47:58 -0400</lastBuildDate>
 
+    
+    <item>
+      <title>Postgres quick cursors</title>
+      <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors.html</link>
+      <pubDate>Wed, 15 May 2013 00:00:00 -0400</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/05/15/postgres-quick-cursors</guid>
+      <description>&lt;p&gt;I needed to act on individual members of a set. I also didn&amp;#8217;t want to write a function. In psql, I discovered the DO block. It allowed me to gain access to pgplsql without being in the context of a UDF (User Defined Function).&lt;/p&gt;
+
+&lt;p&gt;In this particular case, I created a table called view_refugees. These were views that were causing my rails migration to fail due to a change in an underlying table column&amp;#8217;s datatype. The plan is that I will create the view refugees from pg_views, drop the views, run the migration, then recreate the views.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; do $$declare r record;
+  begin
+    for r in select viewname, schemaname from view_refugees
+    loop
+      execute &amp;#39;drop view &amp;#39;
+      || r.schemaname
+      || &amp;#39;.&amp;#39;
+      || r.viewname
+      || &amp;#39; cascade&amp;#39;;
+    end loop;
+  end$$;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;DO block makes that easier.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>American Drone</title>
