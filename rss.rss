@@ -6,9 +6,28 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Wed, 15 May 2013 10:47:58 -0400</pubDate>
-    <lastBuildDate>Wed, 15 May 2013 10:47:58 -0400</lastBuildDate>
+    <pubDate>Wed, 22 May 2013 11:41:47 -0400</pubDate>
+    <lastBuildDate>Wed, 22 May 2013 11:41:47 -0400</lastBuildDate>
 
+    
+    <item>
+      <title>Even Now</title>
+      <link>http://scotthelm.com/2013/05/22/even-now.html</link>
+      <pubDate>Wed, 22 May 2013 00:00:00 -0400</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/05/22/even-now</guid>
+      <description>&lt;p&gt;Even now&lt;br /&gt;I can hear my heartbeat in my ears&lt;br /&gt;the need to get the words out&lt;br /&gt;before it&amp;#8217;s too late&lt;/p&gt;
+
+&lt;p&gt;Even now&lt;br /&gt;there&amp;#8217;s so much more I want to tell you&lt;br /&gt;in the midnight confessional&lt;br /&gt;the silent return&lt;/p&gt;
+
+&lt;p&gt;Even now&lt;br /&gt;I wish I could see through your eyes&lt;br /&gt;standing on the shore with the boatman&lt;br /&gt;looking back over your shoulder&lt;/p&gt;
+
+&lt;p&gt;Even now&lt;br /&gt;Even still&lt;/p&gt;
+
+&lt;p&gt;I always think of you when I least expect it&lt;br /&gt;like a flash in my perifery&lt;br /&gt;that draws my eye&lt;br /&gt;and I sit there, rapt for a while searching&lt;br /&gt;searching for what&amp;#8217;s no longer there&lt;/p&gt;
+
+&lt;p&gt;Even now&lt;br /&gt;Even still&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Postgres quick cursors</title>
