@@ -6,9 +6,115 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Wed, 22 May 2013 14:58:30 -0400</pubDate>
-    <lastBuildDate>Wed, 22 May 2013 14:58:30 -0400</lastBuildDate>
+    <pubDate>Sun, 29 Sep 2013 00:53:06 -0400</pubDate>
+    <lastBuildDate>Sun, 29 Sep 2013 00:53:06 -0400</lastBuildDate>
 
+    
+    <item>
+      <title>Command Line JSON with JQ</title>
+      <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq.html</link>
+      <pubDate>Sat, 28 Sep 2013 00:00:00 -0400</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/09/28/command-line-json-with-jq</guid>
+      <description>&lt;p&gt;I started my first foray in to bash scripting. I have client information stored in a Mongo database. I have canonical data in Postgresql. I have indexed data in Elasticsearch. I want a quick way to check on the health of the indexes for clients both interactively and through script calls from something like Monit. I also want it to work really quickly.&lt;/p&gt;
+
+&lt;p&gt;It would be relatively simple for me to fire up a ruby script and do what I want to do. However, the parts of our applications that deal with Mongo and Elasticsearch are found in Rails engines. For what I want, that was too heavy. I really wanted to keep this utility as light as possible, and put my fledgeling Linux skills to the test.&lt;/p&gt;
+
+&lt;p&gt;So I dug into the &lt;a href='http://docs.mongodb.org/manual/administration/scripting/'&gt;Mongo CLI&lt;/a&gt; and discovered that I could output the results of a query back to the shell by invoking mongo with a script thusly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongo hostname/databasename path/to/script&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;my script returned the name and elastic search url for each client:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cursor = db[&amp;quot;clients&amp;quot;].find({},{name: 1, elastic_search_url: 1});
+while ( cursor.hasNext() ) {
+   printjsononeline( cursor.next() );
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this was where I ran into my first roadblock. JSON. It just so happens that JSON is not that easy to parse with &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;sed&lt;/code&gt;, and &lt;code&gt;grep&lt;/code&gt;. So I lurked on stackoverflow and stumbled on the &lt;a href='http://stedolan.github.io/jq/'&gt;JQ&lt;/a&gt; library. It has been a godsend for dealing with JSON on the command line.&lt;/p&gt;
+
+&lt;p&gt;Installation of the binary was really quick and painless:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget http://stedolan.github.io/jq/download/linux64/jq
+chmod +x jq
+sudo mv jq /usr/bin/&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And I had JSON parsing available on my command line. (There are source install options as well to be found on the &lt;a href='http://stedolan.github.io/jq/download/'&gt;dowloads page&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;I found that I needed to modify the output of my mongo script so that it was close to valid json:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cursor = db[&amp;quot;clients&amp;quot;].find({},{key: 1, elastic_search_url: 1});
+print(&amp;quot;{ \&amp;quot;clients\&amp;quot; : [&amp;quot;);
+while ( cursor.hasNext() ) {
+   printjsononeline( cursor.next() );
+   print(&amp;quot;,&amp;quot;);
+}
+print(&amp;quot;{}&amp;quot;)
+print(&amp;quot;]}&amp;quot;);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then I turned to my trusty pal, &lt;code&gt;awk&lt;/code&gt; and wrote this little script to clean up the client output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#! /usr/bin/awk -f
+/[{,\]]/ {
+  gsub(&amp;quot;ObjectId\(&amp;quot;,&amp;quot;&amp;quot;,$0);
+  gsub(&amp;quot;\)&amp;quot;,&amp;quot;&amp;quot;,$0);
+  print $0
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That allowed me to pipe the valid json output to &lt;code&gt;jq&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq &amp;#39;.[&amp;quot;clients&amp;quot;]&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and I get really pretty output like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[
+  {
+    &amp;quot;key&amp;quot;: &amp;quot;development_client&amp;quot;,
+    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
+    &amp;quot;_id&amp;quot;: &amp;quot;50a6a3d86224051db2000015&amp;quot;
+  },
+  {
+    &amp;quot;key&amp;quot;: &amp;quot;bptest_client&amp;quot;,
+    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
+    &amp;quot;_id&amp;quot;: &amp;quot;50d0cd506224052eb7000002&amp;quot;
+  },
+  {
+    &amp;quot;key&amp;quot;: &amp;quot;global_test_client&amp;quot;,
+    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
+    &amp;quot;_id&amp;quot;: &amp;quot;50ed86586224053e54000001&amp;quot;
+  },
+  {}
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then I started dealing with elasticsearch. I have many indexes for various clients so when I make a curl to the cluster status endpoint, the output is easily over 300 rows of console output. By contrast, the same endpoint, picking out only the name of the indexes (which is all I really want for this particular function) is amazingly simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -s -XGET &amp;#39;http://search.dev:9200/_status&amp;#39; | jq &amp;#39;.[&amp;quot;indices&amp;quot;]&amp;#39; | jq &amp;#39;keys&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and produces what I really want to see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[
+  &amp;quot;client_509aada36224051fec000001&amp;quot;,
+  &amp;quot;client_50a6a3d86224051db2000016&amp;quot;,
+  &amp;quot;client_50d093c96224051f91000002&amp;quot;,
+  &amp;quot;client_50d0bbb06224052add000002&amp;quot;,
+  &amp;quot;client_50d0cd506224052eb7000002&amp;quot;,
+  &amp;quot;client_50d1d2fa6224052c64000002&amp;quot;,
+  &amp;quot;client_50d485b6622405261a000002&amp;quot;,
+  &amp;quot;client_512b8556622405614f000002&amp;quot;,
+  &amp;quot;client_51924d266224055568000004&amp;quot;,
+  &amp;quot;client_51bf5685622405297a000002&amp;quot;,
+  &amp;quot;client_51e441a8622405799900000e&amp;quot;,
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and another call tells me how many indexes I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -s -XGET &amp;#39;http://search.dev:9200/_status&amp;#39; | jq &amp;#39;.[&amp;quot;indices&amp;quot;]&amp;#39; | jq &amp;#39;keys&amp;#39; | jq &amp;#39;length&amp;#39;
+$ 11&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This makes it incredibly easy to work with data retrieved from JSON services using &lt;code&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script service interruption detection and health monitoring.&lt;/p&gt;
+
+&lt;p&gt;I am now in the process of wrapping a good many elasticsearch and mongo calls in my little bash script. I&amp;#8217;ll be hosting the reult on github. as soon as I get it in any sort of presentable shape. However, I can&amp;#8217;t say enough good things about the JQ library. If you need to do anything with JSON on the command line, I have found this to be the best option. Cheers, Stedolan, for the great contribution!&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Even Now</title>

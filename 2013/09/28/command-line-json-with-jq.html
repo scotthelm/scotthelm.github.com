@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Command Line JSON with JQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/">Scott Helm</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <h2> Command Line JSON with JQ </h2>
+      <hr/>
+        <p>I started my first foray in to bash scripting. I have client information stored in a Mongo database. I have canonical data in Postgresql. I have indexed data in Elasticsearch. I want a quick way to check on the health of the indexes for clients both interactively and through script calls from something like Monit. I also want it to work really quickly.</p>
+
+<p>It would be relatively simple for me to fire up a ruby script and do what I want to do. However, the parts of our applications that deal with Mongo and Elasticsearch are found in Rails engines. For what I want, that was too heavy. I really wanted to keep this utility as light as possible, and put my fledgeling Linux skills to the test.</p>
+
+<p>So I dug into the <a href='http://docs.mongodb.org/manual/administration/scripting/'>Mongo CLI</a> and discovered that I could output the results of a query back to the shell by invoking mongo with a script thusly:</p>
+
+<pre><code>mongo hostname/databasename path/to/script</code></pre>
+
+<p>my script returned the name and elastic search url for each client:</p>
+
+<pre><code>cursor = db[&quot;clients&quot;].find({},{name: 1, elastic_search_url: 1});
+while ( cursor.hasNext() ) {
+   printjsononeline( cursor.next() );
+}</code></pre>
+
+<p>And this was where I ran into my first roadblock. JSON. It just so happens that JSON is not that easy to parse with <code>awk</code>, <code>sed</code>, and <code>grep</code>. So I lurked on stackoverflow and stumbled on the <a href='http://stedolan.github.io/jq/'>JQ</a> library. It has been a godsend for dealing with JSON on the command line.</p>
+
+<p>Installation of the binary was really quick and painless:</p>
+
+<pre><code>wget http://stedolan.github.io/jq/download/linux64/jq
+chmod +x jq
+sudo mv jq /usr/bin/</code></pre>
+
+<p>And I had JSON parsing available on my command line. (There are source install options as well to be found on the <a href='http://stedolan.github.io/jq/download/'>dowloads page</a>).</p>
+
+<p>I found that I needed to modify the output of my mongo script so that it was close to valid json:</p>
+
+<pre><code>cursor = db[&quot;clients&quot;].find({},{key: 1, elastic_search_url: 1});
+print(&quot;{ \&quot;clients\&quot; : [&quot;);
+while ( cursor.hasNext() ) {
+   printjsononeline( cursor.next() );
+   print(&quot;,&quot;);
+}
+print(&quot;{}&quot;)
+print(&quot;]}&quot;);</code></pre>
+
+<p>then I turned to my trusty pal, <code>awk</code> and wrote this little script to clean up the client output:</p>
+
+<pre><code>#! /usr/bin/awk -f
+/[{,\]]/ {
+  gsub(&quot;ObjectId\(&quot;,&quot;&quot;,$0);
+  gsub(&quot;\)&quot;,&quot;&quot;,$0);
+  print $0
+}</code></pre>
+
+<p>That allowed me to pipe the valid json output to <code>jq</code>:</p>
+
+<pre><code>  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq &#39;.[&quot;clients&quot;]&#39;</code></pre>
+
+<p>and I get really pretty output like this:</p>
+
+<pre><code>[
+  {
+    &quot;key&quot;: &quot;development_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50a6a3d86224051db2000015&quot;
+  },
+  {
+    &quot;key&quot;: &quot;bptest_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50d0cd506224052eb7000002&quot;
+  },
+  {
+    &quot;key&quot;: &quot;global_test_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50ed86586224053e54000001&quot;
+  },
+  {}
+]</code></pre>
+
+<p>Then I started dealing with elasticsearch. I have many indexes for various clients so when I make a curl to the cluster status endpoint, the output is easily over 300 rows of console output. By contrast, the same endpoint, picking out only the name of the indexes (which is all I really want for this particular function) is amazingly simple:</p>
+
+<pre><code>curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39;</code></pre>
+
+<p>and produces what I really want to see:</p>
+
+<pre><code>[
+  &quot;client_509aada36224051fec000001&quot;,
+  &quot;client_50a6a3d86224051db2000016&quot;,
+  &quot;client_50d093c96224051f91000002&quot;,
+  &quot;client_50d0bbb06224052add000002&quot;,
+  &quot;client_50d0cd506224052eb7000002&quot;,
+  &quot;client_50d1d2fa6224052c64000002&quot;,
+  &quot;client_50d485b6622405261a000002&quot;,
+  &quot;client_512b8556622405614f000002&quot;,
+  &quot;client_51924d266224055568000004&quot;,
+  &quot;client_51bf5685622405297a000002&quot;,
+  &quot;client_51e441a8622405799900000e&quot;,
+]</code></pre>
+
+<p>and another call tells me how many indexes I have:</p>
+
+<pre><code>$ curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39; | jq &#39;length&#39;
+$ 11</code></pre>
+
+<p>This makes it incredibly easy to work with data retrieved from JSON services using <code>curl</code>. Which makes it incredibly easy to script service interruption detection and health monitoring.</p>
+
+<p>I am now in the process of wrapping a good many elasticsearch and mongo calls in my little bash script. I&#8217;ll be hosting the reult on github. as soon as I get it in any sort of presentable shape. However, I can&#8217;t say enough good things about the JQ library. If you need to do anything with JSON on the command line, I have found this to be the best option. Cheers, Stedolan, for the great contribution!</p>
+      <hr/>
+
+      <footer>
+      <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
