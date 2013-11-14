@@ -6,9 +6,87 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Mon, 30 Sep 2013 14:42:00 -0400</pubDate>
-    <lastBuildDate>Mon, 30 Sep 2013 14:42:00 -0400</lastBuildDate>
+    <pubDate>Wed, 13 Nov 2013 22:32:40 -0500</pubDate>
+    <lastBuildDate>Wed, 13 Nov 2013 22:32:40 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Fencepost</title>
+      <link>http://scotthelm.com/2013/11/13/fencepost.html</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2013/11/13/fencepost</guid>
+      <description>&lt;p&gt;When it comes to writing and maintianing software, I&amp;#8217;m lazy. I don&amp;#8217;t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don&amp;#8217;t have to keep repeating it.&lt;/p&gt;
+
+&lt;h2 id='the_problem'&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using &lt;code&gt;attr_accessible&lt;/code&gt;. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called &lt;code&gt;strong_parameters&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves.&lt;/p&gt;
+
+&lt;p&gt;The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I&amp;#8217;m lazy. And that means I need to automate this in some way or I will go insane.&lt;/p&gt;
+
+&lt;h2 id='enter_fencepost'&gt;Enter Fencepost&lt;/h2&gt;
+
+&lt;p&gt;I solved this problem by creating a gem called &lt;a href='http://rubygems.org/gems/fencepost'&gt;Fencepost&lt;/a&gt;. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: &lt;a href='https://github.com/scotthelm/fencepost'&gt;on Github&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='installation'&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Add &lt;code&gt;fencepost&lt;/code&gt; to your &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem &amp;#39;fencepost&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='configuration'&gt;Configuration&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rails g fencepost_config&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a yaml map of your models in &lt;code&gt;config/fencepost.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. &amp;#8220;Y&amp;#8221; will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default.&lt;/p&gt;
+
+&lt;h3 id='default_configuration'&gt;Default Configuration&lt;/h3&gt;
+
+&lt;p&gt;The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable)&lt;/p&gt;
+
+&lt;h3 id='dev_mode'&gt;Dev Mode&lt;/h3&gt;
+
+&lt;p&gt;During the early stages of development where your code is in flux, you can set &lt;code&gt;dev_mode=true&lt;/code&gt; in &lt;code&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer)&lt;/p&gt;
+
+&lt;h2 id='usage'&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;The gem creates a &lt;code&gt;fencepost&lt;/code&gt; method in your contollers. This returns a &lt;code&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong params for any ActiveRecord model in your application.&lt;/p&gt;
+
+&lt;h3 id='simplest_case'&gt;Simplest Case&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+def create
+  @person = Person.create(fencepost.person_params)
+end&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id='simple_allow__deny_for_top_level_model'&gt;Simple allow / deny for top level model&lt;/h3&gt;
+
+&lt;p&gt;In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+def create
+  @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params)
+end&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id='more_complex_allow__deny_for_nested_models'&gt;More complex allow / deny for nested models&lt;/h3&gt;
+
+&lt;p&gt;In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+def create
+  @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params)
+end&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='tldr'&gt;TLDR&lt;/h2&gt;
+
+&lt;p&gt;This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly.&lt;/p&gt;
+
+&lt;p&gt;Please have a look at the gem and feel free to submit a pull request if you can make it better.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Command Line JSON with JQ</title>
