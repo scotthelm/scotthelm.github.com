@@ -22,7 +22,7 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm">
   </head>
@@ -31,16 +31,23 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="/">Scott Helm</a>
+        <div class="row-fluid">
+          <div class="span3">&nbsp;</div>
+          <div class="span6" style="padding-left:10px">
+            <a class="brand" href="/">Scott Helm</a>
+          </div>
+          <div class="span3">&nbsp;</div>
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
-      <h2> More Postgres Magic </h2>
-      <hr/>
-        <p><a href='http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html'>REASSIGN OWNED BY old_role new_role</a></p>
+      <div class="row-fluid">
+        <div class="span3">&nbsp;</div>
+        <div class="span6">
+          <h2> More Postgres Magic </h2>
+          <hr/>
+          <p><a href='http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html'>REASSIGN OWNED BY old_role new_role</a></p>
 
 <p>This command saved my bacon today. I had to apply some scripts that dropped a couple of database objects. The role I was using did not have ownership of the objects in question, so the script failed. I needed to change ownership so the scripts would run correctly.</p>
 
@@ -87,10 +94,18 @@ ownage=# \d
 <p>With that, we no longer have to iterate over objects one by one and alter owner.</p>
 
 <p>And that, my friends is more Postgres magic.</p>
-      <hr/>
-
+          <hr/>
+        </div>
+        <div class="span3">&nbsp;</div>
+      </div>
       <footer>
-      <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2013</p>
+        <div class="row-fluid">
+          <div class="span3">&nbsp;</div>
+          <div class="span6">
+            <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2013</p>
+          </div>
+          <div class="span3">&nbsp;</div>
+        </div>
       </footer>
 
     </div><!--/.fluid-container-->
