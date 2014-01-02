@@ -6,9 +6,50 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Wed, 27 Nov 2013 23:56:07 -0500</pubDate>
-    <lastBuildDate>Wed, 27 Nov 2013 23:56:07 -0500</lastBuildDate>
+    <pubDate>Thu, 02 Jan 2014 09:45:17 -0500</pubDate>
+    <lastBuildDate>Thu, 02 Jan 2014 09:45:17 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Looking Both Ways 2013 2014</title>
+      <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014.html</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014</guid>
+      <description>&lt;p&gt;This time of year always makes me reflect on what was and look forward to what is to come.&lt;/p&gt;
+
+&lt;h2 id='engineering'&gt;Engineering&lt;/h2&gt;
+
+&lt;p&gt;I am working at a company called &lt;a href='http://www.technekes.com'&gt;Technekes&lt;/a&gt;. We provide marketing services for companies big and small. I get to work with some of the coolest tech I&amp;#8217;ve ever done. We use mainly open-source tools for our development. So over the past 18 months I have changed my stack from all Microsoft all the time to all Linux and open source all the time. This has been a great change for me. Looking back, I feel that I have grown a great deal as a software developer. Looking forward, I want to continue learning new tools and ways of looking at problems. To that end, I want to create a project using a functional language such as Haskell, Clojure or Erlang.&lt;/p&gt;
+
+&lt;h2 id='acting'&gt;Acting&lt;/h2&gt;
+
+&lt;p&gt;I miss it. I still get to do things like voiceovers, mostly thanks to the &lt;a href='http://groundcrewstudios.com/'&gt;Groundcrew&lt;/a&gt;, and the lovely and talented Katherine Goforth. I still have friends in the theatre whom I love and respect. I would like to do something to work with them again. Looking back, I had a decent year working for some great national and regional brands. Looking forward, I resolve to be more efficient in my engineering work to allow me to take more acting work.&lt;/p&gt;
+
+&lt;h2 id='music'&gt;Music&lt;/h2&gt;
+
+&lt;p&gt;I &lt;a href='https://soundcloud.com/plasticide'&gt;recorded 7 pieces last year&lt;/a&gt; in my home studio. Overall it&amp;#8217;s not bad. I created a lot more with guitar than I have in the past and that&amp;#8217;s good. I got to play in a talent show with 3 other guys at work. We called ourselves The 404s. We won! It was great fun, and I&amp;#8217;m pretty sure it&amp;#8217;s the first time that I&amp;#8217;ve ever played live in a band situation in my life. Quite a rush. We played an acoustic version of Hey Ya! Looking back, it wasn&amp;#8217;t bad, but looking forward, I can do a whole lot better. I resolve to play more music with actual real live people.&lt;/p&gt;
+
+&lt;h2 id='family'&gt;Family&lt;/h2&gt;
+
+&lt;p&gt;Claire and I are doing wonderfully. We&amp;#8217;ve been married since 1996, and I feel like we&amp;#8217;re hitting our stride. Example - we spent new year&amp;#8217;s eve with our dear friends Laura and Stan. We had a wonderful time there. On the ride up and back to Hendersonville, we didn&amp;#8217;t really talk that much at all. But it wasn&amp;#8217;t uncomfortable. It was a comfortable silence. A rare thing indeed. Much love to Claire. The kids are awesome. Zach is 8 and Jamey is 5. Claire and I both agree that our main job is to help them stay as sweet as they are, and to ensure that they use their powers only for good.&lt;/p&gt;
+
+&lt;h2 id='physical'&gt;Physical&lt;/h2&gt;
+
+&lt;p&gt;I have really enjoyed &lt;a href='http://www.charlotte-systema.com/'&gt;Systema&lt;/a&gt; this past year. I&amp;#8217;m looking forward to continuing in the new year. There&amp;#8217;s much more than a physical component to Systema, but I&amp;#8217;m including it here for brevity.&lt;/p&gt;
+
+&lt;p&gt;And The Obligatory:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Eat better&lt;/li&gt;
+
+&lt;li&gt;Exercise more&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='in_conclusion'&gt;In Conclusion&lt;/h2&gt;
+
+&lt;p&gt;May your coming year be better than the last.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>RabbitMQ and Erlang and Ubuntu (12.04) Oh My!</title>
