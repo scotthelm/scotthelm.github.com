@@ -6,9 +6,46 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Wed, 05 Feb 2014 23:18:05 -0500</pubDate>
-    <lastBuildDate>Wed, 05 Feb 2014 23:18:05 -0500</lastBuildDate>
+    <pubDate>Fri, 14 Feb 2014 10:54:04 -0500</pubDate>
+    <lastBuildDate>Fri, 14 Feb 2014 10:54:04 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Coming Up For Air</title>
+      <link>http://scotthelm.com/2014/02/14/coming-up-for-air.html</link>
+      <pubDate>Fri, 14 Feb 2014 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2014/02/14/coming-up-for-air</guid>
+      <description>&lt;p&gt;I have spent the last 7 weeks underwater. Rather than exploring the depths of some ocean floor, I was plumbing the depths of my knowledge and character.&lt;/p&gt;
+
+&lt;h2 id='the_problem'&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;We had just gotten a new client. They were excited about the technology that we had to offer, and they wanted it. And they wanted it in time for their national meeting.&lt;/p&gt;
+
+&lt;p&gt;What was proposed sounds simple - take some of their data and show it in a mobile site, but simple &amp;#8800; easy. We had a massive task ahead of us, and simply not enough time to do it.&lt;/p&gt;
+
+&lt;h2 id='the_solution_heroic_effort'&gt;The Solution: Heroic Effort&lt;/h2&gt;
+
+&lt;p&gt;There was only one thing for it. I had to roll up my sleeves and make it happen. My requirements were a UI mockup. (Which is not entirely a bad thing. Our UX people are par excellence). From that and source data files I had to model the application data, figure out how to get it full-text searchable, how to make explicit the inferred security relationships, and turn the mockup into a living, breathing amalgamation of css and javascript and html and ruby.&lt;/p&gt;
+
+&lt;p&gt;It was exhilarating. Designing the system with concurrency in mind, pushing anything that would block execution out to a message queue and consuming it with &lt;a href='http://sidekiq.org'&gt;Sidekiq&lt;/a&gt;. Ensuring that the proper index and types were mapped in &lt;a href='http://elasticsearch.org'&gt;Elasticsearch&lt;/a&gt;, and then getting the models transparently mapped into the index. Making sure there was enough indirection built in so the system was flexible and resilient in the face of change. Making sure my controllers were secure and light, my data retrieval fast and efficient, all fully tested of course. It was intellectually stimulating.&lt;/p&gt;
+
+&lt;p&gt;However, there is a toll that late nights and intense focus take on the unwary developer. I found myself starting to be short with my children, I started to miss &lt;a href='http://www.charlotte-systema.com/'&gt;Systema&lt;/a&gt; classes because I was working. My relationship with my wife is and has been strong for lo these 17 years, but it takes tending and care to maintain.&lt;/p&gt;
+
+&lt;p&gt;In short, I was Ed Harris, and I had put on the liquid oxygen suit and had made the deep dive. I cut the right wire. Now what?&lt;/p&gt;
+
+&lt;h2 id='a_better_solution'&gt;A Better Solution.&lt;/h2&gt;
+
+&lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it&amp;#8217;s not sustainable. Sooner or later, you&amp;#8217;re going to run out of heroes. Prime developer talent is rare, so burning through it is not an option. But avoiding heroic effort isn&amp;#8217;t that easy.&lt;/p&gt;
+
+&lt;p&gt;The sales pressures on software development are real. To developers they seem capricious or arbitrary. But there they are. And they often stem from a real business need. Like having the software available before the national meeting. Seems arbitrary. But. Having it at that time helps ensure adoption of the software. If I build something and nobody uses it, I have added zero value.&lt;/p&gt;
+
+&lt;p&gt;I think the real answer comes in having the business, sales, ops and development all on the same page, communicating true costs and timelines to each other so they can reach the best comprimise, and set the customer&amp;#8217;s expectations properly.&lt;/p&gt;
+
+&lt;p&gt;That puts the whole team on the submarine, working together to get to the surface. It makes for a stronger, smarter team. One that learns to pull together in a crisis. One that is less likely to write checks they can&amp;#8217;t cash.&lt;/p&gt;
+
+&lt;p&gt;And, for the developer/development team, at least, it&amp;#8217;s a much nicer place to be than alone at the bottom of the abyss.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Looking Both Ways 2013 2014</title>
