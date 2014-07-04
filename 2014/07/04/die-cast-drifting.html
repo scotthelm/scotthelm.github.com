@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Some Postgres Shortcuts</title>
+    <title>Die Cast Drifting</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -65,37 +65,12 @@
       <div class="row-fluid">
         <div class="span3">&nbsp;</div>
         <div class="span6">
-          <h2> Some Postgres Shortcuts </h2>
+          <h2> Die Cast Drifting </h2>
           <hr/>
-          <h3 id='command_line'>Command Line</h3>
-
-<p><code>
-pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
-</code></p>
-
-<ul>
-<li>-s Schema only, please. No data</li>
-
-<li>-O (that&#8217;s an O as in &#8220;Oh&#8221;): don&#8217;t script ownership of objects</li>
-
-<li>-h the host. If you&#8217;re on the box with the database, then localhost usually works</li>
-
-<li>-U the username that you want to connect to the database with</li>
-
-<li>-W prompt me for a password. If you don&#8217;t want this, then you will need to set the PG_PASS environment variable</li>
-
-<li>-n schema name. Postgres has the concept of schemas. Think of them as namespaces. You can pass a list with multiple -n or leave it blank and get all of them</li>
-</ul>
-
-<p>The -h, -U and -W work with psql as well</p>
-
-<h3 id='psql'>psql</h3>
-
-<p>within psql, \e will open your editor of choice. I usually use vim. It creates a file in <code>
-/tmp/psql.edit.&lt;pid&gt;
-</code> where pid is the process ID of psql. You edit your sql in that file. When you :wq to write and quit vim, psql will use that file as it&#8217;s command. So if you want it to execute, then make sure it ends with a semicolon; or it won&#8217;t run.</p>
-
-<p>More to come. These are ones I&#8217;ve used today.</p>
+          <p>My brother and I invented a game years ago at our Grandmother&#8217;s house. We cleared off the table and grabbed a few Hot Wheels and Matchbox cars and started pushing them at each other. We discovered that we could drift the car down the length of the table and make it turn during the course of its run. So we started adding obstacles. And so we have the game as it is today, at my own house with my kid&#8217;s cars. It may be stupid fun, but that&#8217;s how we roll.</p>
+<div class='flex-video'>
+  <iframe allowfullscreen='' frameborder='0' src='//www.youtube.com/embed/hVWHP4Row40' />
+</div>
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>
