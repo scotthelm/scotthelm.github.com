@@ -6,9 +6,76 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Fri, 04 Jul 2014 09:15:35 -0400</pubDate>
-    <lastBuildDate>Fri, 04 Jul 2014 09:15:35 -0400</lastBuildDate>
+    <pubDate>Thu, 24 Jul 2014 21:41:31 -0400</pubDate>
+    <lastBuildDate>Thu, 24 Jul 2014 21:41:31 -0400</lastBuildDate>
 
+    
+    <item>
+      <title>Postgres to CSV</title>
+      <link>http://scotthelm.com/2014/07/24/postgresql-to-csv.html</link>
+      <pubDate>Thu, 24 Jul 2014 00:00:00 -0400</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2014/07/24/postgresql-to-csv</guid>
+      <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you&amp;#8217;re anything like me, Then you&amp;#8217;re all about automating automatable things. And you&amp;#8217;re also probably all about simplicity. So I turned to my old friends, &lt;code&gt;psql&lt;/code&gt; and &lt;code&gt;cron&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id='overview'&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;If you want to automate something in Linux, figure out how to run it from the command line. Then run it from &lt;code&gt;cron&lt;/code&gt;. You can automate &lt;code&gt;cron&lt;/code&gt; from something like &lt;a href='http://puppetlabs.com'&gt;puppet&lt;/a&gt; or &lt;a href='http://www.getchef.com/chef/'&gt;chef&lt;/a&gt; or &lt;a href='http://www.docker.com'&gt;docker&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='the_command'&gt;The Command&lt;/h2&gt;
+
+&lt;p&gt;First of all - you will probably want to wrap a thing like this in a shell script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+ PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &amp;lt;database&amp;gt; -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -c &amp;#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&amp;#39; -o /path/to/your/file.csv&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now chmod +x that file, and let&amp;#8217;s break that command down just a little.&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE&lt;/dt&gt;
+&lt;dd&gt;Now that's sensitive information. But it allows us to run the command without
+having to type the password in, and that's a good thing. That's why we use an
+environment variable. Pro tip - if you don't want a command to show up in &lt;code&gt;history&lt;/code&gt; then put a space before it.&lt;/dd&gt;
+
+&lt;dt&gt;psql&lt;/dt&gt;
+&lt;dd&gt;That's our actual command&lt;/dd&gt;
+
+&lt;dt&gt;-d&lt;/dt&gt;
+&lt;dd&gt;that's the name of your database&lt;/dd&gt;
+
+&lt;dt&gt;-h&lt;/dt&gt;
+&lt;dd&gt;that's the hostname of your database server&lt;/dd&gt;
+
+&lt;dt&gt;-U&lt;/dt&gt;
+&lt;dd&gt;that's the database username&lt;/dd&gt;
+
+&lt;dt&gt;-c&lt;/dt&gt;
+&lt;dd&gt;that's the sql command to run. Since we want to output the contents of the
+query, we use the &lt;code&gt;COPY&lt;/code&gt; command.[more on that here](http://www.postgresql.org/docs/current/static/sql-copy.html). This is pretty much the guts of the 
+command. If your SQL is complicated, consider using the -f argument to pass in
+a file containing your sql command. In our COPY command we're telling psql to
+copy the result of the query to STDOUT and in a CSV format with headers&lt;/dd&gt;
+
+&lt;dt&gt;-o&lt;/dt&gt;
+&lt;dd&gt;that's where we want the file to be saved&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h2 id='the_automation'&gt;The Automation&lt;/h2&gt;
+
+&lt;p&gt;I like cron. It&amp;#8217;s the easiest, fastest way to make things happen on a schedule on a linux machine. Here&amp;#8217;s &lt;a href='https://help.ubuntu.com/community/CronHowto'&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top line. From the how to set it up link:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The last part of the file is your command. So if I wanted this to run every day at 2am, my crontab line would look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;01 02 * * * /home/my_user/reports/psql_report_script.sh
+30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, I&amp;#8217;m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
+
+&lt;p&gt;As you can see it&amp;#8217;s not hard at all to set up a repeatable report extract using simple command-line tools.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Die Cast Drifting</title>
