@@ -166,9 +166,14 @@ Errors were encountered while processing:
 
 <p>download rabbitmq-server debian package from <a href='http://www.rabbitmq.com/install-debian.html'>here</a> but DO NOT run it yet.</p>
 
-<p>add this line to your <code>/etc/apt/sources.list</code></p>
+<p>add this line to your <code>/etc/apt/sources.list</code> (I updated the link below based on an update from Mark J Williams)</p>
 
-<pre><code>deb http://packages.erlang-solutions.com/debian precise contrib</code></pre>
+<pre><code>deb http://packages.erlang-solutions.com/ubuntu precise contrib</code></pre>
+
+<p>Next, you may need to add the Erlang Solutions public key for apt-secure</p>
+
+<pre><code>wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
+sudo apt-key add erlang_solutions.asc</code></pre>
 
 <p>then</p>
 

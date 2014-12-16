@@ -6,8 +6,8 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Thu, 24 Jul 2014 21:41:31 -0400</pubDate>
-    <lastBuildDate>Thu, 24 Jul 2014 21:41:31 -0400</lastBuildDate>
+    <pubDate>Tue, 16 Dec 2014 08:58:49 -0500</pubDate>
+    <lastBuildDate>Tue, 16 Dec 2014 08:58:49 -0500</lastBuildDate>
 
     
     <item>
@@ -272,9 +272,14 @@ Errors were encountered while processing:
 
 &lt;p&gt;download rabbitmq-server debian package from &lt;a href='http://www.rabbitmq.com/install-debian.html'&gt;here&lt;/a&gt; but DO NOT run it yet.&lt;/p&gt;
 
-&lt;p&gt;add this line to your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;add this line to your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; (I updated the link below based on an update from Mark J Williams)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/debian precise contrib&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/ubuntu precise contrib&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, you may need to add the Erlang Solutions public key for apt-secure&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
+sudo apt-key add erlang_solutions.asc&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
