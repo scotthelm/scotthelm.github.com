@@ -67,35 +67,32 @@
         <div class="span6">
           <h2> Some Postgres Shortcuts </h2>
           <hr/>
-          <h3 id='command_line'>Command Line</h3>
-
+          <h3 id="command-line">Command Line</h3>
 <p><code>
 pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
 </code></p>
 
 <ul>
-<li>-s Schema only, please. No data</li>
-
-<li>-O (that&#8217;s an O as in &#8220;Oh&#8221;): don&#8217;t script ownership of objects</li>
-
-<li>-h the host. If you&#8217;re on the box with the database, then localhost usually works</li>
-
-<li>-U the username that you want to connect to the database with</li>
-
-<li>-W prompt me for a password. If you don&#8217;t want this, then you will need to set the PG_PASS environment variable</li>
-
-<li>-n schema name. Postgres has the concept of schemas. Think of them as namespaces. You can pass a list with multiple -n or leave it blank and get all of them</li>
+  <li>-s Schema only, please.  No data</li>
+  <li>-O (that’s an O as in “Oh”): don’t script ownership of objects</li>
+  <li>-h the host.  If you’re on the box with the database, then localhost usually works</li>
+  <li>-U the username that you want to connect to the database with</li>
+  <li>-W prompt me for a password.  If you don’t want this, then you will need to set the PG_PASS environment variable</li>
+  <li>-n schema name.  Postgres has the concept of schemas.  Think of them as namespaces.  You can pass a list with multiple -n or leave it blank and get all of them</li>
 </ul>
 
 <p>The -h, -U and -W work with psql as well</p>
 
-<h3 id='psql'>psql</h3>
+<h3 id="psql">psql</h3>
 
-<p>within psql, \e will open your editor of choice. I usually use vim. It creates a file in <code>
+<p>within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in
+<code>
 /tmp/psql.edit.&lt;pid&gt;
-</code> where pid is the process ID of psql. You edit your sql in that file. When you :wq to write and quit vim, psql will use that file as it&#8217;s command. So if you want it to execute, then make sure it ends with a semicolon; or it won&#8217;t run.</p>
+</code>
+where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.</p>
 
-<p>More to come. These are ones I&#8217;ve used today.</p>
+<p>More to come. These are ones I’ve used today.</p>
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>

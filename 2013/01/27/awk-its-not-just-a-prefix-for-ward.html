@@ -67,13 +67,25 @@
         <div class="span6">
           <h2> Awk - It's not just a prefix for "ward" </h2>
           <hr/>
-          <p>It&#8217;s kind of a joke around where I work. I saw a data import script my boss had written that used <code>awk</code> to preprocess massive data files, separating them into record-type-specific files for use with BCP. Since then, I have (jokingly) declared that the combination of awk and elasticsearch is my hammer, and all problems are nails.</p>
+          <p>It’s kind of a joke around where I work. I saw a data import script my boss had
+written that used <code>awk</code> to preprocess massive data files, separating them into
+record-type-specific files for use with BCP. Since then, I have (jokingly)
+declared that the combination of awk and elasticsearch is my hammer, and all
+problems are nails.</p>
 
-<p>I was looking for speed improvements for our index import process. Having made said improvements (by parallelizing the tasks - invoking the import process in multiple forks and datasets separated by modulus math), I needed an easy way to keep track of the progress. I already had the processes writing to a log file with this format:</p>
+<p>I was looking for speed improvements for our index import process. Having
+made said improvements (by parallelizing the tasks - invoking the import process
+in multiple forks and datasets separated by modulus math), I needed an easy way to
+keep track of the progress. I already had the processes writing to a log file
+with this format:</p>
 
-<pre><code>20755 processed 1000 objects ending with: 18000 in 53 seconds</code></pre>
+<pre><code>20755 processed 1000 objects ending with: 18000 in 53 seconds
+</code></pre>
 
-<p>The first number is the process id or pid. Since I had multiple processes running, I didn&#8217;t want to have to find the last entry for each pid and do math to find out how quickly things were going. So I whipped up this little import_stats.awk script:</p>
+<p>The first number is the process id or pid.
+Since I had multiple processes running, I didn’t want to have to find the last
+entry for each pid and do math to find out how quickly things were going. So I
+whipped up this little import_stats.awk script:</p>
 
 <pre><code>#! /bin/awk -f
 # this section happens before any lines are read.
@@ -85,7 +97,7 @@ BEGIN {
 }
 
 # the unnamed section here is what is executed 
-# for each line. In this case, it&#39;s checking to
+# for each line. In this case, it's checking to
 # see if a line begins with a number, and 
 # incrementing counts and totals on if it does.
 # the $9 variable is the ninth column in the 
@@ -99,24 +111,32 @@ BEGIN {
 
 # The end section allows you to sum up, peforming
 # actions to clean up or print results. In this
-# case I&#39;m printing my results
+# case I'm printing my results
 END {
-  print &quot;average seconds per thousand: &quot; total_seconds / count;
-  print &quot;total processed_thus far: &quot; count * 1000;
-}</code></pre>
+  print "average seconds per thousand: " total_seconds / count;
+  print "total processed_thus far: " count * 1000;
+}
+</code></pre>
 
-<p>now I can check on progress by typing this from the app&#8217;s root:</p>
+<p>now I can check on progress by typing this from the app’s root:</p>
 
-<pre><code>cat log/import.log | awk -f import_stats.awk</code></pre>
+<pre><code>cat log/import.log | awk -f import_stats.awk
+</code></pre>
 
 <p>and I get</p>
 
 <pre><code>average seconds per thousand: 50.4306
-total processed_thus far: 432000</code></pre>
+total processed_thus far: 432000
+</code></pre>
 
-<p>Linux and Unix have so many great tools that have been developed over the years that are rock solid foundations for new things. I found this site to be helpful as I was writing my little script: <a href='http://www.grymoire.com/Unix/Awk.html'>Awk - A Tutorial and Introduction</a></p>
+<p>Linux and Unix have so many great tools that have been developed over the years
+that are rock solid foundations for new things. I found this site to be helpful
+as I was writing my little script:
+<a href="http://www.grymoire.com/Unix/Awk.html">Awk - A Tutorial and Introduction</a></p>
 
-<p>It took no time at all to develop this utility. It&#8217;s simple, saves me time and makes me happy.</p>
+<p>It took no time at all to develop this utility. It’s simple, saves me time and
+makes me happy.</p>
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>

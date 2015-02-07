@@ -67,23 +67,31 @@
         <div class="span6">
           <h2> Postgres quick cursors </h2>
           <hr/>
-          <p>I needed to act on individual members of a set. I also didn&#8217;t want to write a function. In psql, I discovered the DO block. It allowed me to gain access to pgplsql without being in the context of a UDF (User Defined Function).</p>
+          <p>I needed to act on individual members of a set. I also didn’t want to write a 
+function. In psql, I discovered the DO block. It allowed me to gain access to
+pgplsql without being in the context of a UDF (User Defined Function).</p>
 
-<p>In this particular case, I created a table called view_refugees. These were views that were causing my rails migration to fail due to a change in an underlying table column&#8217;s datatype. The plan is that I will create the view refugees from pg_views, drop the views, run the migration, then recreate the views.</p>
+<p>In this particular case, I created a table called view_refugees.  These were
+views that were causing my rails migration to fail due to a change in an
+underlying table column’s datatype. The plan is that I will create the view
+refugees from pg_views, drop the views, run the migration, then recreate the
+views.</p>
 
 <pre><code> do $$declare r record;
   begin
     for r in select viewname, schemaname from view_refugees
     loop
-      execute &#39;drop view &#39;
+      execute 'drop view '
       || r.schemaname
-      || &#39;.&#39;
+      || '.'
       || r.viewname
-      || &#39; cascade&#39;;
+      || ' cascade';
     end loop;
-  end$$;</code></pre>
+  end$$;
+</code></pre>
 
 <p>DO block makes that easier.</p>
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>

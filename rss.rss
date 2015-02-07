@@ -6,39 +6,37 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Sat, 07 Feb 2015 09:45:59 -0500</pubDate>
-    <lastBuildDate>Sat, 07 Feb 2015 09:45:59 -0500</lastBuildDate>
+    <pubDate>Sat, 07 Feb 2015 09:48:04 -0500</pubDate>
+    <lastBuildDate>Sat, 07 Feb 2015 09:48:04 -0500</lastBuildDate>
 
     
     <item>
       <title>Postgres to CSV</title>
-      <link>http://scotthelm.com/2014/07/24/postgresql-to-csv/</link>
+      <link>http://scotthelm.com/2014/07/24/postgresql-to-csv.html</link>
       <pubDate>Thu, 24 Jul 2014 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/07/24/postgresql-to-csv</guid>
-      <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you&#39;re anything
-like me, Then you&#39;re all about automating automatable things. And you&#39;re also
+      <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you’re anything
+like me, Then you’re all about automating automatable things. And you’re also
 probably all about simplicity. So I turned to my old friends, &lt;code&gt;psql&lt;/code&gt; and &lt;code&gt;cron&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2&gt;Overview&lt;/h2&gt;
-
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you want to automate something in Linux, figure out how to run it from the
 command line. Then run it from &lt;code&gt;cron&lt;/code&gt;. You can automate &lt;code&gt;cron&lt;/code&gt; from something like
 &lt;a href=&quot;http://puppetlabs.com&quot;&gt;puppet&lt;/a&gt; or
 &lt;a href=&quot;http://www.getchef.com/chef/&quot;&gt;chef&lt;/a&gt; or
 &lt;a href=&quot;http://www.docker.com&quot;&gt;docker&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2&gt;The Command&lt;/h2&gt;
-
+&lt;h2 id=&quot;the-command&quot;&gt;The Command&lt;/h2&gt;
 &lt;p&gt;First of all - you will probably want to wrap a thing like this in a shell
-script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this:&lt;/p&gt;
+script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this: &lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#!/bin/bash
 
  PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &amp;lt;database&amp;gt; -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -c &#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&#39; -o /path/to/your/file.csv
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now chmod +x that file, and let&#39;s break that command down just a little.&lt;/p&gt;
+&lt;p&gt;Now chmod +x that file, and let’s break that command down just a little.&lt;/p&gt;
 
 &lt;dl&gt;
 &lt;dt&gt;PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE&lt;/dt&gt;
@@ -69,14 +67,15 @@ copy the result of the query to STDOUT and in a CSV format with headers&lt;/dd&g
 &lt;dd&gt;that&#39;s where we want the file to be saved&lt;/dd&gt;
 &lt;/dl&gt;
 
+&lt;h2 id=&quot;the-automation&quot;&gt;The Automation&lt;/h2&gt;
 
-&lt;h2&gt;The Automation&lt;/h2&gt;
-
-&lt;p&gt;I like cron. It&#39;s the easiest, fastest way to make things happen on a schedule
-on a linux machine. Here&#39;s &lt;a href=&quot;https://help.ubuntu.com/community/CronHowto&quot;&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top
+&lt;p&gt;I like cron. It’s the easiest, fastest way to make things happen on a schedule
+on a linux machine. Here’s &lt;a href=&quot;https://help.ubuntu.com/community/CronHowto&quot;&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top
 line. From the how to set it up link:&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;The last part of the file is your command. So if I wanted this to run every day
 at 2am, my crontab line would look like this:&lt;/p&gt;
@@ -85,56 +84,51 @@ at 2am, my crontab line would look like this:&lt;/p&gt;
 30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Here, I&#39;m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
+&lt;p&gt;Here, I’m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
 
-&lt;p&gt;As you can see it&#39;s not hard at all to set up a repeatable report extract using
-simple command-line tools.&lt;/p&gt;
+&lt;p&gt;As you can see it’s not hard at all to set up a repeatable report extract using
+simple command-line tools. &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Die Cast Drifting</title>
-      <link>http://scotthelm.com/2014/07/04/die-cast-drifting/</link>
+      <link>http://scotthelm.com/2014/07/04/die-cast-drifting.html</link>
       <pubDate>Fri, 04 Jul 2014 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/07/04/die-cast-drifting</guid>
-      <description>&lt;p&gt;My brother and I invented a game years ago at our Grandmother&#39;s house. We cleared
+      <description>&lt;p&gt;My brother and I invented a game years ago at our Grandmother’s house. We cleared
 off the table and grabbed a few Hot Wheels and Matchbox cars and started pushing
 them at each other. We discovered that we could drift the car down the length of
 the table and make it turn during the course of its run. So we started adding
 obstacles. And so we have the game as it is today, at my own house with my
-kid&#39;s cars. It may be stupid fun, but that&#39;s how we roll.&lt;/p&gt;
+kid’s cars. It may be stupid fun, but that’s how we roll.&lt;/p&gt;
 
 &lt;div class=&quot;flex-video&quot;&gt;
-  &lt;iframe
-    src=&quot;//www.youtube.com/embed/hVWHP4Row40&quot;
-    frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&quot;//www.youtube.com/embed/hVWHP4Row40&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-
 </description>
     </item>
     
     <item>
       <title>Coming Up For Air</title>
-      <link>http://scotthelm.com/2014/02/14/coming-up-for-air/</link>
+      <link>http://scotthelm.com/2014/02/14/coming-up-for-air.html</link>
       <pubDate>Fri, 14 Feb 2014 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/02/14/coming-up-for-air</guid>
       <description>&lt;p&gt;I have spent the last 7 weeks underwater. Rather than exploring the depths of
 some ocean floor, I was plumbing the depths of my knowledge and character.&lt;/p&gt;
 
-&lt;h2&gt;The Problem&lt;/h2&gt;
-
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;We had just gotten a new client. They were excited about the technology that we
 had to offer, and they wanted it. And they wanted it in time for their national
 meeting.&lt;/p&gt;
 
 &lt;p&gt;What was proposed sounds simple - take some of their data and show it in a
- mobile site, but simple &amp;ne; easy. We had a massive task ahead of us, and
+ mobile site, but simple ≠ easy. We had a massive task ahead of us, and
 simply not enough time to do it.&lt;/p&gt;
 
-&lt;h2&gt;The Solution: Heroic Effort&lt;/h2&gt;
-
+&lt;h2 id=&quot;the-solution-heroic-effort&quot;&gt;The Solution: Heroic Effort&lt;/h2&gt;
 &lt;p&gt;There was only one thing for it. I had to roll up my sleeves and make it happen.
 My requirements were a UI mockup. (Which is not entirely a bad thing. Our UX
 people are par excellence). From that and source data files I had to model the
@@ -160,11 +154,11 @@ I was working. My relationship with my wife is and has been strong for lo these
 &lt;p&gt;In short, I was Ed Harris, and I had put on the liquid oxygen suit and had made
 the deep dive. I cut the right wire. Now what?&lt;/p&gt;
 
-&lt;h2&gt;A Better Solution.&lt;/h2&gt;
+&lt;h2 id=&quot;a-better-solution&quot;&gt;A Better Solution.&lt;/h2&gt;
 
-&lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it&#39;s not sustainable.
-Sooner or later, you&#39;re going to run out of heroes. Prime developer talent is rare, so burning through it is
-not an option. But avoiding heroic effort isn&#39;t that easy.&lt;/p&gt;
+&lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it’s not sustainable.
+Sooner or later, you’re going to run out of heroes. Prime developer talent is rare, so burning through it is
+not an option. But avoiding heroic effort isn’t that easy. &lt;/p&gt;
 
 &lt;p&gt;The sales pressures on software development are real. To developers they seem
 capricious or arbitrary. But there they are. And they often stem from a real
@@ -174,40 +168,38 @@ Seems arbitrary. But. Having it at that time helps ensure adoption of the
 
 &lt;p&gt;I think the real answer comes in having the business, sales, ops and development
 all on the same page, communicating true costs and timelines to each other so
-they can reach the best comprimise, and set the customer&#39;s expectations properly.&lt;/p&gt;
+they can reach the best comprimise, and set the customer’s expectations properly.&lt;/p&gt;
 
 &lt;p&gt;That puts the whole team on the submarine, working together to get to the surface.
 It makes for a stronger, smarter team. One that learns to pull together in a crisis. One
-that is less likely to write checks they can&#39;t cash.&lt;/p&gt;
+that is less likely to write checks they can’t cash. &lt;/p&gt;
 
-&lt;p&gt;And, for the developer/development team, at least, it&#39;s a much nicer place to be than alone
+&lt;p&gt;And, for the developer/development team, at least, it’s a much nicer place to be than alone
 at the bottom of the abyss.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Looking Both Ways 2013 2014</title>
-      <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014/</link>
+      <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014.html</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014</guid>
       <description>&lt;p&gt;This time of year always makes me reflect on what was and look forward to
 what is to come.&lt;/p&gt;
 
-&lt;h2&gt;Engineering&lt;/h2&gt;
-
+&lt;h2 id=&quot;engineering&quot;&gt;Engineering&lt;/h2&gt;
 &lt;p&gt;I am working at a company called &lt;a href=&quot;http://www.technekes.com&quot;&gt;Technekes&lt;/a&gt;. We
 provide marketing services for companies big and small. I get to work with some
-of the coolest tech I&#39;ve ever done. We use mainly open-source tools for our
-development. So over the past 18 months I have changed my stack from all
+of the coolest tech I’ve ever done. We use mainly open-source tools for our
+development. So over the past 18 months I have changed my stack from all 
 Microsoft all the time to all Linux and open source all the time. This has been
 a great change for me. Looking back, I feel that I have grown a great deal as
 a software developer. Looking forward, I want to continue learning new tools
 and ways of looking at problems. To that end, I want to create a project using
 a functional language such as Haskell, Clojure or Erlang.&lt;/p&gt;
 
-&lt;h2&gt;Acting&lt;/h2&gt;
-
+&lt;h2 id=&quot;acting&quot;&gt;Acting&lt;/h2&gt;
 &lt;p&gt;I miss it. I still get to do things like voiceovers, mostly thanks to the
 &lt;a href=&quot;http://groundcrewstudios.com/&quot;&gt;Groundcrew&lt;/a&gt;, and the lovely and talented
 Katherine Goforth. I still have friends in the theatre whom I love and respect.
@@ -216,47 +208,43 @@ decent year working for some great national and regional brands. Looking
 forward, I resolve to be more efficient in my engineering work to allow me to
 take more acting work.&lt;/p&gt;
 
-&lt;h2&gt;Music&lt;/h2&gt;
-
+&lt;h2 id=&quot;music&quot;&gt;Music&lt;/h2&gt;
 &lt;p&gt;I &lt;a href=&quot;https://soundcloud.com/plasticide&quot;&gt;recorded 7 pieces last year&lt;/a&gt; in my home
-studio. Overall it&#39;s not bad. I created a lot more with guitar than I have in
-the past and that&#39;s good. I got to play in a talent show with 3 other guys at
-work. We called ourselves The 404s. We won! It was great fun, and I&#39;m pretty
-sure it&#39;s the first time that I&#39;ve ever played live in a band situation in my
+studio. Overall it’s not bad. I created a lot more with guitar than I have in
+the past and that’s good. I got to play in a talent show with 3 other guys at
+work. We called ourselves The 404s. We won! It was great fun, and I’m pretty
+sure it’s the first time that I’ve ever played live in a band situation in my
 life. Quite a rush. We played an acoustic version of Hey Ya! Looking back, it
-wasn&#39;t bad, but looking forward, I can do a whole lot better. I resolve to play
+wasn’t bad, but looking forward, I can do a whole lot better. I resolve to play
 more music with actual real live people.&lt;/p&gt;
 
-&lt;h2&gt;Family&lt;/h2&gt;
-
-&lt;p&gt;Claire and I are doing wonderfully. We&#39;ve been married since 1996, and I feel
-like we&#39;re hitting our stride. Example - we spent new year&#39;s eve with our dear
+&lt;h2 id=&quot;family&quot;&gt;Family&lt;/h2&gt;
+&lt;p&gt;Claire and I are doing wonderfully. We’ve been married since 1996, and I feel
+like we’re hitting our stride. Example - we spent new year’s eve with our dear
 friends Laura and Stan. We had a wonderful time there. On the ride up and back
-to Hendersonville, we didn&#39;t really talk that much at all. But it wasn&#39;t
+to Hendersonville, we didn’t really talk that much at all. But it wasn’t
 uncomfortable. It was a comfortable silence. A rare thing indeed. Much love to
 Claire. The kids are awesome. Zach is 8 and Jamey is 5. Claire and I both agree
 that our main job is to help them stay as sweet as they are, and to ensure that
 they use their powers only for good.&lt;/p&gt;
 
-&lt;h2&gt;Physical&lt;/h2&gt;
-
+&lt;h2 id=&quot;physical&quot;&gt;Physical&lt;/h2&gt;
 &lt;p&gt;I have really enjoyed &lt;a href=&quot;http://www.charlotte-systema.com/&quot;&gt;Systema&lt;/a&gt; this past
-year. I&#39;m looking forward to continuing in the new year. There&#39;s much more than
-a physical component to Systema, but I&#39;m including it here for brevity.&lt;/p&gt;
+year. I’m looking forward to continuing in the new year. There’s much more than
+a physical component to Systema, but I’m including it here for brevity.&lt;/p&gt;
 
 &lt;p&gt;And The Obligatory:
 - Eat better
 - Exercise more&lt;/p&gt;
 
-&lt;h2&gt;In Conclusion&lt;/h2&gt;
-
+&lt;h2 id=&quot;in-conclusion&quot;&gt;In Conclusion&lt;/h2&gt;
 &lt;p&gt;May your coming year be better than the last.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>RabbitMQ and Erlang and Ubuntu (12.04) Oh My!</title>
-      <link>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my/</link>
+      <link>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my</guid>
@@ -269,13 +257,12 @@ consolidated view.&lt;/p&gt;
 we need to let the our indexer service know that it needs to update the
 elasticsearch index so the front-end application can serve the freshest data.&lt;/p&gt;
 
-&lt;h2&gt;The Problem&lt;/h2&gt;
-
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;In 2 words: Unmet Dependencies. Rabbit MQ is built with
 &lt;a href=&quot;http://erlang.org&quot;&gt;Erlang&lt;/a&gt;. The Erlang packages in Ubuntu 12.04 (Precise) are
 out of date or not present. I downloaded the &lt;a href=&quot;http://www.rabbitmq.com/install-debian.html&quot;&gt;RabbitMQ Ubuntu Debian package&lt;/a&gt;
 and expected a quick dpkg -i install. However, instead of a quick list of
-additional packages that would be installed and a friendly &quot;Y/n?&quot;, I got:&lt;/p&gt;
+additional packages that would be installed and a friendly “Y/n?”, I got:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 ...stuff...
@@ -302,11 +289,10 @@ E: Package &#39;esl-erlang&#39; has no installation candidate
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;div style=&quot;text-align: center&quot;&gt;
-  &lt;img src=&quot;http://i.qkme.me/MR.jpg&quot; alt=&quot;Wat do?&quot;/&gt;
+  &lt;img src=&quot;http://i.qkme.me/MR.jpg&quot; alt=&quot;Wat do?&quot; /&gt;
 &lt;/div&gt;
 
-
-&lt;h2&gt;The Solution&lt;/h2&gt;
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
 
 &lt;p&gt;Go to &lt;a href=&quot;http://erlang.org&quot;&gt;erlang.org&lt;/a&gt;. Find the &lt;a href=&quot;https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu&quot;&gt;download page for Ubuntu&lt;/a&gt;
 which is NOT at erlang.org - it is at &lt;a href=&quot;http://www.erlang-solutions.com&quot;&gt;www.erlang-solutions.com&lt;/a&gt;. Craziness. I
@@ -325,7 +311,7 @@ follow the directions and add this line to my &lt;code&gt;/etc/apt/sources.list&
 &lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;then... I still had a problem. The first time I dpkg-ed the rabbitmq-server, it
+&lt;p&gt;then… I still had a problem. The first time I dpkg-ed the rabbitmq-server, it
 added it to invoke-rc. So when I tried to install erlang, it gave me this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;rabbitmq-server : Depends: erlang-nox (&amp;gt;= 1:13.b.3) but it is not going to be installed or
@@ -342,7 +328,7 @@ added it to invoke-rc. So when I tried to install erlang, it gave me this:&lt;/p
 &lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Success was in my grasp! However tantilizingly close it may be, however... It
+&lt;p&gt;Success was in my grasp! However tantilizingly close it may be, however… It
 still eluded me.&lt;/p&gt;
 
 &lt;p&gt;When I tried to install the package again, I got this nasty little message:&lt;/p&gt;
@@ -361,12 +347,11 @@ Errors were encountered while processing:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;div style=&quot;text-align: center&quot;&gt;
-&lt;img alt=&quot;head banging on desk&quot; src=&quot;http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif&quot;/&gt;
+&lt;img alt=&quot;head banging on desk&quot; src=&quot;http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif&quot; /&gt;
 &lt;/div&gt;
 
-
 &lt;p&gt;so I looked more closely and saw that I could install erlang-nox (which is a
-package for erlang for stuff that doesn&#39;t require X to be running -get it? &quot;no X&quot;).
+package for erlang for stuff that doesn’t require X to be running -get it? “no X”).
 So I gave it a shot.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox
@@ -384,14 +369,13 @@ So I gave it a shot.&lt;/p&gt;
  * Starting message broker rabbitmq-server [OK]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Victory was mine.&lt;/h4&gt;
+&lt;h4 id=&quot;victory-was-mine&quot;&gt;Victory was mine.&lt;/h4&gt;
 
 &lt;div style=&quot;text-align: center&quot;&gt;
-&lt;img alt= &quot;Success Kid resolves dependencies, neckbeard increaseth&quot; src=&quot;http://i.imgur.com/1TWj3tB.png&quot;/&gt;
+&lt;img alt=&quot;Success Kid resolves dependencies, neckbeard increaseth&quot; src=&quot;http://i.imgur.com/1TWj3tB.png&quot; /&gt;
 &lt;/div&gt;
 
-
-&lt;h2&gt;TLDR&lt;/h2&gt;
+&lt;h2 id=&quot;tldr&quot;&gt;TLDR&lt;/h2&gt;
 
 &lt;p&gt;download rabbitmq-server debian package from &lt;a href=&quot;http://www.rabbitmq.com/install-debian.html&quot;&gt;here&lt;/a&gt;
 but DO NOT run it yet.&lt;/p&gt;
@@ -428,23 +412,22 @@ sudo apt-key add erlang_solutions.asc
 &lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;then have a hot chocolate. You&#39;ve earned it.&lt;/p&gt;
+&lt;p&gt;then have a hot chocolate. You’ve earned it.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Fencepost</title>
-      <link>http://scotthelm.com/2013/11/13/fencepost/</link>
+      <link>http://scotthelm.com/2013/11/13/fencepost.html</link>
       <pubDate>Wed, 13 Nov 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/11/13/fencepost</guid>
-      <description>&lt;p&gt;When it comes to writing and maintianing software, I&#39;m lazy.
-I don&#39;t like doing mindless work. If I find myself doing the same thing
-more than twice, I will find a way to automate that thing in some way so I don&#39;t
+      <description>&lt;p&gt;When it comes to writing and maintianing software, I’m lazy.
+I don’t like doing mindless work. If I find myself doing the same thing
+more than twice, I will find a way to automate that thing in some way so I don’t
 have to keep repeating it.&lt;/p&gt;
 
-&lt;h2&gt;The Problem&lt;/h2&gt;
-
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;Ruby on Rails changed the way it handles input from a web request from version
 3.2 to 4.0. It used to be that you defined what you allowed to be set via
 update_attributes in the model itself by using &lt;code&gt;attr_accessible&lt;/code&gt;. This was all
@@ -457,10 +440,10 @@ outside the models themselves.&lt;/p&gt;
 
 &lt;p&gt;The Problem is that I have more than a few applications I need to upgrade to
 Rails 4, and that means I have to go into every controller in each of those
-applications and create my strong parameters declarations. Not only that: I&#39;m
+applications and create my strong parameters declarations. Not only that: I’m
 lazy. And that means I need to automate this in some way or I will go insane.&lt;/p&gt;
 
-&lt;h2&gt;Enter Fencepost&lt;/h2&gt;
+&lt;h2 id=&quot;enter-fencepost&quot;&gt;Enter Fencepost&lt;/h2&gt;
 
 &lt;p&gt;I solved this problem by creating a gem called &lt;a href=&quot;http://rubygems.org/gems/fencepost&quot;&gt;Fencepost&lt;/a&gt;.
 This gem solves the strong parameters problem in an elegant way, freeing you
@@ -468,14 +451,14 @@ from needless declarations in your controllers, and giving you access to those
 declarations in an intuitive way. The following is from the README for the gem:
 &lt;a href=&quot;https://github.com/scotthelm/fencepost&quot;&gt;on Github&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
 
 &lt;p&gt;Add &lt;code&gt;fencepost&lt;/code&gt; to your &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gem &#39;fencepost&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;Configuration&lt;/h2&gt;
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;rails g fencepost_config
 &lt;/code&gt;&lt;/pre&gt;
@@ -483,10 +466,10 @@ declarations in an intuitive way. The following is from the README for the gem:
 &lt;p&gt;This creates a yaml map of your models in &lt;code&gt;config/fencepost.yml&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can re-run the initializer at any time. You will be asked if you want to
-overwrite the existing config. &quot;Y&quot; will force an overwrite of the file, and you
+overwrite the existing config. “Y” will force an overwrite of the file, and you
 will need to re-comment out any attributes you want to remove by default.&lt;/p&gt;
 
-&lt;h3&gt;Default Configuration&lt;/h3&gt;
+&lt;h3 id=&quot;default-configuration&quot;&gt;Default Configuration&lt;/h3&gt;
 
 &lt;p&gt;The yaml map is where you can edit the allowable attributes for your models. In
 the 80/20 rule, this would be the %80. Removing attributes in the configuration
@@ -494,20 +477,20 @@ yaml lets you set reasonable defaults for strong parameter behavior.
 This map is read one time during intialization and stored in the Fencepost
 model graph (a class-level variable)&lt;/p&gt;
 
-&lt;h3&gt;Dev Mode&lt;/h3&gt;
+&lt;h3 id=&quot;dev-mode&quot;&gt;Dev Mode&lt;/h3&gt;
 
 &lt;p&gt;During the early stages of development where your code is in flux, you can set
 &lt;code&gt;dev_mode=true&lt;/code&gt; in &lt;code&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load
 and read in all your models dynamically every time the class is instantiated.
 (Ignoring the yaml in the initializer)&lt;/p&gt;
 
-&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
 
 &lt;p&gt;The gem creates a &lt;code&gt;fencepost&lt;/code&gt; method in your contollers. This returns a
 &lt;code&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong
 params for any ActiveRecord model in your application.&lt;/p&gt;
 
-&lt;h3&gt;Simplest Case&lt;/h3&gt;
+&lt;h3 id=&quot;simplest-case&quot;&gt;Simplest Case&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
 def create
@@ -515,7 +498,7 @@ def create
 end
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Simple allow / deny for top level model&lt;/h3&gt;
+&lt;h3 id=&quot;simple-allow--deny-for-top-level-model&quot;&gt;Simple allow / deny for top level model&lt;/h3&gt;
 
 &lt;p&gt;In this example, the Person model allows height and weight by default, but does
 NOT allow dob (date of birth). In this example we want to allow date of birth but
@@ -527,7 +510,7 @@ def create
 end
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;More complex allow / deny for nested models&lt;/h3&gt;
+&lt;h3 id=&quot;more-complex-allow--deny-for-nested-models&quot;&gt;More complex allow / deny for nested models&lt;/h3&gt;
 
 &lt;p&gt;In this example, the Person model has a collection of addresses. We want to
 deny latitude and longitude from the acceptable attributes.&lt;/p&gt;
@@ -538,20 +521,21 @@ def create
 end
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;TLDR&lt;/h2&gt;
+&lt;h2 id=&quot;tldr&quot;&gt;TLDR&lt;/h2&gt;
 
 &lt;p&gt;This gem creates strong parameter declarations based on you ActiveRecord models.
 It makes this configuration available in all your controllers, and gives you
 the flexibility to allow or deny attributes on the fly.&lt;/p&gt;
 
-&lt;p&gt;Please have a look at the gem and feel free to submit a pull request if you
+&lt;p&gt;Please have a look at the gem and feel free to submit a pull request if you 
 can make it better.&lt;/p&gt;
+
 </description>
     </item>
     
     <item>
       <title>Command Line JSON with JQ</title>
-      <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq/</link>
+      <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq.html</link>
       <pubDate>Sat, 28 Sep 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/09/28/command-line-json-with-jq</guid>
@@ -648,7 +632,7 @@ the client output:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then I started dealing with elasticsearch. I have many indexes for various clients
-so when I make a curl to the cluster status endpoint, the output is easily over
+so when I make a curl to the cluster status endpoint, the output is easily over 
 300 rows of console output. By contrast, the same endpoint, picking out only the
 name of the indexes (which is all I really want for this particular function) is
 amazingly simple:&lt;/p&gt;
@@ -684,61 +668,62 @@ using &lt;code&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script se
 detection and health monitoring.&lt;/p&gt;
 
 &lt;p&gt;I am now in the process of wrapping a good many elasticsearch and mongo calls in
-my little bash script. I&#39;ll be hosting the reult on github. as soon as I get it
-in any sort of presentable shape. However, I can&#39;t say enough good things about
+my little bash script. I’ll be hosting the reult on github. as soon as I get it
+in any sort of presentable shape. However, I can’t say enough good things about
 the JQ library. If you need to do anything with JSON on the command line, I
 have found this to be the best option. Cheers, Stedolan, for the great contribution!&lt;/p&gt;
+
 </description>
     </item>
     
     <item>
       <title>Even Now</title>
-      <link>http://scotthelm.com/2013/05/22/even-now/</link>
+      <link>http://scotthelm.com/2013/05/22/even-now.html</link>
       <pubDate>Wed, 22 May 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/05/22/even-now</guid>
-      <description>&lt;p&gt;Even now&lt;br/&gt;
-I can hear my heartbeat in my ears&lt;br/&gt;
-the need to get the words out&lt;br/&gt;
-before it&#39;s too late&lt;/p&gt;
+      <description>&lt;p&gt;Even now&lt;br /&gt;
+I can hear my heartbeat in my ears&lt;br /&gt;
+the need to get the words out&lt;br /&gt;
+before it’s too late  &lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br/&gt;
-there&#39;s so much more I want to tell you&lt;br/&gt;
-in the midnight confessional&lt;br/&gt;
-the silent return&lt;/p&gt;
+&lt;p&gt;Even now&lt;br /&gt;
+there’s so much more I want to tell you&lt;br /&gt;
+in the midnight confessional&lt;br /&gt;
+the silent return  &lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br/&gt;
-I wish I could see through your eyes&lt;br/&gt;
-standing on the shore with the boatman&lt;br/&gt;
-looking back over your shoulder&lt;/p&gt;
+&lt;p&gt;Even now&lt;br /&gt;
+I wish I could see through your eyes&lt;br /&gt;
+standing on the shore with the boatman&lt;br /&gt;
+looking back over your shoulder  &lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br/&gt;
-Even still&lt;/p&gt;
+&lt;p&gt;Even now&lt;br /&gt;
+Even still  &lt;/p&gt;
 
-&lt;p&gt;I always think of you when I least expect it&lt;br/&gt;
-like a flash in my periphery&lt;br/&gt;
-that draws my eye&lt;br/&gt;
-and I sit there, rapt for a while searching&lt;br/&gt;
-searching for what&#39;s no longer there&lt;/p&gt;
+&lt;p&gt;I always think of you when I least expect it&lt;br /&gt;
+like a flash in my periphery&lt;br /&gt;
+that draws my eye&lt;br /&gt;
+and I sit there, rapt for a while searching&lt;br /&gt;
+searching for what’s no longer there  &lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br/&gt;
-Even still&lt;/p&gt;
+&lt;p&gt;Even now&lt;br /&gt;
+Even still  &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Postgres quick cursors</title>
-      <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors/</link>
+      <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors.html</link>
       <pubDate>Wed, 15 May 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/05/15/postgres-quick-cursors</guid>
-      <description>&lt;p&gt;I needed to act on individual members of a set. I also didn&#39;t want to write a
+      <description>&lt;p&gt;I needed to act on individual members of a set. I also didn’t want to write a 
 function. In psql, I discovered the DO block. It allowed me to gain access to
 pgplsql without being in the context of a UDF (User Defined Function).&lt;/p&gt;
 
 &lt;p&gt;In this particular case, I created a table called view_refugees.  These were
 views that were causing my rails migration to fail due to a change in an
-underlying table column&#39;s datatype. The plan is that I will create the view
+underlying table column’s datatype. The plan is that I will create the view
 refugees from pg_views, drop the views, run the migration, then recreate the
 views.&lt;/p&gt;
 
@@ -761,7 +746,7 @@ views.&lt;/p&gt;
     
     <item>
       <title>American Drone</title>
-      <link>http://scotthelm.com/2013/02/10/american-drone/</link>
+      <link>http://scotthelm.com/2013/02/10/american-drone.html</link>
       <pubDate>Sun, 10 Feb 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/02/10/american-drone</guid>
@@ -773,8 +758,8 @@ an enormous loss of life due to collateral damage.
 indicate that the total number of deaths due to drones is massively
 under-reported and that the ratio of civilian to militant deaths is extremely high.&lt;/p&gt;
 
-&lt;p&gt;According to the former story, &quot;the percentage of high-level targets killed as
-a percentage of total casualties is extremely low -- about 2%&quot;. And yet here we
+&lt;p&gt;According to the former story, “the percentage of high-level targets killed as
+a percentage of total casualties is extremely low – about 2%”. And yet here we
 are, using the same technology that has an effective rate of 2% amongst
 our own populace.
 &lt;a href=&quot;http://www.express.co.uk/news/world/376732/Man-hunt-for-ex-soldier-who-shot-police-chief-s-daughter-and-killed-policeman&quot;&gt;This&lt;/a&gt;
@@ -782,19 +767,20 @@ is unacceptable.&lt;/p&gt;
 
 &lt;p&gt;In the wake of Sandy Hook, our president speaks of wanting to protect the children.
 An admiral goal. Would that he meant not only the children here, but the ones
-we are killing in the name of our &quot;national interest&quot; abroad.&lt;/p&gt;
+we are killing in the name of our “national interest” abroad.&lt;/p&gt;
 
 &lt;p&gt;The American Dream abroad and at home is quickly becoming the American Drone.&lt;/p&gt;
+
 </description>
     </item>
     
     <item>
       <title>Awk - It's not just a prefix for "ward"</title>
-      <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward/</link>
+      <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward.html</link>
       <pubDate>Sun, 27 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward</guid>
-      <description>&lt;p&gt;It&#39;s kind of a joke around where I work. I saw a data import script my boss had
+      <description>&lt;p&gt;It’s kind of a joke around where I work. I saw a data import script my boss had
 written that used &lt;code&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into
 record-type-specific files for use with BCP. Since then, I have (jokingly)
 declared that the combination of awk and elasticsearch is my hammer, and all
@@ -810,7 +796,7 @@ with this format:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The first number is the process id or pid.
-Since I had multiple processes running, I didn&#39;t want to have to find the last
+Since I had multiple processes running, I didn’t want to have to find the last
 entry for each pid and do math to find out how quickly things were going. So I
 whipped up this little import_stats.awk script:&lt;/p&gt;
 
@@ -845,7 +831,7 @@ END {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;now I can check on progress by typing this from the app&#39;s root:&lt;/p&gt;
+&lt;p&gt;now I can check on progress by typing this from the app’s root:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk
 &lt;/code&gt;&lt;/pre&gt;
@@ -861,14 +847,14 @@ that are rock solid foundations for new things. I found this site to be helpful
 as I was writing my little script:
 &lt;a href=&quot;http://www.grymoire.com/Unix/Awk.html&quot;&gt;Awk - A Tutorial and Introduction&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;It took no time at all to develop this utility. It&#39;s simple, saves me time and
+&lt;p&gt;It took no time at all to develop this utility. It’s simple, saves me time and
 makes me happy.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>More Postgres Magic</title>
-      <link>http://scotthelm.com/2013/01/20/more-postgres-magic/</link>
+      <link>http://scotthelm.com/2013/01/20/more-postgres-magic.html</link>
       <pubDate>Sun, 20 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/20/more-postgres-magic</guid>
@@ -925,17 +911,18 @@ ownage=# \d
 &lt;p&gt;With that, we no longer have to iterate over objects one by one and alter owner.&lt;/p&gt;
 
 &lt;p&gt;And that, my friends is more Postgres magic.&lt;/p&gt;
+
 </description>
     </item>
     
     <item>
       <title>Clojure Is Bending My Brain</title>
-      <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain/</link>
+      <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain.html</link>
       <pubDate>Sat, 05 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain</guid>
       <description>&lt;p&gt;My first foray into the world of functional programming is going to be
-&lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt; (pronounced &quot;closure&quot;).&lt;/p&gt;
+&lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt; (pronounced “closure”).&lt;/p&gt;
 
 &lt;p&gt;This Lisp derivative is not a purely functional language like Haskell or
 standard Lisp.  It is built on top of the Java Virtual Machine (JVM) which
@@ -948,46 +935,42 @@ functional programming already. Lambdas, for example, make a whole lot more
 sense to me now. It solves problems of complexity and concurrency that are
 difficult in object-oriented systems.&lt;/p&gt;
 
-&lt;p&gt;I&#39;m looking forward to learning more about it through
+&lt;p&gt;I’m looking forward to learning more about it through
 &lt;a href=&quot;http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/&quot;&gt;Programming Clojure&lt;/a&gt;
 and will post anything I find interesting.&lt;/p&gt;
 
 &lt;p&gt;My entire career has been spent honing my object-oriented programming skills.
 When I first started out, I taught myself about relational data. Then I moved
 to imperative programming, creating data-driven websites with classic asp and
-vbscript. (ugh). I quickly figured out that sucked and moved into Java.  That&#39;s
+vbscript. (ugh). I quickly figured out that sucked and moved into Java.  That’s
 where my love affair with object-oriented programming was born.  I cut my teeth
 with Jrun after a brief detour into CF.&lt;/p&gt;
 
 &lt;p&gt;I love OO. It provides a fantastic abstraction that has allowed me to think
 about software in concrete terms that are somewhat relatable to my clients. I
-spent years doing it in C#. And now I&#39;m doing it in Ruby.&lt;/p&gt;
+spent years doing it in C#. And now I’m doing it in Ruby.&lt;/p&gt;
 
 &lt;p&gt;To give you an idea how different the implementation is between a
 statically-typed OO language and a functional language, check this out:&lt;/p&gt;
 
-&lt;h3&gt;Example&lt;/h3&gt;
-
-&lt;h4&gt;Java&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;public class StringUtils {
-  public static boolean isBlank(String str) {
-    int strLen;
-    if (str == null || (strLen = str.length()) == 0) {
-      return true;
-    }
-    for (int i = 0; i &amp;lt; strLen; i++) {
-      if ((Character.isWhitespace(str.charAt(i)) == false)) {
-        return false;
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
+&lt;p&gt;#### Java
+    public class StringUtils {
+      public static boolean isBlank(String str) {
+        int strLen;
+        if (str == null || (strLen = str.length()) == 0) {
+          return true;
+        }
+        for (int i = 0; i &amp;lt; strLen; i++) {
+          if ((Character.isWhitespace(str.charAt(i)) == false)) {
+            return false;
+          }
+        }
+        return true;
       }
-    }
-    return true;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
+    }&lt;/p&gt;
 
-&lt;h4&gt;Clojure&lt;/h4&gt;
-
+&lt;h4 id=&quot;clojure&quot;&gt;Clojure&lt;/h4&gt;
 &lt;pre&gt;&lt;code&gt;(defn blank? [str]
   (every? #(Character/isWhitespace %) str))
 &lt;/code&gt;&lt;/pre&gt;
@@ -998,30 +981,28 @@ statically-typed OO language and a functional language, check this out:&lt;/p&gt
     
     <item>
       <title>Plans For the New Year</title>
-      <link>http://scotthelm.com/2012/12/31/plans-for-the-new-year/</link>
+      <link>http://scotthelm.com/2012/12/31/plans-for-the-new-year.html</link>
       <pubDate>Mon, 31 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/31/plans-for-the-new-year</guid>
       <description>&lt;p&gt;I made some major changes over the last year.&lt;/p&gt;
 
-&lt;h3&gt;I changed jobs.&lt;/h3&gt;
-
-&lt;p&gt;People do this all the time. I don&#39;t. I spent 8 great years
+&lt;h3 id=&quot;i-changed-jobs&quot;&gt;I changed jobs.&lt;/h3&gt;
+&lt;p&gt;People do this all the time. I don’t. I spent 8 great years
 with the last company I worked for. I think the world of them. We simply had
 different visions for my future. They wanted me to go into a software dev
 managment sort of role. That did not appeal to me. I like building things and
-solving problems. We parted ways as friends, which I&#39;m pretty proud of. Not
-only because of the amicability of the parting, but because I recognized its
+solving problems. We parted ways as friends, which I’m pretty proud of. Not
+only because of the amicability of the parting, but because I recognized its 
 necessity, and was willing to get out of my comfort zone to stay happy.&lt;/p&gt;
 
-&lt;h3&gt;I completely changed my tech.&lt;/h3&gt;
-
+&lt;h3 id=&quot;i-completely-changed-my-tech&quot;&gt;I completely changed my tech.&lt;/h3&gt;
 &lt;p&gt;I mean completely. I am an .net enterprise architect. I have delivered large-
 scale custom applications to fortune 500 companies. I used ASP.Net, MVC, EF and
 really enjoyed it. Heck, I even managed to wrangle SharePoint 2010 into a
 passable externally-facing customer portal.&lt;/p&gt;
 
-&lt;p&gt;Even so, I felt that I wasn&#39;t learning very much, and that there was a lot more
+&lt;p&gt;Even so, I felt that I wasn’t learning very much, and that there was a lot more
 out there.  I had played around with Ruby and Ruby on Rails producing the
 &lt;a href=&quot;http://www.stuffsimple.com&quot;&gt;StuffSimple&lt;/a&gt; site.  But I knew I was barely
 scratching the surface. With the changes at work looming, I decided to make the
@@ -1046,114 +1027,105 @@ today.&lt;/p&gt;
 &lt;p&gt;The list goes on, but needless to say, I have had a steep learning curve, and
 I love it.&lt;/p&gt;
 
-&lt;h3&gt;My plans for the coming year&lt;/h3&gt;
-
-&lt;h4&gt;Learn More&lt;/h4&gt;
-
-&lt;p&gt;It&#39;s my key personal key to happiness. It&#39;s what keeps me going. I plan to
+&lt;h3 id=&quot;my-plans-for-the-coming-year&quot;&gt;My plans for the coming year&lt;/h3&gt;
+&lt;p&gt;####Learn More
+It’s my key personal key to happiness. It’s what keeps me going. I plan to
 tackle a functional language of some sort.  Probably Clojure.&lt;/p&gt;
 
-&lt;h4&gt;Write More Music&lt;/h4&gt;
+&lt;h4 id=&quot;write-more-music&quot;&gt;Write More Music&lt;/h4&gt;
+&lt;p&gt;It’s something I enjoy very much. I need to do more of it.&lt;/p&gt;
 
-&lt;p&gt;It&#39;s something I enjoy very much. I need to do more of it.&lt;/p&gt;
-
-&lt;h4&gt;Stay Active&lt;/h4&gt;
-
-&lt;p&gt;I did a fairly good job last year, but I need to keep it up. This is that
+&lt;h4 id=&quot;stay-active&quot;&gt;Stay Active&lt;/h4&gt;
+&lt;p&gt;I did a fairly good job last year, but I need to keep it up. This is that 
 reminder.&lt;/p&gt;
 
-&lt;h4&gt;Cultivate Voiceovers&lt;/h4&gt;
+&lt;h4 id=&quot;cultivate-voiceovers&quot;&gt;Cultivate Voiceovers&lt;/h4&gt;
+&lt;p&gt;Last year was pretty good, but I can do better. I would love to get on a 
+cartoon, or an audible book gig. Let’s see if I can do that this year.&lt;/p&gt;
 
-&lt;p&gt;Last year was pretty good, but I can do better. I would love to get on a
-cartoon, or an audible book gig. Let&#39;s see if I can do that this year.&lt;/p&gt;
+&lt;h4 id=&quot;spend-more-time-with-family-and-friends&quot;&gt;Spend more time with family and friends&lt;/h4&gt;
+&lt;p&gt;Game night. Let’s do this.&lt;/p&gt;
 
-&lt;h4&gt;Spend more time with family and friends&lt;/h4&gt;
+&lt;h4 id=&quot;finish-stuffsimple&quot;&gt;Finish StuffSimple&lt;/h4&gt;
+&lt;p&gt;I have a working implementation, but it’s using dated tech. I want to revamp it
+with all the stuff I’ve learned over the last year.&lt;/p&gt;
 
-&lt;p&gt;Game night. Let&#39;s do this.&lt;/p&gt;
-
-&lt;h4&gt;Finish StuffSimple&lt;/h4&gt;
-
-&lt;p&gt;I have a working implementation, but it&#39;s using dated tech. I want to revamp it
-with all the stuff I&#39;ve learned over the last year.&lt;/p&gt;
-
-&lt;p&gt;It&#39;s going to be exciting!  I wish you many joys and triumphs in the coming
+&lt;p&gt;It’s going to be exciting!  I wish you many joys and triumphs in the coming 
 year!  Happy 2013 all!&lt;/p&gt;
+
 </description>
     </item>
     
     <item>
       <title>Rainbows</title>
-      <link>http://scotthelm.com/2012/12/29/rainbows/</link>
+      <link>http://scotthelm.com/2012/12/29/rainbows.html</link>
       <pubDate>Sat, 29 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/29/rainbows</guid>
       <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me
-dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
+dancing at my wedding. It was a beautiful gift. &lt;/p&gt;
 
 &lt;p&gt;I had started the melody a while back, but had no lyrics.  I put the lyrics
 together today.&lt;/p&gt;
 
-&lt;p&gt;in a corner of the room&lt;br/&gt;
-underneath the moving boxes&lt;br/&gt;
-in a chest of faded memories there&lt;br/&gt;
-is a picture of us dancing&lt;/p&gt;
+&lt;p&gt;in a corner of the room&lt;br /&gt;
+underneath the moving boxes&lt;br /&gt;
+in a chest of faded memories there&lt;br /&gt;
+is a picture of us dancing  &lt;/p&gt;
 
-&lt;p&gt;after all this time flows&lt;br/&gt;
-out the door and through the windows&lt;br/&gt;
-through these tears I look up&lt;br/&gt;
-and see rainbows&lt;/p&gt;
+&lt;p&gt;after all this time flows&lt;br /&gt;
+out the door and through the windows&lt;br /&gt;
+through these tears I look up&lt;br /&gt;
+and see rainbows  &lt;/p&gt;
 
-&lt;p&gt;I often think of you&lt;br/&gt;
-in my mind I see you smiling&lt;br/&gt;
-like a vision of the loveliest smile&lt;br/&gt;
-that anyone has ever&lt;/p&gt;
+&lt;p&gt;I often think of you&lt;br /&gt;
+in my mind I see you smiling&lt;br /&gt;
+like a vision of the loveliest smile&lt;br /&gt;
+that anyone has ever  &lt;/p&gt;
 
-&lt;p&gt;after all this time flows&lt;br/&gt;
-out the door and through the windows&lt;br/&gt;
-through these tears I look up&lt;br/&gt;
+&lt;p&gt;after all this time flows&lt;br /&gt;
+out the door and through the windows&lt;br /&gt;
+through these tears I look up&lt;br /&gt;
 and see rainbows&lt;/p&gt;
 
 &lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F72984244&amp;amp;show_artwork=true&quot;&gt;&lt;/iframe&gt;
-
-
 
 </description>
     </item>
     
     <item>
       <title>It's the end of the world, and I feel fine</title>
-      <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine/</link>
+      <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine.html</link>
       <pubDate>Thu, 20 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine</guid>
-      <description>&lt;p&gt;I was amazed by how much the world didn&#39;t end today.&lt;/p&gt;
+      <description>&lt;p&gt;I was amazed by how much the world didn’t end today.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Three Four for Twelve Twelve</title>
-      <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve/</link>
+      <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve.html</link>
       <pubDate>Wed, 12 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve</guid>
-      <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.&lt;/p&gt;
+      <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.  &lt;/p&gt;
 
-&lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it.  This list is just off the top of my head, and is in no particular order...and yes, there are 2 Queen songs.  Sue me.&lt;/p&gt;
+&lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it.  This list is just off the top of my head, and is in no particular order…and yes, there are 2 Queen songs.  Sue me.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=-lG3nXyI41M&quot;&gt;She&#39;s Leaving Home - Beatles&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=Hvfzrffto2I&quot;&gt;Manic Depression - Jimi Hendirx&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=47leRbuaOxo&quot;&gt;Birdland - Patti Smith&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qWG2dsXV5HI&quot;&gt;My Favorite Things - John Coltrane&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=k1G1xZsLb3c&quot;&gt;Drowse - Queen&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qwXtHZeBb7M&quot;&gt;Dead Melodies - Beck&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=1ky1td3_6LY&quot;&gt;Nude - Radiohead&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=04854XqcfCY&quot;&gt;We Are The Champions - Queen&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=GPG3zSgm_Qo&quot;&gt;Christmas Time Is Here - Charlie Brown Christmas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=-lG3nXyI41M&quot;&gt;She’s Leaving Home - Beatles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=Hvfzrffto2I&quot;&gt;Manic Depression - Jimi Hendirx&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=47leRbuaOxo&quot;&gt;Birdland - Patti Smith&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qWG2dsXV5HI&quot;&gt;My Favorite Things - John Coltrane&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=k1G1xZsLb3c&quot;&gt;Drowse - Queen&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qwXtHZeBb7M&quot;&gt;Dead Melodies - Beck&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=1ky1td3_6LY&quot;&gt;Nude - Radiohead&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=04854XqcfCY&quot;&gt;We Are The Champions - Queen&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=GPG3zSgm_Qo&quot;&gt;Christmas Time Is Here - Charlie Brown Christmas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-
-&lt;p&gt;interestingly, &lt;a href=&quot;http://www.youtube.com/watch?v=XrkThaBWa5c&quot;&gt;Waltzing Matilda&lt;/a&gt; isn&#39;t in 3/4 unless you count it in triplets.  But hey, it&#39;s a great song, so I&#39;m including it.&lt;/p&gt;
+&lt;p&gt;interestingly, &lt;a href=&quot;http://www.youtube.com/watch?v=XrkThaBWa5c&quot;&gt;Waltzing Matilda&lt;/a&gt; isn’t in 3/4 unless you count it in triplets.  But hey, it’s a great song, so I’m including it.&lt;/p&gt;
 
 &lt;p&gt;Enjoy your 12/12/12!&lt;/p&gt;
 </description>
@@ -1161,47 +1133,46 @@ and see rainbows&lt;/p&gt;
     
     <item>
       <title>Some Postgres Shortcuts</title>
-      <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts/</link>
+      <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts.html</link>
       <pubDate>Tue, 11 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/11/some-postgres-shortcuts</guid>
-      <description>&lt;h3&gt;Command Line&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+      <description>&lt;h3 id=&quot;command-line&quot;&gt;Command Line&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;
+pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;-s Schema only, please.  No data&lt;/li&gt;
-&lt;li&gt;-O (that&#39;s an O as in &quot;Oh&quot;): don&#39;t script ownership of objects&lt;/li&gt;
-&lt;li&gt;-h the host.  If you&#39;re on the box with the database, then localhost usually works&lt;/li&gt;
-&lt;li&gt;-U the username that you want to connect to the database with&lt;/li&gt;
-&lt;li&gt;-W prompt me for a password.  If you don&#39;t want this, then you will need to set the PG_PASS environment variable&lt;/li&gt;
-&lt;li&gt;-n schema name.  Postgres has the concept of schemas.  Think of them as namespaces.  You can pass a list with multiple -n or leave it blank and get all of them&lt;/li&gt;
+  &lt;li&gt;-s Schema only, please.  No data&lt;/li&gt;
+  &lt;li&gt;-O (that’s an O as in “Oh”): don’t script ownership of objects&lt;/li&gt;
+  &lt;li&gt;-h the host.  If you’re on the box with the database, then localhost usually works&lt;/li&gt;
+  &lt;li&gt;-U the username that you want to connect to the database with&lt;/li&gt;
+  &lt;li&gt;-W prompt me for a password.  If you don’t want this, then you will need to set the PG_PASS environment variable&lt;/li&gt;
+  &lt;li&gt;-n schema name.  Postgres has the concept of schemas.  Think of them as namespaces.  You can pass a list with multiple -n or leave it blank and get all of them&lt;/li&gt;
 &lt;/ul&gt;
-
 
 &lt;p&gt;The -h, -U and -W work with psql as well&lt;/p&gt;
 
-&lt;h3&gt;psql&lt;/h3&gt;
+&lt;h3 id=&quot;psql&quot;&gt;psql&lt;/h3&gt;
 
 &lt;p&gt;within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in
 &lt;code&gt;
 /tmp/psql.edit.&amp;lt;pid&amp;gt;
 &lt;/code&gt;
-where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it&#39;s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won&#39;t run.&lt;/p&gt;
+where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.&lt;/p&gt;
 
-&lt;p&gt;More to come. These are ones I&#39;ve used today.&lt;/p&gt;
+&lt;p&gt;More to come. These are ones I’ve used today.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Me and The Boys</title>
-      <link>http://scotthelm.com/2012/12/03/me-and-the-boys/</link>
+      <link>http://scotthelm.com/2012/12/03/me-and-the-boys.html</link>
       <pubDate>Mon, 03 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/03/me-and-the-boys</guid>
-      <description>&lt;p&gt;Every now and then, I&#39;m able to get the boys together with me long enough to
-take a picture. Their reaction to the countdown in the Photobooth app is
+      <description>&lt;p&gt;Every now and then, I’m able to get the boys together with me long enough to
+take a picture. Their reaction to the countdown in the Photobooth app is 
 always unpredictable.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://s3.amazonaws.com/ScottHelm/stuff/pics/20121203.jpg&quot; alt=&quot;me and the boys&quot; /&gt;&lt;/p&gt;

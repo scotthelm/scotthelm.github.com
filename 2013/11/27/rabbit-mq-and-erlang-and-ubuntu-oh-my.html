@@ -67,13 +67,21 @@
         <div class="span6">
           <h2> RabbitMQ and Erlang and Ubuntu (12.04) Oh My! </h2>
           <hr/>
-          <p>As part of an upcoming development effort for a new client, I am looking at using a message broker to facilitate inter-app communications. The use case is that the new system integrates several different data sources into a consolidated view.</p>
+          <p>As part of an upcoming development effort for a new client, I am looking at
+using a message broker to facilitate inter-app communications. The use case
+is that the new system integrates several different data sources into a
+consolidated view.</p>
 
-<p>For example: When changes are made to the canonical source in postgres, we need to let the our indexer service know that it needs to update the elasticsearch index so the front-end application can serve the freshest data.</p>
+<p>For example: When changes are made to the canonical source in postgres,
+we need to let the our indexer service know that it needs to update the
+elasticsearch index so the front-end application can serve the freshest data.</p>
 
-<h2 id='the_problem'>The Problem</h2>
-
-<p>In 2 words: Unmet Dependencies. Rabbit MQ is built with <a href='http://erlang.org'>Erlang</a>. The Erlang packages in Ubuntu 12.04 (Precise) are out of date or not present. I downloaded the <a href='http://www.rabbitmq.com/install-debian.html'>RabbitMQ Ubuntu Debian package</a> and expected a quick dpkg -i install. However, instead of a quick list of additional packages that would be installed and a friendly &#8220;Y/n?&#8221;, I got:</p>
+<h2 id="the-problem">The Problem</h2>
+<p>In 2 words: Unmet Dependencies. Rabbit MQ is built with
+<a href="http://erlang.org">Erlang</a>. The Erlang packages in Ubuntu 12.04 (Precise) are
+out of date or not present. I downloaded the <a href="http://www.rabbitmq.com/install-debian.html">RabbitMQ Ubuntu Debian package</a>
+and expected a quick dpkg -i install. However, instead of a quick list of
+additional packages that would be installed and a friendly “Y/n?”, I got:</p>
 
 <pre><code>sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 ...stuff...
@@ -84,7 +92,8 @@ dpkg: dependency problems prevent configuration of rabbitmq-server:
 dpkg: error processing rabbitmq-server (--install):
 ...stuff...
 Errors were encountered while processing:
- rabbitmq-server</code></pre>
+ rabbitmq-server
+</code></pre>
 
 <p>So. I tried installing Erlang from the Ubuntu packages and got this:</p>
 
@@ -95,38 +104,51 @@ Reading state information... Done
 Package esl-erlang is not available, but is referred to by another package.
 This may mean that the package is missing, has been obsoleted, or
 is only available from another source
-E: Package &#39;esl-erlang&#39; has no installation candidate</code></pre>
-<div style='text-align: center'>
-  <img alt='Wat do?' src='http://i.qkme.me/MR.jpg' />
+E: Package 'esl-erlang' has no installation candidate
+</code></pre>
+
+<div style="text-align: center">
+  <img src="http://i.qkme.me/MR.jpg" alt="Wat do?" />
 </div>
-<h2 id='the_solution'>The Solution</h2>
 
-<p>Go to <a href='http://erlang.org'>erlang.org</a>. Find the <a href='https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu'>download page for Ubuntu</a> which is NOT at erlang.org - it is at <a href='http://www.erlang-solutions.com'>www.erlang-solutions.com</a>. Craziness. I follow the directions and add this line to my <code>/etc/apt/sources.list</code></p>
+<h2 id="the-solution">The Solution</h2>
 
-<pre><code>deb http://packages.erlang-solutions.com/debian precise contrib</code></pre>
+<p>Go to <a href="http://erlang.org">erlang.org</a>. Find the <a href="https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu">download page for Ubuntu</a>
+which is NOT at erlang.org - it is at <a href="http://www.erlang-solutions.com">www.erlang-solutions.com</a>. Craziness. I
+follow the directions and add this line to my <code>/etc/apt/sources.list</code></p>
+
+<pre><code>deb http://packages.erlang-solutions.com/debian precise contrib
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get update</code></pre>
+<pre><code>sudo apt-get update
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get install erlang</code></pre>
+<pre><code>sudo apt-get install erlang
+</code></pre>
 
-<p>then&#8230; I still had a problem. The first time I dpkg-ed the rabbitmq-server, it added it to invoke-rc. So when I tried to install erlang, it gave me this:</p>
+<p>then… I still had a problem. The first time I dpkg-ed the rabbitmq-server, it
+added it to invoke-rc. So when I tried to install erlang, it gave me this:</p>
 
 <pre><code>rabbitmq-server : Depends: erlang-nox (&gt;= 1:13.b.3) but it is not going to be installed or
-                        esl-erlang but it is not going to be installed</code></pre>
+                        esl-erlang but it is not going to be installed
+</code></pre>
 
 <p>so to get rid of the invalid package, I</p>
 
-<pre><code>sudo dpkg -r rabbitmq-server</code></pre>
+<pre><code>sudo dpkg -r rabbitmq-server
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get install erlang</code></pre>
+<pre><code>sudo apt-get install erlang
+</code></pre>
 
-<p>Success was in my grasp! However tantilizingly close it may be, however&#8230; It still eluded me.</p>
+<p>Success was in my grasp! However tantilizingly close it may be, however… It
+still eluded me.</p>
 
 <p>When I tried to install the package again, I got this nasty little message:</p>
 
@@ -140,58 +162,77 @@ dpkg: error processing rabbitmq-server (--install):
  dependency problems - leaving unconfigured
 ...stuff...
 Errors were encountered while processing:
- rabbitmq-server</code></pre>
-<div style='text-align: center'>
-<img alt='head banging on desk' src='http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif' />
-</div>
-<p>so I looked more closely and saw that I could install erlang-nox (which is a package for erlang for stuff that doesn&#8217;t require X to be running -get it? &#8220;no X&#8221;). So I gave it a shot.</p>
+ rabbitmq-server
+</code></pre>
 
-<pre><code>sudo apt-get install erlang-nox</code></pre>
+<div style="text-align: center">
+<img alt="head banging on desk" src="http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif" />
+</div>
+
+<p>so I looked more closely and saw that I could install erlang-nox (which is a
+package for erlang for stuff that doesn’t require X to be running -get it? “no X”).
+So I gave it a shot.</p>
+
+<pre><code>sudo apt-get install erlang-nox
+</code></pre>
 
 <p>It worked.</p>
 
-<pre><code>sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb</code></pre>
+<pre><code>sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+</code></pre>
 
 <p>And I was finally greeted with this little beauty:</p>
 
 <pre><code>Selecting previously unselected package rabbitmq-server.
 ...stuff...
- * Starting message broker rabbitmq-server [OK]</code></pre>
+ * Starting message broker rabbitmq-server [OK]
+</code></pre>
 
-<h4 id='victory_was_mine'>Victory was mine.</h4>
-<div style='text-align: center'>
-<img alt='Success Kid resolves dependencies, neckbeard increaseth' src='http://i.imgur.com/1TWj3tB.png' />
+<h4 id="victory-was-mine">Victory was mine.</h4>
+
+<div style="text-align: center">
+<img alt="Success Kid resolves dependencies, neckbeard increaseth" src="http://i.imgur.com/1TWj3tB.png" />
 </div>
-<h2 id='tldr'>TLDR</h2>
 
-<p>download rabbitmq-server debian package from <a href='http://www.rabbitmq.com/install-debian.html'>here</a> but DO NOT run it yet.</p>
+<h2 id="tldr">TLDR</h2>
 
-<p>add this line to your <code>/etc/apt/sources.list</code> (I updated the link below based on an update from Mark J Williams)</p>
+<p>download rabbitmq-server debian package from <a href="http://www.rabbitmq.com/install-debian.html">here</a>
+but DO NOT run it yet.</p>
 
-<pre><code>deb http://packages.erlang-solutions.com/ubuntu precise contrib</code></pre>
+<p>add this line to your <code>/etc/apt/sources.list</code>
+(I updated the link below based on an update from Mark J Williams)</p>
+
+<pre><code>deb http://packages.erlang-solutions.com/ubuntu precise contrib
+</code></pre>
 
 <p>Next, you may need to add the Erlang Solutions public key for apt-secure</p>
 
 <pre><code>wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-sudo apt-key add erlang_solutions.asc</code></pre>
+sudo apt-key add erlang_solutions.asc
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get update</code></pre>
+<pre><code>sudo apt-get update
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get install erlang</code></pre>
+<pre><code>sudo apt-get install erlang
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo apt-get install erlang-nox</code></pre>
+<pre><code>sudo apt-get install erlang-nox
+</code></pre>
 
 <p>then</p>
 
-<pre><code>sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb</code></pre>
+<pre><code>sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+</code></pre>
 
-<p>then have a hot chocolate. You&#8217;ve earned it.</p>
+<p>then have a hot chocolate. You’ve earned it.</p>
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>

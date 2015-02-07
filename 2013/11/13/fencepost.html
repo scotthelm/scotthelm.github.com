@@ -67,76 +67,115 @@
         <div class="span6">
           <h2> Fencepost </h2>
           <hr/>
-          <p>When it comes to writing and maintianing software, I&#8217;m lazy. I don&#8217;t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don&#8217;t have to keep repeating it.</p>
+          <p>When it comes to writing and maintianing software, I’m lazy.
+I don’t like doing mindless work. If I find myself doing the same thing
+more than twice, I will find a way to automate that thing in some way so I don’t
+have to keep repeating it.</p>
 
-<h2 id='the_problem'>The Problem</h2>
+<h2 id="the-problem">The Problem</h2>
+<p>Ruby on Rails changed the way it handles input from a web request from version
+3.2 to 4.0. It used to be that you defined what you allowed to be set via
+update_attributes in the model itself by using <code>attr_accessible</code>. This was all
+well and good until the new version of Rails removed that mechanism for
+model security in favor of something called <code>strong_parameters</code>.</p>
 
-<p>Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using <code>attr_accessible</code>. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called <code>strong_parameters</code>.</p>
+<p>Strong Parameters are a good thing. They increase the flexibility of the application
+by letting you define which parameters are allowed to be passed to your models
+outside the models themselves.</p>
 
-<p>Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves.</p>
+<p>The Problem is that I have more than a few applications I need to upgrade to
+Rails 4, and that means I have to go into every controller in each of those
+applications and create my strong parameters declarations. Not only that: I’m
+lazy. And that means I need to automate this in some way or I will go insane.</p>
 
-<p>The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I&#8217;m lazy. And that means I need to automate this in some way or I will go insane.</p>
+<h2 id="enter-fencepost">Enter Fencepost</h2>
 
-<h2 id='enter_fencepost'>Enter Fencepost</h2>
+<p>I solved this problem by creating a gem called <a href="http://rubygems.org/gems/fencepost">Fencepost</a>.
+This gem solves the strong parameters problem in an elegant way, freeing you
+from needless declarations in your controllers, and giving you access to those
+declarations in an intuitive way. The following is from the README for the gem:
+<a href="https://github.com/scotthelm/fencepost">on Github</a></p>
 
-<p>I solved this problem by creating a gem called <a href='http://rubygems.org/gems/fencepost'>Fencepost</a>. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: <a href='https://github.com/scotthelm/fencepost'>on Github</a></p>
-
-<h2 id='installation'>Installation</h2>
+<h2 id="installation">Installation</h2>
 
 <p>Add <code>fencepost</code> to your <code>Gemfile</code></p>
 
-<pre><code>gem &#39;fencepost&#39;</code></pre>
+<pre><code>gem 'fencepost'
+</code></pre>
 
-<h2 id='configuration'>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 
-<pre><code>rails g fencepost_config</code></pre>
+<pre><code>rails g fencepost_config
+</code></pre>
 
 <p>This creates a yaml map of your models in <code>config/fencepost.yml</code>.</p>
 
-<p>You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. &#8220;Y&#8221; will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default.</p>
+<p>You can re-run the initializer at any time. You will be asked if you want to
+overwrite the existing config. “Y” will force an overwrite of the file, and you
+will need to re-comment out any attributes you want to remove by default.</p>
 
-<h3 id='default_configuration'>Default Configuration</h3>
+<h3 id="default-configuration">Default Configuration</h3>
 
-<p>The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable)</p>
+<p>The yaml map is where you can edit the allowable attributes for your models. In
+the 80/20 rule, this would be the %80. Removing attributes in the configuration
+yaml lets you set reasonable defaults for strong parameter behavior.
+This map is read one time during intialization and stored in the Fencepost
+model graph (a class-level variable)</p>
 
-<h3 id='dev_mode'>Dev Mode</h3>
+<h3 id="dev-mode">Dev Mode</h3>
 
-<p>During the early stages of development where your code is in flux, you can set <code>dev_mode=true</code> in <code>config/initializers/fencepost.rb</code>. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer)</p>
+<p>During the early stages of development where your code is in flux, you can set
+<code>dev_mode=true</code> in <code>config/initializers/fencepost.rb</code>. dev mode will eager load
+and read in all your models dynamically every time the class is instantiated.
+(Ignoring the yaml in the initializer)</p>
 
-<h2 id='usage'>Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<p>The gem creates a <code>fencepost</code> method in your contollers. This returns a <code>Fencepost</code> object that has read your models and given you access to strong params for any ActiveRecord model in your application.</p>
+<p>The gem creates a <code>fencepost</code> method in your contollers. This returns a
+<code>Fencepost</code> object that has read your models and given you access to strong
+params for any ActiveRecord model in your application.</p>
 
-<h3 id='simplest_case'>Simplest Case</h3>
+<h3 id="simplest-case">Simplest Case</h3>
 
 <pre><code># app/controllers/people_controller
 def create
   @person = Person.create(fencepost.person_params)
-end</code></pre>
+end
+</code></pre>
 
-<h3 id='simple_allow__deny_for_top_level_model'>Simple allow / deny for top level model</h3>
+<h3 id="simple-allow--deny-for-top-level-model">Simple allow / deny for top level model</h3>
 
-<p>In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight.</p>
+<p>In this example, the Person model allows height and weight by default, but does
+NOT allow dob (date of birth). In this example we want to allow date of birth but
+deny weight.</p>
 
 <pre><code># app/controllers/people_controller
 def create
   @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params)
-end</code></pre>
+end
+</code></pre>
 
-<h3 id='more_complex_allow__deny_for_nested_models'>More complex allow / deny for nested models</h3>
+<h3 id="more-complex-allow--deny-for-nested-models">More complex allow / deny for nested models</h3>
 
-<p>In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes.</p>
+<p>In this example, the Person model has a collection of addresses. We want to
+deny latitude and longitude from the acceptable attributes.</p>
 
 <pre><code># app/controllers/people_controller
 def create
   @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params)
-end</code></pre>
+end
+</code></pre>
 
-<h2 id='tldr'>TLDR</h2>
+<h2 id="tldr">TLDR</h2>
 
-<p>This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly.</p>
+<p>This gem creates strong parameter declarations based on you ActiveRecord models.
+It makes this configuration available in all your controllers, and gives you
+the flexibility to allow or deny attributes on the fly.</p>
 
-<p>Please have a look at the gem and feel free to submit a pull request if you can make it better.</p>
+<p>Please have a look at the gem and feel free to submit a pull request if you 
+can make it better.</p>
+
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>

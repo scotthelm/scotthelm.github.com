@@ -67,21 +67,28 @@
         <div class="span6">
           <h2> Postgres to CSV </h2>
           <hr/>
-          <p>Here lately, I have had to produce several reports from psql. If you&#8217;re anything like me, Then you&#8217;re all about automating automatable things. And you&#8217;re also probably all about simplicity. So I turned to my old friends, <code>psql</code> and <code>cron</code>.</p>
+          <p>Here lately, I have had to produce several reports from psql. If you’re anything
+like me, Then you’re all about automating automatable things. And you’re also
+probably all about simplicity. So I turned to my old friends, <code>psql</code> and <code>cron</code>.</p>
 
-<h2 id='overview'>Overview</h2>
+<h2 id="overview">Overview</h2>
+<p>If you want to automate something in Linux, figure out how to run it from the
+command line. Then run it from <code>cron</code>. You can automate <code>cron</code> from something like
+<a href="http://puppetlabs.com">puppet</a> or
+<a href="http://www.getchef.com/chef/">chef</a> or
+<a href="http://www.docker.com">docker</a></p>
 
-<p>If you want to automate something in Linux, figure out how to run it from the command line. Then run it from <code>cron</code>. You can automate <code>cron</code> from something like <a href='http://puppetlabs.com'>puppet</a> or <a href='http://www.getchef.com/chef/'>chef</a> or <a href='http://www.docker.com'>docker</a></p>
-
-<h2 id='the_command'>The Command</h2>
-
-<p>First of all - you will probably want to wrap a thing like this in a shell script. I use bash, so my <code>~/psql_report_script.sh</code> would be like this:</p>
+<h2 id="the-command">The Command</h2>
+<p>First of all - you will probably want to wrap a thing like this in a shell
+script. I use bash, so my <code>~/psql_report_script.sh</code> would be like this: </p>
 
 <pre><code>#!/bin/bash
 
- PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &lt;database&gt; -h &lt;host&gt; -U &lt;username&gt; -c &#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&#39; -o /path/to/your/file.csv</code></pre>
+ PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &lt;database&gt; -h &lt;host&gt; -U &lt;username&gt; -c 'copy (select something from your_tables) TO STDOUT WITH CSV HEADER' -o /path/to/your/file.csv
+</code></pre>
 
-<p>Now chmod +x that file, and let&#8217;s break that command down just a little.</p>
+<p>Now chmod +x that file, and let’s break that command down just a little.</p>
+
 <dl>
 <dt>PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE</dt>
 <dd>Now that's sensitive information. But it allows us to run the command without
@@ -110,22 +117,29 @@ copy the result of the query to STDOUT and in a CSV format with headers</dd>
 <dt>-o</dt>
 <dd>that's where we want the file to be saved</dd>
 </dl>
-<h2 id='the_automation'>The Automation</h2>
 
-<p>I like cron. It&#8217;s the easiest, fastest way to make things happen on a schedule on a linux machine. Here&#8217;s <a href='https://help.ubuntu.com/community/CronHowto'>how to set it up</a>. TLDR: type in <code>crontab -e</code> to edit your crontab file, and read the top line. From the how to set it up link:</p>
+<h2 id="the-automation">The Automation</h2>
+
+<p>I like cron. It’s the easiest, fastest way to make things happen on a schedule
+on a linux machine. Here’s <a href="https://help.ubuntu.com/community/CronHowto">how to set it up</a>. TLDR: type in <code>crontab -e</code> to edit your crontab file, and read the top
+line. From the how to set it up link:</p>
 
 <blockquote>
-<p>minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)</p>
+  <p>minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)</p>
 </blockquote>
 
-<p>The last part of the file is your command. So if I wanted this to run every day at 2am, my crontab line would look like this:</p>
+<p>The last part of the file is your command. So if I wanted this to run every day
+at 2am, my crontab line would look like this:</p>
 
 <pre><code>01 02 * * * /home/my_user/reports/psql_report_script.sh
-30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv</code></pre>
+30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv
+</code></pre>
 
-<p>Here, I&#8217;m also exporting the file out to another server at 2:30am every morning.</p>
+<p>Here, I’m also exporting the file out to another server at 2:30am every morning.</p>
 
-<p>As you can see it&#8217;s not hard at all to set up a repeatable report extract using simple command-line tools.</p>
+<p>As you can see it’s not hard at all to set up a repeatable report extract using
+simple command-line tools. </p>
+
           <hr/>
         <!-- #################### DISQUS ############################# -->
         <div id="disqus_thread"></div>
