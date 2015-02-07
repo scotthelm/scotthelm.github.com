@@ -6,180 +6,276 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Tue, 16 Dec 2014 08:58:49 -0500</pubDate>
-    <lastBuildDate>Tue, 16 Dec 2014 08:58:49 -0500</lastBuildDate>
+    <pubDate>Sat, 07 Feb 2015 09:45:59 -0500</pubDate>
+    <lastBuildDate>Sat, 07 Feb 2015 09:45:59 -0500</lastBuildDate>
 
     
     <item>
       <title>Postgres to CSV</title>
-      <link>http://scotthelm.com/2014/07/24/postgresql-to-csv.html</link>
+      <link>http://scotthelm.com/2014/07/24/postgresql-to-csv/</link>
       <pubDate>Thu, 24 Jul 2014 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/07/24/postgresql-to-csv</guid>
-      <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you&amp;#8217;re anything like me, Then you&amp;#8217;re all about automating automatable things. And you&amp;#8217;re also probably all about simplicity. So I turned to my old friends, &lt;code&gt;psql&lt;/code&gt; and &lt;code&gt;cron&lt;/code&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you&#39;re anything
+like me, Then you&#39;re all about automating automatable things. And you&#39;re also
+probably all about simplicity. So I turned to my old friends, &lt;code&gt;psql&lt;/code&gt; and &lt;code&gt;cron&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id='overview'&gt;Overview&lt;/h2&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
 
-&lt;p&gt;If you want to automate something in Linux, figure out how to run it from the command line. Then run it from &lt;code&gt;cron&lt;/code&gt;. You can automate &lt;code&gt;cron&lt;/code&gt; from something like &lt;a href='http://puppetlabs.com'&gt;puppet&lt;/a&gt; or &lt;a href='http://www.getchef.com/chef/'&gt;chef&lt;/a&gt; or &lt;a href='http://www.docker.com'&gt;docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you want to automate something in Linux, figure out how to run it from the
+command line. Then run it from &lt;code&gt;cron&lt;/code&gt;. You can automate &lt;code&gt;cron&lt;/code&gt; from something like
+&lt;a href=&quot;http://puppetlabs.com&quot;&gt;puppet&lt;/a&gt; or
+&lt;a href=&quot;http://www.getchef.com/chef/&quot;&gt;chef&lt;/a&gt; or
+&lt;a href=&quot;http://www.docker.com&quot;&gt;docker&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id='the_command'&gt;The Command&lt;/h2&gt;
+&lt;h2&gt;The Command&lt;/h2&gt;
 
-&lt;p&gt;First of all - you will probably want to wrap a thing like this in a shell script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this:&lt;/p&gt;
+&lt;p&gt;First of all - you will probably want to wrap a thing like this in a shell
+script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#!/bin/bash
 
- PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &amp;lt;database&amp;gt; -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -c &amp;#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&amp;#39; -o /path/to/your/file.csv&lt;/code&gt;&lt;/pre&gt;
+ PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &amp;lt;database&amp;gt; -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -c &#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&#39; -o /path/to/your/file.csv
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now chmod +x that file, and let&amp;#8217;s break that command down just a little.&lt;/p&gt;
+&lt;p&gt;Now chmod +x that file, and let&#39;s break that command down just a little.&lt;/p&gt;
+
 &lt;dl&gt;
 &lt;dt&gt;PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE&lt;/dt&gt;
-&lt;dd&gt;Now that's sensitive information. But it allows us to run the command without
-having to type the password in, and that's a good thing. That's why we use an
-environment variable. Pro tip - if you don't want a command to show up in &lt;code&gt;history&lt;/code&gt; then put a space before it.&lt;/dd&gt;
+&lt;dd&gt;Now that&#39;s sensitive information. But it allows us to run the command without
+having to type the password in, and that&#39;s a good thing. That&#39;s why we use an
+environment variable. Pro tip - if you don&#39;t want a command to show up in &lt;code&gt;history&lt;/code&gt; then put a space before it.&lt;/dd&gt;
 
 &lt;dt&gt;psql&lt;/dt&gt;
-&lt;dd&gt;That's our actual command&lt;/dd&gt;
+&lt;dd&gt;That&#39;s our actual command&lt;/dd&gt;
 
 &lt;dt&gt;-d&lt;/dt&gt;
-&lt;dd&gt;that's the name of your database&lt;/dd&gt;
+&lt;dd&gt;that&#39;s the name of your database&lt;/dd&gt;
 
 &lt;dt&gt;-h&lt;/dt&gt;
-&lt;dd&gt;that's the hostname of your database server&lt;/dd&gt;
+&lt;dd&gt;that&#39;s the hostname of your database server&lt;/dd&gt;
 
 &lt;dt&gt;-U&lt;/dt&gt;
-&lt;dd&gt;that's the database username&lt;/dd&gt;
+&lt;dd&gt;that&#39;s the database username&lt;/dd&gt;
 
 &lt;dt&gt;-c&lt;/dt&gt;
-&lt;dd&gt;that's the sql command to run. Since we want to output the contents of the
+&lt;dd&gt;that&#39;s the sql command to run. Since we want to output the contents of the
 query, we use the &lt;code&gt;COPY&lt;/code&gt; command.[more on that here](http://www.postgresql.org/docs/current/static/sql-copy.html). This is pretty much the guts of the 
 command. If your SQL is complicated, consider using the -f argument to pass in
-a file containing your sql command. In our COPY command we're telling psql to
+a file containing your sql command. In our COPY command we&#39;re telling psql to
 copy the result of the query to STDOUT and in a CSV format with headers&lt;/dd&gt;
 
 &lt;dt&gt;-o&lt;/dt&gt;
-&lt;dd&gt;that's where we want the file to be saved&lt;/dd&gt;
+&lt;dd&gt;that&#39;s where we want the file to be saved&lt;/dd&gt;
 &lt;/dl&gt;
-&lt;h2 id='the_automation'&gt;The Automation&lt;/h2&gt;
 
-&lt;p&gt;I like cron. It&amp;#8217;s the easiest, fastest way to make things happen on a schedule on a linux machine. Here&amp;#8217;s &lt;a href='https://help.ubuntu.com/community/CronHowto'&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top line. From the how to set it up link:&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h2&gt;The Automation&lt;/h2&gt;
 
-&lt;p&gt;The last part of the file is your command. So if I wanted this to run every day at 2am, my crontab line would look like this:&lt;/p&gt;
+&lt;p&gt;I like cron. It&#39;s the easiest, fastest way to make things happen on a schedule
+on a linux machine. Here&#39;s &lt;a href=&quot;https://help.ubuntu.com/community/CronHowto&quot;&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top
+line. From the how to set it up link:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday)&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;The last part of the file is your command. So if I wanted this to run every day
+at 2am, my crontab line would look like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;01 02 * * * /home/my_user/reports/psql_report_script.sh
-30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv&lt;/code&gt;&lt;/pre&gt;
+30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Here, I&amp;#8217;m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
+&lt;p&gt;Here, I&#39;m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
 
-&lt;p&gt;As you can see it&amp;#8217;s not hard at all to set up a repeatable report extract using simple command-line tools.&lt;/p&gt;</description>
+&lt;p&gt;As you can see it&#39;s not hard at all to set up a repeatable report extract using
+simple command-line tools.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Die Cast Drifting</title>
-      <link>http://scotthelm.com/2014/07/04/die-cast-drifting.html</link>
+      <link>http://scotthelm.com/2014/07/04/die-cast-drifting/</link>
       <pubDate>Fri, 04 Jul 2014 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/07/04/die-cast-drifting</guid>
-      <description>&lt;p&gt;My brother and I invented a game years ago at our Grandmother&amp;#8217;s house. We cleared off the table and grabbed a few Hot Wheels and Matchbox cars and started pushing them at each other. We discovered that we could drift the car down the length of the table and make it turn during the course of its run. So we started adding obstacles. And so we have the game as it is today, at my own house with my kid&amp;#8217;s cars. It may be stupid fun, but that&amp;#8217;s how we roll.&lt;/p&gt;
-&lt;div class='flex-video'&gt;
-  &lt;iframe allowfullscreen='' frameborder='0' src='//www.youtube.com/embed/hVWHP4Row40' /&gt;
-&lt;/div&gt;</description>
+      <description>&lt;p&gt;My brother and I invented a game years ago at our Grandmother&#39;s house. We cleared
+off the table and grabbed a few Hot Wheels and Matchbox cars and started pushing
+them at each other. We discovered that we could drift the car down the length of
+the table and make it turn during the course of its run. So we started adding
+obstacles. And so we have the game as it is today, at my own house with my
+kid&#39;s cars. It may be stupid fun, but that&#39;s how we roll.&lt;/p&gt;
+
+&lt;div class=&quot;flex-video&quot;&gt;
+  &lt;iframe
+    src=&quot;//www.youtube.com/embed/hVWHP4Row40&quot;
+    frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
     </item>
     
     <item>
       <title>Coming Up For Air</title>
-      <link>http://scotthelm.com/2014/02/14/coming-up-for-air.html</link>
+      <link>http://scotthelm.com/2014/02/14/coming-up-for-air/</link>
       <pubDate>Fri, 14 Feb 2014 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/02/14/coming-up-for-air</guid>
-      <description>&lt;p&gt;I have spent the last 7 weeks underwater. Rather than exploring the depths of some ocean floor, I was plumbing the depths of my knowledge and character.&lt;/p&gt;
+      <description>&lt;p&gt;I have spent the last 7 weeks underwater. Rather than exploring the depths of
+some ocean floor, I was plumbing the depths of my knowledge and character.&lt;/p&gt;
 
-&lt;h2 id='the_problem'&gt;The Problem&lt;/h2&gt;
+&lt;h2&gt;The Problem&lt;/h2&gt;
 
-&lt;p&gt;We had just gotten a new client. They were excited about the technology that we had to offer, and they wanted it. And they wanted it in time for their national meeting.&lt;/p&gt;
+&lt;p&gt;We had just gotten a new client. They were excited about the technology that we
+had to offer, and they wanted it. And they wanted it in time for their national
+meeting.&lt;/p&gt;
 
-&lt;p&gt;What was proposed sounds simple - take some of their data and show it in a mobile site, but simple &amp;#8800; easy. We had a massive task ahead of us, and simply not enough time to do it.&lt;/p&gt;
+&lt;p&gt;What was proposed sounds simple - take some of their data and show it in a
+ mobile site, but simple &amp;ne; easy. We had a massive task ahead of us, and
+simply not enough time to do it.&lt;/p&gt;
 
-&lt;h2 id='the_solution_heroic_effort'&gt;The Solution: Heroic Effort&lt;/h2&gt;
+&lt;h2&gt;The Solution: Heroic Effort&lt;/h2&gt;
 
-&lt;p&gt;There was only one thing for it. I had to roll up my sleeves and make it happen. My requirements were a UI mockup. (Which is not entirely a bad thing. Our UX people are par excellence). From that and source data files I had to model the application data, figure out how to get it full-text searchable, how to make explicit the inferred security relationships, and turn the mockup into a living, breathing amalgamation of css and javascript and html and ruby.&lt;/p&gt;
+&lt;p&gt;There was only one thing for it. I had to roll up my sleeves and make it happen.
+My requirements were a UI mockup. (Which is not entirely a bad thing. Our UX
+people are par excellence). From that and source data files I had to model the
+application data, figure out how to get it full-text searchable, how to make
+explicit the inferred security relationships, and turn the mockup into a living,
+breathing amalgamation of css and javascript and html and ruby.&lt;/p&gt;
 
-&lt;p&gt;It was exhilarating. Designing the system with concurrency in mind, pushing anything that would block execution out to a message queue and consuming it with &lt;a href='http://sidekiq.org'&gt;Sidekiq&lt;/a&gt;. Ensuring that the proper index and types were mapped in &lt;a href='http://elasticsearch.org'&gt;Elasticsearch&lt;/a&gt;, and then getting the models transparently mapped into the index. Making sure there was enough indirection built in so the system was flexible and resilient in the face of change. Making sure my controllers were secure and light, my data retrieval fast and efficient, all fully tested of course. It was intellectually stimulating.&lt;/p&gt;
+&lt;p&gt;It was exhilarating. Designing the system with concurrency in mind, pushing
+anything that would block execution out to a message queue and consuming it with
+&lt;a href=&quot;http://sidekiq.org&quot;&gt;Sidekiq&lt;/a&gt;. Ensuring that the proper index and types were
+mapped in &lt;a href=&quot;http://elasticsearch.org&quot;&gt;Elasticsearch&lt;/a&gt;, and then getting the models
+transparently mapped into the index. Making sure there was enough indirection
+built in so the system was flexible and resilient in the face of change.
+Making sure my controllers were secure and light, my data retrieval fast and
+efficient, all fully tested of course. It was intellectually stimulating.&lt;/p&gt;
 
-&lt;p&gt;However, there is a toll that late nights and intense focus take on the unwary developer. I found myself starting to be short with my children, I started to miss &lt;a href='http://www.charlotte-systema.com/'&gt;Systema&lt;/a&gt; classes because I was working. My relationship with my wife is and has been strong for lo these 17 years, but it takes tending and care to maintain.&lt;/p&gt;
+&lt;p&gt;However, there is a toll that late nights and intense focus take on the
+unwary developer. I found myself starting to be short with my children, I
+started to miss &lt;a href=&quot;http://www.charlotte-systema.com/&quot;&gt;Systema&lt;/a&gt; classes because
+I was working. My relationship with my wife is and has been strong for lo these
+17 years, but it takes tending and care to maintain.&lt;/p&gt;
 
-&lt;p&gt;In short, I was Ed Harris, and I had put on the liquid oxygen suit and had made the deep dive. I cut the right wire. Now what?&lt;/p&gt;
+&lt;p&gt;In short, I was Ed Harris, and I had put on the liquid oxygen suit and had made
+the deep dive. I cut the right wire. Now what?&lt;/p&gt;
 
-&lt;h2 id='a_better_solution'&gt;A Better Solution.&lt;/h2&gt;
+&lt;h2&gt;A Better Solution.&lt;/h2&gt;
 
-&lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it&amp;#8217;s not sustainable. Sooner or later, you&amp;#8217;re going to run out of heroes. Prime developer talent is rare, so burning through it is not an option. But avoiding heroic effort isn&amp;#8217;t that easy.&lt;/p&gt;
+&lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it&#39;s not sustainable.
+Sooner or later, you&#39;re going to run out of heroes. Prime developer talent is rare, so burning through it is
+not an option. But avoiding heroic effort isn&#39;t that easy.&lt;/p&gt;
 
-&lt;p&gt;The sales pressures on software development are real. To developers they seem capricious or arbitrary. But there they are. And they often stem from a real business need. Like having the software available before the national meeting. Seems arbitrary. But. Having it at that time helps ensure adoption of the software. If I build something and nobody uses it, I have added zero value.&lt;/p&gt;
+&lt;p&gt;The sales pressures on software development are real. To developers they seem
+capricious or arbitrary. But there they are. And they often stem from a real
+business need. Like having the software available before the national meeting.
+Seems arbitrary. But. Having it at that time helps ensure adoption of the
+ software. If I build something and nobody uses it, I have added zero value.&lt;/p&gt;
 
-&lt;p&gt;I think the real answer comes in having the business, sales, ops and development all on the same page, communicating true costs and timelines to each other so they can reach the best comprimise, and set the customer&amp;#8217;s expectations properly.&lt;/p&gt;
+&lt;p&gt;I think the real answer comes in having the business, sales, ops and development
+all on the same page, communicating true costs and timelines to each other so
+they can reach the best comprimise, and set the customer&#39;s expectations properly.&lt;/p&gt;
 
-&lt;p&gt;That puts the whole team on the submarine, working together to get to the surface. It makes for a stronger, smarter team. One that learns to pull together in a crisis. One that is less likely to write checks they can&amp;#8217;t cash.&lt;/p&gt;
+&lt;p&gt;That puts the whole team on the submarine, working together to get to the surface.
+It makes for a stronger, smarter team. One that learns to pull together in a crisis. One
+that is less likely to write checks they can&#39;t cash.&lt;/p&gt;
 
-&lt;p&gt;And, for the developer/development team, at least, it&amp;#8217;s a much nicer place to be than alone at the bottom of the abyss.&lt;/p&gt;</description>
+&lt;p&gt;And, for the developer/development team, at least, it&#39;s a much nicer place to be than alone
+at the bottom of the abyss.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Looking Both Ways 2013 2014</title>
-      <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014.html</link>
+      <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014</guid>
-      <description>&lt;p&gt;This time of year always makes me reflect on what was and look forward to what is to come.&lt;/p&gt;
+      <description>&lt;p&gt;This time of year always makes me reflect on what was and look forward to
+what is to come.&lt;/p&gt;
 
-&lt;h2 id='engineering'&gt;Engineering&lt;/h2&gt;
+&lt;h2&gt;Engineering&lt;/h2&gt;
 
-&lt;p&gt;I am working at a company called &lt;a href='http://www.technekes.com'&gt;Technekes&lt;/a&gt;. We provide marketing services for companies big and small. I get to work with some of the coolest tech I&amp;#8217;ve ever done. We use mainly open-source tools for our development. So over the past 18 months I have changed my stack from all Microsoft all the time to all Linux and open source all the time. This has been a great change for me. Looking back, I feel that I have grown a great deal as a software developer. Looking forward, I want to continue learning new tools and ways of looking at problems. To that end, I want to create a project using a functional language such as Haskell, Clojure or Erlang.&lt;/p&gt;
+&lt;p&gt;I am working at a company called &lt;a href=&quot;http://www.technekes.com&quot;&gt;Technekes&lt;/a&gt;. We
+provide marketing services for companies big and small. I get to work with some
+of the coolest tech I&#39;ve ever done. We use mainly open-source tools for our
+development. So over the past 18 months I have changed my stack from all
+Microsoft all the time to all Linux and open source all the time. This has been
+a great change for me. Looking back, I feel that I have grown a great deal as
+a software developer. Looking forward, I want to continue learning new tools
+and ways of looking at problems. To that end, I want to create a project using
+a functional language such as Haskell, Clojure or Erlang.&lt;/p&gt;
 
-&lt;h2 id='acting'&gt;Acting&lt;/h2&gt;
+&lt;h2&gt;Acting&lt;/h2&gt;
 
-&lt;p&gt;I miss it. I still get to do things like voiceovers, mostly thanks to the &lt;a href='http://groundcrewstudios.com/'&gt;Groundcrew&lt;/a&gt;, and the lovely and talented Katherine Goforth. I still have friends in the theatre whom I love and respect. I would like to do something to work with them again. Looking back, I had a decent year working for some great national and regional brands. Looking forward, I resolve to be more efficient in my engineering work to allow me to take more acting work.&lt;/p&gt;
+&lt;p&gt;I miss it. I still get to do things like voiceovers, mostly thanks to the
+&lt;a href=&quot;http://groundcrewstudios.com/&quot;&gt;Groundcrew&lt;/a&gt;, and the lovely and talented
+Katherine Goforth. I still have friends in the theatre whom I love and respect.
+I would like to do something to work with them again. Looking back, I had a
+decent year working for some great national and regional brands. Looking
+forward, I resolve to be more efficient in my engineering work to allow me to
+take more acting work.&lt;/p&gt;
 
-&lt;h2 id='music'&gt;Music&lt;/h2&gt;
+&lt;h2&gt;Music&lt;/h2&gt;
 
-&lt;p&gt;I &lt;a href='https://soundcloud.com/plasticide'&gt;recorded 7 pieces last year&lt;/a&gt; in my home studio. Overall it&amp;#8217;s not bad. I created a lot more with guitar than I have in the past and that&amp;#8217;s good. I got to play in a talent show with 3 other guys at work. We called ourselves The 404s. We won! It was great fun, and I&amp;#8217;m pretty sure it&amp;#8217;s the first time that I&amp;#8217;ve ever played live in a band situation in my life. Quite a rush. We played an acoustic version of Hey Ya! Looking back, it wasn&amp;#8217;t bad, but looking forward, I can do a whole lot better. I resolve to play more music with actual real live people.&lt;/p&gt;
+&lt;p&gt;I &lt;a href=&quot;https://soundcloud.com/plasticide&quot;&gt;recorded 7 pieces last year&lt;/a&gt; in my home
+studio. Overall it&#39;s not bad. I created a lot more with guitar than I have in
+the past and that&#39;s good. I got to play in a talent show with 3 other guys at
+work. We called ourselves The 404s. We won! It was great fun, and I&#39;m pretty
+sure it&#39;s the first time that I&#39;ve ever played live in a band situation in my
+life. Quite a rush. We played an acoustic version of Hey Ya! Looking back, it
+wasn&#39;t bad, but looking forward, I can do a whole lot better. I resolve to play
+more music with actual real live people.&lt;/p&gt;
 
-&lt;h2 id='family'&gt;Family&lt;/h2&gt;
+&lt;h2&gt;Family&lt;/h2&gt;
 
-&lt;p&gt;Claire and I are doing wonderfully. We&amp;#8217;ve been married since 1996, and I feel like we&amp;#8217;re hitting our stride. Example - we spent new year&amp;#8217;s eve with our dear friends Laura and Stan. We had a wonderful time there. On the ride up and back to Hendersonville, we didn&amp;#8217;t really talk that much at all. But it wasn&amp;#8217;t uncomfortable. It was a comfortable silence. A rare thing indeed. Much love to Claire. The kids are awesome. Zach is 8 and Jamey is 5. Claire and I both agree that our main job is to help them stay as sweet as they are, and to ensure that they use their powers only for good.&lt;/p&gt;
+&lt;p&gt;Claire and I are doing wonderfully. We&#39;ve been married since 1996, and I feel
+like we&#39;re hitting our stride. Example - we spent new year&#39;s eve with our dear
+friends Laura and Stan. We had a wonderful time there. On the ride up and back
+to Hendersonville, we didn&#39;t really talk that much at all. But it wasn&#39;t
+uncomfortable. It was a comfortable silence. A rare thing indeed. Much love to
+Claire. The kids are awesome. Zach is 8 and Jamey is 5. Claire and I both agree
+that our main job is to help them stay as sweet as they are, and to ensure that
+they use their powers only for good.&lt;/p&gt;
 
-&lt;h2 id='physical'&gt;Physical&lt;/h2&gt;
+&lt;h2&gt;Physical&lt;/h2&gt;
 
-&lt;p&gt;I have really enjoyed &lt;a href='http://www.charlotte-systema.com/'&gt;Systema&lt;/a&gt; this past year. I&amp;#8217;m looking forward to continuing in the new year. There&amp;#8217;s much more than a physical component to Systema, but I&amp;#8217;m including it here for brevity.&lt;/p&gt;
+&lt;p&gt;I have really enjoyed &lt;a href=&quot;http://www.charlotte-systema.com/&quot;&gt;Systema&lt;/a&gt; this past
+year. I&#39;m looking forward to continuing in the new year. There&#39;s much more than
+a physical component to Systema, but I&#39;m including it here for brevity.&lt;/p&gt;
 
-&lt;p&gt;And The Obligatory:&lt;/p&gt;
+&lt;p&gt;And The Obligatory:
+- Eat better
+- Exercise more&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Eat better&lt;/li&gt;
+&lt;h2&gt;In Conclusion&lt;/h2&gt;
 
-&lt;li&gt;Exercise more&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='in_conclusion'&gt;In Conclusion&lt;/h2&gt;
-
-&lt;p&gt;May your coming year be better than the last.&lt;/p&gt;</description>
+&lt;p&gt;May your coming year be better than the last.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>RabbitMQ and Erlang and Ubuntu (12.04) Oh My!</title>
-      <link>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html</link>
+      <link>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my/</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my</guid>
-      <description>&lt;p&gt;As part of an upcoming development effort for a new client, I am looking at using a message broker to facilitate inter-app communications. The use case is that the new system integrates several different data sources into a consolidated view.&lt;/p&gt;
+      <description>&lt;p&gt;As part of an upcoming development effort for a new client, I am looking at
+using a message broker to facilitate inter-app communications. The use case
+is that the new system integrates several different data sources into a
+consolidated view.&lt;/p&gt;
 
-&lt;p&gt;For example: When changes are made to the canonical source in postgres, we need to let the our indexer service know that it needs to update the elasticsearch index so the front-end application can serve the freshest data.&lt;/p&gt;
+&lt;p&gt;For example: When changes are made to the canonical source in postgres,
+we need to let the our indexer service know that it needs to update the
+elasticsearch index so the front-end application can serve the freshest data.&lt;/p&gt;
 
-&lt;h2 id='the_problem'&gt;The Problem&lt;/h2&gt;
+&lt;h2&gt;The Problem&lt;/h2&gt;
 
-&lt;p&gt;In 2 words: Unmet Dependencies. Rabbit MQ is built with &lt;a href='http://erlang.org'&gt;Erlang&lt;/a&gt;. The Erlang packages in Ubuntu 12.04 (Precise) are out of date or not present. I downloaded the &lt;a href='http://www.rabbitmq.com/install-debian.html'&gt;RabbitMQ Ubuntu Debian package&lt;/a&gt; and expected a quick dpkg -i install. However, instead of a quick list of additional packages that would be installed and a friendly &amp;#8220;Y/n?&amp;#8221;, I got:&lt;/p&gt;
+&lt;p&gt;In 2 words: Unmet Dependencies. Rabbit MQ is built with
+&lt;a href=&quot;http://erlang.org&quot;&gt;Erlang&lt;/a&gt;. The Erlang packages in Ubuntu 12.04 (Precise) are
+out of date or not present. I downloaded the &lt;a href=&quot;http://www.rabbitmq.com/install-debian.html&quot;&gt;RabbitMQ Ubuntu Debian package&lt;/a&gt;
+and expected a quick dpkg -i install. However, instead of a quick list of
+additional packages that would be installed and a friendly &quot;Y/n?&quot;, I got:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 ...stuff...
@@ -190,7 +286,8 @@ dpkg: dependency problems prevent configuration of rabbitmq-server:
 dpkg: error processing rabbitmq-server (--install):
 ...stuff...
 Errors were encountered while processing:
- rabbitmq-server&lt;/code&gt;&lt;/pre&gt;
+ rabbitmq-server
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So. I tried installing Erlang from the Ubuntu packages and got this:&lt;/p&gt;
 
@@ -201,38 +298,52 @@ Reading state information... Done
 Package esl-erlang is not available, but is referred to by another package.
 This may mean that the package is missing, has been obsoleted, or
 is only available from another source
-E: Package &amp;#39;esl-erlang&amp;#39; has no installation candidate&lt;/code&gt;&lt;/pre&gt;
-&lt;div style='text-align: center'&gt;
-  &lt;img alt='Wat do?' src='http://i.qkme.me/MR.jpg' /&gt;
+E: Package &#39;esl-erlang&#39; has no installation candidate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div style=&quot;text-align: center&quot;&gt;
+  &lt;img src=&quot;http://i.qkme.me/MR.jpg&quot; alt=&quot;Wat do?&quot;/&gt;
 &lt;/div&gt;
-&lt;h2 id='the_solution'&gt;The Solution&lt;/h2&gt;
 
-&lt;p&gt;Go to &lt;a href='http://erlang.org'&gt;erlang.org&lt;/a&gt;. Find the &lt;a href='https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu'&gt;download page for Ubuntu&lt;/a&gt; which is NOT at erlang.org - it is at &lt;a href='http://www.erlang-solutions.com'&gt;www.erlang-solutions.com&lt;/a&gt;. Craziness. I follow the directions and add this line to my &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/debian precise contrib&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;Go to &lt;a href=&quot;http://erlang.org&quot;&gt;erlang.org&lt;/a&gt;. Find the &lt;a href=&quot;https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu&quot;&gt;download page for Ubuntu&lt;/a&gt;
+which is NOT at erlang.org - it is at &lt;a href=&quot;http://www.erlang-solutions.com&quot;&gt;www.erlang-solutions.com&lt;/a&gt;. Craziness. I
+follow the directions and add this line to my &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/debian precise contrib
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;then&amp;#8230; I still had a problem. The first time I dpkg-ed the rabbitmq-server, it added it to invoke-rc. So when I tried to install erlang, it gave me this:&lt;/p&gt;
+&lt;p&gt;then... I still had a problem. The first time I dpkg-ed the rabbitmq-server, it
+added it to invoke-rc. So when I tried to install erlang, it gave me this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;rabbitmq-server : Depends: erlang-nox (&amp;gt;= 1:13.b.3) but it is not going to be installed or
-                        esl-erlang but it is not going to be installed&lt;/code&gt;&lt;/pre&gt;
+                        esl-erlang but it is not going to be installed
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;so to get rid of the invalid package, I&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -r rabbitmq-server&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo dpkg -r rabbitmq-server
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Success was in my grasp! However tantilizingly close it may be, however&amp;#8230; It still eluded me.&lt;/p&gt;
+&lt;p&gt;Success was in my grasp! However tantilizingly close it may be, however... It
+still eluded me.&lt;/p&gt;
 
 &lt;p&gt;When I tried to install the package again, I got this nasty little message:&lt;/p&gt;
 
@@ -246,318 +357,462 @@ dpkg: error processing rabbitmq-server (--install):
  dependency problems - leaving unconfigured
 ...stuff...
 Errors were encountered while processing:
- rabbitmq-server&lt;/code&gt;&lt;/pre&gt;
-&lt;div style='text-align: center'&gt;
-&lt;img alt='head banging on desk' src='http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif' /&gt;
-&lt;/div&gt;
-&lt;p&gt;so I looked more closely and saw that I could install erlang-nox (which is a package for erlang for stuff that doesn&amp;#8217;t require X to be running -get it? &amp;#8220;no X&amp;#8221;). So I gave it a shot.&lt;/p&gt;
+ rabbitmq-server
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox&lt;/code&gt;&lt;/pre&gt;
+&lt;div style=&quot;text-align: center&quot;&gt;
+&lt;img alt=&quot;head banging on desk&quot; src=&quot;http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif&quot;/&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;so I looked more closely and saw that I could install erlang-nox (which is a
+package for erlang for stuff that doesn&#39;t require X to be running -get it? &quot;no X&quot;).
+So I gave it a shot.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;It worked.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And I was finally greeted with this little beauty:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Selecting previously unselected package rabbitmq-server.
 ...stuff...
- * Starting message broker rabbitmq-server [OK]&lt;/code&gt;&lt;/pre&gt;
+ * Starting message broker rabbitmq-server [OK]
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='victory_was_mine'&gt;Victory was mine.&lt;/h4&gt;
-&lt;div style='text-align: center'&gt;
-&lt;img alt='Success Kid resolves dependencies, neckbeard increaseth' src='http://i.imgur.com/1TWj3tB.png' /&gt;
+&lt;h4&gt;Victory was mine.&lt;/h4&gt;
+
+&lt;div style=&quot;text-align: center&quot;&gt;
+&lt;img alt= &quot;Success Kid resolves dependencies, neckbeard increaseth&quot; src=&quot;http://i.imgur.com/1TWj3tB.png&quot;/&gt;
 &lt;/div&gt;
-&lt;h2 id='tldr'&gt;TLDR&lt;/h2&gt;
 
-&lt;p&gt;download rabbitmq-server debian package from &lt;a href='http://www.rabbitmq.com/install-debian.html'&gt;here&lt;/a&gt; but DO NOT run it yet.&lt;/p&gt;
 
-&lt;p&gt;add this line to your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; (I updated the link below based on an update from Mark J Williams)&lt;/p&gt;
+&lt;h2&gt;TLDR&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/ubuntu precise contrib&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;download rabbitmq-server debian package from &lt;a href=&quot;http://www.rabbitmq.com/install-debian.html&quot;&gt;here&lt;/a&gt;
+but DO NOT run it yet.&lt;/p&gt;
+
+&lt;p&gt;add this line to your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;
+(I updated the link below based on an update from Mark J Williams)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/ubuntu precise contrib
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Next, you may need to add the Erlang Solutions public key for apt-secure&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-sudo apt-key add erlang_solutions.asc&lt;/code&gt;&lt;/pre&gt;
+sudo apt-key add erlang_solutions.asc
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;then have a hot chocolate. You&amp;#8217;ve earned it.&lt;/p&gt;</description>
+&lt;p&gt;then have a hot chocolate. You&#39;ve earned it.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Fencepost</title>
-      <link>http://scotthelm.com/2013/11/13/fencepost.html</link>
+      <link>http://scotthelm.com/2013/11/13/fencepost/</link>
       <pubDate>Wed, 13 Nov 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/11/13/fencepost</guid>
-      <description>&lt;p&gt;When it comes to writing and maintianing software, I&amp;#8217;m lazy. I don&amp;#8217;t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don&amp;#8217;t have to keep repeating it.&lt;/p&gt;
+      <description>&lt;p&gt;When it comes to writing and maintianing software, I&#39;m lazy.
+I don&#39;t like doing mindless work. If I find myself doing the same thing
+more than twice, I will find a way to automate that thing in some way so I don&#39;t
+have to keep repeating it.&lt;/p&gt;
 
-&lt;h2 id='the_problem'&gt;The Problem&lt;/h2&gt;
+&lt;h2&gt;The Problem&lt;/h2&gt;
 
-&lt;p&gt;Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using &lt;code&gt;attr_accessible&lt;/code&gt;. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called &lt;code&gt;strong_parameters&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Ruby on Rails changed the way it handles input from a web request from version
+3.2 to 4.0. It used to be that you defined what you allowed to be set via
+update_attributes in the model itself by using &lt;code&gt;attr_accessible&lt;/code&gt;. This was all
+well and good until the new version of Rails removed that mechanism for
+model security in favor of something called &lt;code&gt;strong_parameters&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves.&lt;/p&gt;
+&lt;p&gt;Strong Parameters are a good thing. They increase the flexibility of the application
+by letting you define which parameters are allowed to be passed to your models
+outside the models themselves.&lt;/p&gt;
 
-&lt;p&gt;The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I&amp;#8217;m lazy. And that means I need to automate this in some way or I will go insane.&lt;/p&gt;
+&lt;p&gt;The Problem is that I have more than a few applications I need to upgrade to
+Rails 4, and that means I have to go into every controller in each of those
+applications and create my strong parameters declarations. Not only that: I&#39;m
+lazy. And that means I need to automate this in some way or I will go insane.&lt;/p&gt;
 
-&lt;h2 id='enter_fencepost'&gt;Enter Fencepost&lt;/h2&gt;
+&lt;h2&gt;Enter Fencepost&lt;/h2&gt;
 
-&lt;p&gt;I solved this problem by creating a gem called &lt;a href='http://rubygems.org/gems/fencepost'&gt;Fencepost&lt;/a&gt;. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: &lt;a href='https://github.com/scotthelm/fencepost'&gt;on Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I solved this problem by creating a gem called &lt;a href=&quot;http://rubygems.org/gems/fencepost&quot;&gt;Fencepost&lt;/a&gt;.
+This gem solves the strong parameters problem in an elegant way, freeing you
+from needless declarations in your controllers, and giving you access to those
+declarations in an intuitive way. The following is from the README for the gem:
+&lt;a href=&quot;https://github.com/scotthelm/fencepost&quot;&gt;on Github&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id='installation'&gt;Installation&lt;/h2&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
 
 &lt;p&gt;Add &lt;code&gt;fencepost&lt;/code&gt; to your &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem &amp;#39;fencepost&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;gem &#39;fencepost&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id='configuration'&gt;Configuration&lt;/h2&gt;
+&lt;h2&gt;Configuration&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;rails g fencepost_config&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;rails g fencepost_config
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This creates a yaml map of your models in &lt;code&gt;config/fencepost.yml&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. &amp;#8220;Y&amp;#8221; will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default.&lt;/p&gt;
+&lt;p&gt;You can re-run the initializer at any time. You will be asked if you want to
+overwrite the existing config. &quot;Y&quot; will force an overwrite of the file, and you
+will need to re-comment out any attributes you want to remove by default.&lt;/p&gt;
 
-&lt;h3 id='default_configuration'&gt;Default Configuration&lt;/h3&gt;
+&lt;h3&gt;Default Configuration&lt;/h3&gt;
 
-&lt;p&gt;The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable)&lt;/p&gt;
+&lt;p&gt;The yaml map is where you can edit the allowable attributes for your models. In
+the 80/20 rule, this would be the %80. Removing attributes in the configuration
+yaml lets you set reasonable defaults for strong parameter behavior.
+This map is read one time during intialization and stored in the Fencepost
+model graph (a class-level variable)&lt;/p&gt;
 
-&lt;h3 id='dev_mode'&gt;Dev Mode&lt;/h3&gt;
+&lt;h3&gt;Dev Mode&lt;/h3&gt;
 
-&lt;p&gt;During the early stages of development where your code is in flux, you can set &lt;code&gt;dev_mode=true&lt;/code&gt; in &lt;code&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer)&lt;/p&gt;
+&lt;p&gt;During the early stages of development where your code is in flux, you can set
+&lt;code&gt;dev_mode=true&lt;/code&gt; in &lt;code&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load
+and read in all your models dynamically every time the class is instantiated.
+(Ignoring the yaml in the initializer)&lt;/p&gt;
 
-&lt;h2 id='usage'&gt;Usage&lt;/h2&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
 
-&lt;p&gt;The gem creates a &lt;code&gt;fencepost&lt;/code&gt; method in your contollers. This returns a &lt;code&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong params for any ActiveRecord model in your application.&lt;/p&gt;
+&lt;p&gt;The gem creates a &lt;code&gt;fencepost&lt;/code&gt; method in your contollers. This returns a
+&lt;code&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong
+params for any ActiveRecord model in your application.&lt;/p&gt;
 
-&lt;h3 id='simplest_case'&gt;Simplest Case&lt;/h3&gt;
+&lt;h3&gt;Simplest Case&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.person_params)
-end&lt;/code&gt;&lt;/pre&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id='simple_allow__deny_for_top_level_model'&gt;Simple allow / deny for top level model&lt;/h3&gt;
+&lt;h3&gt;Simple allow / deny for top level model&lt;/h3&gt;
 
-&lt;p&gt;In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight.&lt;/p&gt;
+&lt;p&gt;In this example, the Person model allows height and weight by default, but does
+NOT allow dob (date of birth). In this example we want to allow date of birth but
+deny weight.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params)
-end&lt;/code&gt;&lt;/pre&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id='more_complex_allow__deny_for_nested_models'&gt;More complex allow / deny for nested models&lt;/h3&gt;
+&lt;h3&gt;More complex allow / deny for nested models&lt;/h3&gt;
 
-&lt;p&gt;In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes.&lt;/p&gt;
+&lt;p&gt;In this example, the Person model has a collection of addresses. We want to
+deny latitude and longitude from the acceptable attributes.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params)
-end&lt;/code&gt;&lt;/pre&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id='tldr'&gt;TLDR&lt;/h2&gt;
+&lt;h2&gt;TLDR&lt;/h2&gt;
 
-&lt;p&gt;This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly.&lt;/p&gt;
+&lt;p&gt;This gem creates strong parameter declarations based on you ActiveRecord models.
+It makes this configuration available in all your controllers, and gives you
+the flexibility to allow or deny attributes on the fly.&lt;/p&gt;
 
-&lt;p&gt;Please have a look at the gem and feel free to submit a pull request if you can make it better.&lt;/p&gt;</description>
+&lt;p&gt;Please have a look at the gem and feel free to submit a pull request if you
+can make it better.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Command Line JSON with JQ</title>
-      <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq.html</link>
+      <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq/</link>
       <pubDate>Sat, 28 Sep 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/09/28/command-line-json-with-jq</guid>
-      <description>&lt;p&gt;I started my first foray in to bash scripting. I have client information stored in a Mongo database. I have canonical data in Postgresql. I have indexed data in Elasticsearch. I want a quick way to check on the health of the indexes for clients both interactively and through script calls from something like Monit. I also want it to work really quickly.&lt;/p&gt;
+      <description>&lt;p&gt;I started my first foray in to bash scripting. I have client information stored
+in a Mongo database. I have canonical data in Postgresql. I have indexed data
+in Elasticsearch. I want a quick way to check on the health of the indexes for
+clients both interactively and through script calls from something like Monit.
+I also want it to work really quickly.&lt;/p&gt;
 
-&lt;p&gt;It would be relatively simple for me to fire up a ruby script and do what I want to do. However, the parts of our applications that deal with Mongo and Elasticsearch are found in Rails engines. For what I want, that was too heavy. I really wanted to keep this utility as light as possible, and put my fledgeling Linux skills to the test.&lt;/p&gt;
+&lt;p&gt;It would be relatively simple for me to fire up a ruby script and do what I want to do.
+However, the parts of our applications that deal with Mongo and Elasticsearch are
+found in Rails engines. For what I want, that was too heavy. I really wanted to
+keep this utility as light as possible, and put my fledgeling Linux skills to the test.&lt;/p&gt;
 
-&lt;p&gt;So I dug into the &lt;a href='http://docs.mongodb.org/manual/administration/scripting/'&gt;Mongo CLI&lt;/a&gt; and discovered that I could output the results of a query back to the shell by invoking mongo with a script thusly:&lt;/p&gt;
+&lt;p&gt;So I dug into the &lt;a href=&quot;http://docs.mongodb.org/manual/administration/scripting/&quot;&gt;Mongo CLI&lt;/a&gt;
+and discovered that I could output the results of a query back to the shell by
+invoking mongo with a script thusly:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;mongo hostname/databasename path/to/script&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;mongo hostname/databasename path/to/script
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;my script returned the name and elastic search url for each client:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cursor = db[&amp;quot;clients&amp;quot;].find({},{name: 1, elastic_search_url: 1});
+&lt;pre&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{name: 1, elastic_search_url: 1});
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And this was where I ran into my first roadblock. JSON. It just so happens that JSON is not that easy to parse with &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;sed&lt;/code&gt;, and &lt;code&gt;grep&lt;/code&gt;. So I lurked on stackoverflow and stumbled on the &lt;a href='http://stedolan.github.io/jq/'&gt;JQ&lt;/a&gt; library. It has been a godsend for dealing with JSON on the command line.&lt;/p&gt;
+&lt;p&gt;And this was where I ran into my first roadblock. JSON. It just so happens that
+JSON is not that easy to parse with &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;sed&lt;/code&gt;, and &lt;code&gt;grep&lt;/code&gt;. So I lurked on stackoverflow
+and stumbled on the &lt;a href=&quot;http://stedolan.github.io/jq/&quot;&gt;JQ&lt;/a&gt; library. It has been a
+godsend for dealing with JSON on the command line.&lt;/p&gt;
 
 &lt;p&gt;Installation of the binary was really quick and painless:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;wget http://stedolan.github.io/jq/download/linux64/jq
 chmod +x jq
-sudo mv jq /usr/bin/&lt;/code&gt;&lt;/pre&gt;
+sudo mv jq /usr/bin/
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And I had JSON parsing available on my command line. (There are source install options as well to be found on the &lt;a href='http://stedolan.github.io/jq/download/'&gt;dowloads page&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;And I had JSON parsing available on my command line. (There are source install
+options as well to be found on the &lt;a href=&quot;http://stedolan.github.io/jq/download/&quot;&gt;dowloads page&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;I found that I needed to modify the output of my mongo script so that it was close to valid json:&lt;/p&gt;
+&lt;p&gt;I found that I needed to modify the output of my mongo script so that it was
+close to valid json:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cursor = db[&amp;quot;clients&amp;quot;].find({},{key: 1, elastic_search_url: 1});
-print(&amp;quot;{ \&amp;quot;clients\&amp;quot; : [&amp;quot;);
+&lt;pre&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{key: 1, elastic_search_url: 1});
+print(&quot;{ \&quot;clients\&quot; : [&quot;);
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
-   print(&amp;quot;,&amp;quot;);
+   print(&quot;,&quot;);
 }
-print(&amp;quot;{}&amp;quot;)
-print(&amp;quot;]}&amp;quot;);&lt;/code&gt;&lt;/pre&gt;
+print(&quot;{}&quot;)
+print(&quot;]}&quot;);
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;then I turned to my trusty pal, &lt;code&gt;awk&lt;/code&gt; and wrote this little script to clean up the client output:&lt;/p&gt;
+&lt;p&gt;then I turned to my trusty pal, &lt;code&gt;awk&lt;/code&gt; and wrote this little script to clean up
+the client output:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#! /usr/bin/awk -f
 /[{,\]]/ {
-  gsub(&amp;quot;ObjectId\(&amp;quot;,&amp;quot;&amp;quot;,$0);
-  gsub(&amp;quot;\)&amp;quot;,&amp;quot;&amp;quot;,$0);
+  gsub(&quot;ObjectId\(&quot;,&quot;&quot;,$0);
+  gsub(&quot;\)&quot;,&quot;&quot;,$0);
   print $0
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That allowed me to pipe the valid json output to &lt;code&gt;jq&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq &amp;#39;.[&amp;quot;clients&amp;quot;]&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq &#39;.[&quot;clients&quot;]&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and I get really pretty output like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[
   {
-    &amp;quot;key&amp;quot;: &amp;quot;development_client&amp;quot;,
-    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
-    &amp;quot;_id&amp;quot;: &amp;quot;50a6a3d86224051db2000015&amp;quot;
+    &quot;key&quot;: &quot;development_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50a6a3d86224051db2000015&quot;
   },
   {
-    &amp;quot;key&amp;quot;: &amp;quot;bptest_client&amp;quot;,
-    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
-    &amp;quot;_id&amp;quot;: &amp;quot;50d0cd506224052eb7000002&amp;quot;
+    &quot;key&quot;: &quot;bptest_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50d0cd506224052eb7000002&quot;
   },
   {
-    &amp;quot;key&amp;quot;: &amp;quot;global_test_client&amp;quot;,
-    &amp;quot;elastic_search_url&amp;quot;: &amp;quot;http://search.dev:9200&amp;quot;,
-    &amp;quot;_id&amp;quot;: &amp;quot;50ed86586224053e54000001&amp;quot;
+    &quot;key&quot;: &quot;global_test_client&quot;,
+    &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
+    &quot;_id&quot;: &quot;50ed86586224053e54000001&quot;
   },
   {}
-]&lt;/code&gt;&lt;/pre&gt;
+]
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then I started dealing with elasticsearch. I have many indexes for various clients so when I make a curl to the cluster status endpoint, the output is easily over 300 rows of console output. By contrast, the same endpoint, picking out only the name of the indexes (which is all I really want for this particular function) is amazingly simple:&lt;/p&gt;
+&lt;p&gt;Then I started dealing with elasticsearch. I have many indexes for various clients
+so when I make a curl to the cluster status endpoint, the output is easily over
+300 rows of console output. By contrast, the same endpoint, picking out only the
+name of the indexes (which is all I really want for this particular function) is
+amazingly simple:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;curl -s -XGET &amp;#39;http://search.dev:9200/_status&amp;#39; | jq &amp;#39;.[&amp;quot;indices&amp;quot;]&amp;#39; | jq &amp;#39;keys&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and produces what I really want to see:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[
-  &amp;quot;client_509aada36224051fec000001&amp;quot;,
-  &amp;quot;client_50a6a3d86224051db2000016&amp;quot;,
-  &amp;quot;client_50d093c96224051f91000002&amp;quot;,
-  &amp;quot;client_50d0bbb06224052add000002&amp;quot;,
-  &amp;quot;client_50d0cd506224052eb7000002&amp;quot;,
-  &amp;quot;client_50d1d2fa6224052c64000002&amp;quot;,
-  &amp;quot;client_50d485b6622405261a000002&amp;quot;,
-  &amp;quot;client_512b8556622405614f000002&amp;quot;,
-  &amp;quot;client_51924d266224055568000004&amp;quot;,
-  &amp;quot;client_51bf5685622405297a000002&amp;quot;,
-  &amp;quot;client_51e441a8622405799900000e&amp;quot;,
-]&lt;/code&gt;&lt;/pre&gt;
+  &quot;client_509aada36224051fec000001&quot;,
+  &quot;client_50a6a3d86224051db2000016&quot;,
+  &quot;client_50d093c96224051f91000002&quot;,
+  &quot;client_50d0bbb06224052add000002&quot;,
+  &quot;client_50d0cd506224052eb7000002&quot;,
+  &quot;client_50d1d2fa6224052c64000002&quot;,
+  &quot;client_50d485b6622405261a000002&quot;,
+  &quot;client_512b8556622405614f000002&quot;,
+  &quot;client_51924d266224055568000004&quot;,
+  &quot;client_51bf5685622405297a000002&quot;,
+  &quot;client_51e441a8622405799900000e&quot;,
+]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and another call tells me how many indexes I have:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ curl -s -XGET &amp;#39;http://search.dev:9200/_status&amp;#39; | jq &amp;#39;.[&amp;quot;indices&amp;quot;]&amp;#39; | jq &amp;#39;keys&amp;#39; | jq &amp;#39;length&amp;#39;
-$ 11&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;$ curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39; | jq &#39;length&#39;
+$ 11
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This makes it incredibly easy to work with data retrieved from JSON services using &lt;code&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script service interruption detection and health monitoring.&lt;/p&gt;
+&lt;p&gt;This makes it incredibly easy to work with data retrieved from JSON services
+using &lt;code&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script service interruption
+detection and health monitoring.&lt;/p&gt;
 
-&lt;p&gt;I am now in the process of wrapping a good many elasticsearch and mongo calls in my little bash script. I&amp;#8217;ll be hosting the reult on github. as soon as I get it in any sort of presentable shape. However, I can&amp;#8217;t say enough good things about the JQ library. If you need to do anything with JSON on the command line, I have found this to be the best option. Cheers, Stedolan, for the great contribution!&lt;/p&gt;</description>
+&lt;p&gt;I am now in the process of wrapping a good many elasticsearch and mongo calls in
+my little bash script. I&#39;ll be hosting the reult on github. as soon as I get it
+in any sort of presentable shape. However, I can&#39;t say enough good things about
+the JQ library. If you need to do anything with JSON on the command line, I
+have found this to be the best option. Cheers, Stedolan, for the great contribution!&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Even Now</title>
-      <link>http://scotthelm.com/2013/05/22/even-now.html</link>
+      <link>http://scotthelm.com/2013/05/22/even-now/</link>
       <pubDate>Wed, 22 May 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/05/22/even-now</guid>
-      <description>&lt;p&gt;Even now&lt;br /&gt;I can hear my heartbeat in my ears&lt;br /&gt;the need to get the words out&lt;br /&gt;before it&amp;#8217;s too late&lt;/p&gt;
+      <description>&lt;p&gt;Even now&lt;br/&gt;
+I can hear my heartbeat in my ears&lt;br/&gt;
+the need to get the words out&lt;br/&gt;
+before it&#39;s too late&lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br /&gt;there&amp;#8217;s so much more I want to tell you&lt;br /&gt;in the midnight confessional&lt;br /&gt;the silent return&lt;/p&gt;
+&lt;p&gt;Even now&lt;br/&gt;
+there&#39;s so much more I want to tell you&lt;br/&gt;
+in the midnight confessional&lt;br/&gt;
+the silent return&lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br /&gt;I wish I could see through your eyes&lt;br /&gt;standing on the shore with the boatman&lt;br /&gt;looking back over your shoulder&lt;/p&gt;
+&lt;p&gt;Even now&lt;br/&gt;
+I wish I could see through your eyes&lt;br/&gt;
+standing on the shore with the boatman&lt;br/&gt;
+looking back over your shoulder&lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br /&gt;Even still&lt;/p&gt;
+&lt;p&gt;Even now&lt;br/&gt;
+Even still&lt;/p&gt;
 
-&lt;p&gt;I always think of you when I least expect it&lt;br /&gt;like a flash in my periphery&lt;br /&gt;that draws my eye&lt;br /&gt;and I sit there, rapt for a while searching&lt;br /&gt;searching for what&amp;#8217;s no longer there&lt;/p&gt;
+&lt;p&gt;I always think of you when I least expect it&lt;br/&gt;
+like a flash in my periphery&lt;br/&gt;
+that draws my eye&lt;br/&gt;
+and I sit there, rapt for a while searching&lt;br/&gt;
+searching for what&#39;s no longer there&lt;/p&gt;
 
-&lt;p&gt;Even now&lt;br /&gt;Even still&lt;/p&gt;</description>
+&lt;p&gt;Even now&lt;br/&gt;
+Even still&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Postgres quick cursors</title>
-      <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors.html</link>
+      <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors/</link>
       <pubDate>Wed, 15 May 2013 00:00:00 -0400</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/05/15/postgres-quick-cursors</guid>
-      <description>&lt;p&gt;I needed to act on individual members of a set. I also didn&amp;#8217;t want to write a function. In psql, I discovered the DO block. It allowed me to gain access to pgplsql without being in the context of a UDF (User Defined Function).&lt;/p&gt;
+      <description>&lt;p&gt;I needed to act on individual members of a set. I also didn&#39;t want to write a
+function. In psql, I discovered the DO block. It allowed me to gain access to
+pgplsql without being in the context of a UDF (User Defined Function).&lt;/p&gt;
 
-&lt;p&gt;In this particular case, I created a table called view_refugees. These were views that were causing my rails migration to fail due to a change in an underlying table column&amp;#8217;s datatype. The plan is that I will create the view refugees from pg_views, drop the views, run the migration, then recreate the views.&lt;/p&gt;
+&lt;p&gt;In this particular case, I created a table called view_refugees.  These were
+views that were causing my rails migration to fail due to a change in an
+underlying table column&#39;s datatype. The plan is that I will create the view
+refugees from pg_views, drop the views, run the migration, then recreate the
+views.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; do $$declare r record;
   begin
     for r in select viewname, schemaname from view_refugees
     loop
-      execute &amp;#39;drop view &amp;#39;
+      execute &#39;drop view &#39;
       || r.schemaname
-      || &amp;#39;.&amp;#39;
+      || &#39;.&#39;
       || r.viewname
-      || &amp;#39; cascade&amp;#39;;
+      || &#39; cascade&#39;;
     end loop;
-  end$$;&lt;/code&gt;&lt;/pre&gt;
+  end$$;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;DO block makes that easier.&lt;/p&gt;</description>
+&lt;p&gt;DO block makes that easier.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>American Drone</title>
-      <link>http://scotthelm.com/2013/02/10/american-drone.html</link>
+      <link>http://scotthelm.com/2013/02/10/american-drone/</link>
       <pubDate>Sun, 10 Feb 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/02/10/american-drone</guid>
       <description>&lt;p&gt;We are using the same drone technology we use in Afghanistan here in the U.S.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://www.cnn.com/2012/09/25/world/asia/pakistan-us-drone-strikes'&gt;Studies indicate&lt;/a&gt; an enormous loss of life due to collateral damage. &lt;a href='http://web.law.columbia.edu/sites/default/files/microsites/human-rights-institute/files/COLUMBIACountingDronesFinal.pdf'&gt;Other studies&lt;/a&gt; indicate that the total number of deaths due to drones is massively under-reported and that the ratio of civilian to militant deaths is extremely high.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cnn.com/2012/09/25/world/asia/pakistan-us-drone-strikes&quot;&gt;Studies indicate&lt;/a&gt;
+an enormous loss of life due to collateral damage.
+&lt;a href=&quot;http://web.law.columbia.edu/sites/default/files/microsites/human-rights-institute/files/COLUMBIACountingDronesFinal.pdf&quot;&gt;Other studies&lt;/a&gt;
+indicate that the total number of deaths due to drones is massively
+under-reported and that the ratio of civilian to militant deaths is extremely high.&lt;/p&gt;
 
-&lt;p&gt;According to the former story, &amp;#8220;the percentage of high-level targets killed as a percentage of total casualties is extremely low &amp;#8211; about 2%&amp;#8221;. And yet here we are, using the same technology that has an effective rate of 2% amongst our own populace. &lt;a href='http://www.express.co.uk/news/world/376732/Man-hunt-for-ex-soldier-who-shot-police-chief-s-daughter-and-killed-policeman'&gt;This&lt;/a&gt; is unacceptable.&lt;/p&gt;
+&lt;p&gt;According to the former story, &quot;the percentage of high-level targets killed as
+a percentage of total casualties is extremely low -- about 2%&quot;. And yet here we
+are, using the same technology that has an effective rate of 2% amongst
+our own populace.
+&lt;a href=&quot;http://www.express.co.uk/news/world/376732/Man-hunt-for-ex-soldier-who-shot-police-chief-s-daughter-and-killed-policeman&quot;&gt;This&lt;/a&gt;
+is unacceptable.&lt;/p&gt;
 
-&lt;p&gt;In the wake of Sandy Hook, our president speaks of wanting to protect the children. An admiral goal. Would that he meant not only the children here, but the ones we are killing in the name of our &amp;#8220;national interest&amp;#8221; abroad.&lt;/p&gt;
+&lt;p&gt;In the wake of Sandy Hook, our president speaks of wanting to protect the children.
+An admiral goal. Would that he meant not only the children here, but the ones
+we are killing in the name of our &quot;national interest&quot; abroad.&lt;/p&gt;
 
-&lt;p&gt;The American Dream abroad and at home is quickly becoming the American Drone.&lt;/p&gt;</description>
+&lt;p&gt;The American Dream abroad and at home is quickly becoming the American Drone.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Awk - It's not just a prefix for "ward"</title>
-      <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward.html</link>
+      <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward/</link>
       <pubDate>Sun, 27 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward</guid>
-      <description>&lt;p&gt;It&amp;#8217;s kind of a joke around where I work. I saw a data import script my boss had written that used &lt;code&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into record-type-specific files for use with BCP. Since then, I have (jokingly) declared that the combination of awk and elasticsearch is my hammer, and all problems are nails.&lt;/p&gt;
+      <description>&lt;p&gt;It&#39;s kind of a joke around where I work. I saw a data import script my boss had
+written that used &lt;code&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into
+record-type-specific files for use with BCP. Since then, I have (jokingly)
+declared that the combination of awk and elasticsearch is my hammer, and all
+problems are nails.&lt;/p&gt;
 
-&lt;p&gt;I was looking for speed improvements for our index import process. Having made said improvements (by parallelizing the tasks - invoking the import process in multiple forks and datasets separated by modulus math), I needed an easy way to keep track of the progress. I already had the processes writing to a log file with this format:&lt;/p&gt;
+&lt;p&gt;I was looking for speed improvements for our index import process. Having
+made said improvements (by parallelizing the tasks - invoking the import process
+in multiple forks and datasets separated by modulus math), I needed an easy way to
+keep track of the progress. I already had the processes writing to a log file
+with this format:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;20755 processed 1000 objects ending with: 18000 in 53 seconds&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;20755 processed 1000 objects ending with: 18000 in 53 seconds
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The first number is the process id or pid. Since I had multiple processes running, I didn&amp;#8217;t want to have to find the last entry for each pid and do math to find out how quickly things were going. So I whipped up this little import_stats.awk script:&lt;/p&gt;
+&lt;p&gt;The first number is the process id or pid.
+Since I had multiple processes running, I didn&#39;t want to have to find the last
+entry for each pid and do math to find out how quickly things were going. So I
+whipped up this little import_stats.awk script:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#! /bin/awk -f
 # this section happens before any lines are read.
@@ -569,7 +824,7 @@ BEGIN {
 }
 
 # the unnamed section here is what is executed 
-# for each line. In this case, it&amp;#39;s checking to
+# for each line. In this case, it&#39;s checking to
 # see if a line begins with a number, and 
 # incrementing counts and totals on if it does.
 # the $9 variable is the ninth column in the 
@@ -583,37 +838,50 @@ BEGIN {
 
 # The end section allows you to sum up, peforming
 # actions to clean up or print results. In this
-# case I&amp;#39;m printing my results
+# case I&#39;m printing my results
 END {
-  print &amp;quot;average seconds per thousand: &amp;quot; total_seconds / count;
-  print &amp;quot;total processed_thus far: &amp;quot; count * 1000;
-}&lt;/code&gt;&lt;/pre&gt;
+  print &quot;average seconds per thousand: &quot; total_seconds / count;
+  print &quot;total processed_thus far: &quot; count * 1000;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;now I can check on progress by typing this from the app&amp;#8217;s root:&lt;/p&gt;
+&lt;p&gt;now I can check on progress by typing this from the app&#39;s root:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and I get&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;average seconds per thousand: 50.4306
-total processed_thus far: 432000&lt;/code&gt;&lt;/pre&gt;
+total processed_thus far: 432000
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Linux and Unix have so many great tools that have been developed over the years that are rock solid foundations for new things. I found this site to be helpful as I was writing my little script: &lt;a href='http://www.grymoire.com/Unix/Awk.html'&gt;Awk - A Tutorial and Introduction&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Linux and Unix have so many great tools that have been developed over the years
+that are rock solid foundations for new things. I found this site to be helpful
+as I was writing my little script:
+&lt;a href=&quot;http://www.grymoire.com/Unix/Awk.html&quot;&gt;Awk - A Tutorial and Introduction&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;It took no time at all to develop this utility. It&amp;#8217;s simple, saves me time and makes me happy.&lt;/p&gt;</description>
+&lt;p&gt;It took no time at all to develop this utility. It&#39;s simple, saves me time and
+makes me happy.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>More Postgres Magic</title>
-      <link>http://scotthelm.com/2013/01/20/more-postgres-magic.html</link>
+      <link>http://scotthelm.com/2013/01/20/more-postgres-magic/</link>
       <pubDate>Sun, 20 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/20/more-postgres-magic</guid>
-      <description>&lt;p&gt;&lt;a href='http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html'&gt;REASSIGN OWNED BY old_role new_role&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;[REASSIGN OWNED BY old_role new_role] (http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html)&lt;/p&gt;
 
-&lt;p&gt;This command saved my bacon today. I had to apply some scripts that dropped a couple of database objects. The role I was using did not have ownership of the objects in question, so the script failed. I needed to change ownership so the scripts would run correctly.&lt;/p&gt;
+&lt;p&gt;This command saved my bacon today. I had to apply some scripts that dropped a
+couple of database objects. The role I was using did not have ownership of the
+objects in question, so the script failed. I needed to change ownership so the
+scripts would run correctly.&lt;/p&gt;
 
-&lt;p&gt;REASSIGN OWNED BY does just what it says - log into the database you want to effect, and run the command. It transfers ownership from the old role to the new role for all objects in the database.&lt;/p&gt;
+&lt;p&gt;REASSIGN OWNED BY does just what it says - log into the database you want to
+effect, and run the command. It transfers ownership from the old role to the
+new role for all objects in the database.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;postgres=# create database ownage;
 CREATE DATABASE
@@ -626,10 +894,10 @@ postgres=# \q
 psql ownage -U old_owner -h localhost
 
 ownage=# create table users (id serial, username text, password text);
-NOTICE:  CREATE TABLE will create implicit sequence &amp;quot;users_id_seq&amp;quot; for serial column &amp;quot;users.id&amp;quot;
+NOTICE:  CREATE TABLE will create implicit sequence &quot;users_id_seq&quot; for serial column &quot;users.id&quot;
 CREATE TABLE
 ownage=# create table things (id serial, user_id integer, name text);
-NOTICE:  CREATE TABLE will create implicit sequence &amp;quot;things_id_seq&amp;quot; for serial column &amp;quot;things.id&amp;quot;
+NOTICE:  CREATE TABLE will create implicit sequence &quot;things_id_seq&quot; for serial column &quot;things.id&quot;
 CREATE TABLE
 ownage=# \d
               List of relations
@@ -651,36 +919,56 @@ ownage=# \d
  public | things_id_seq | sequence | owner_wannabe
  public | users         | table    | owner_wannabe
  public | users_id_seq  | sequence | owner_wannabe
-(4 rows)&lt;/code&gt;&lt;/pre&gt;
+(4 rows)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;With that, we no longer have to iterate over objects one by one and alter owner.&lt;/p&gt;
 
-&lt;p&gt;And that, my friends is more Postgres magic.&lt;/p&gt;</description>
+&lt;p&gt;And that, my friends is more Postgres magic.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Clojure Is Bending My Brain</title>
-      <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain.html</link>
+      <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain/</link>
       <pubDate>Sat, 05 Jan 2013 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain</guid>
-      <description>&lt;p&gt;My first foray into the world of functional programming is going to be &lt;a href='http://clojure.org/'&gt;Clojure&lt;/a&gt; (pronounced &amp;#8220;closure&amp;#8221;).&lt;/p&gt;
+      <description>&lt;p&gt;My first foray into the world of functional programming is going to be
+&lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt; (pronounced &quot;closure&quot;).&lt;/p&gt;
 
-&lt;p&gt;This Lisp derivative is not a purely functional language like Haskell or standard Lisp. It is built on top of the Java Virtual Machine (JVM) which gives it a wide deployment reach, and has some conveniences that make it easier to get into for OO heads like me.&lt;/p&gt;
+&lt;p&gt;This Lisp derivative is not a purely functional language like Haskell or
+standard Lisp.  It is built on top of the Java Virtual Machine (JVM) which
+gives it a wide deployment reach, and has some conveniences that make it easier
+to get into for OO heads like me.&lt;/p&gt;
 
-&lt;p&gt;Functional programming is a REALLY different way of viewing the problem of how to tell a computer what to do. I am seeing some value from learning about functional programming already. Lambdas, for example, make a whole lot more sense to me now. It solves problems of complexity and concurrency that are difficult in object-oriented systems.&lt;/p&gt;
+&lt;p&gt;Functional programming is a REALLY different way of viewing the problem of how
+to tell a computer what to do. I am seeing some value from learning about
+functional programming already. Lambdas, for example, make a whole lot more
+sense to me now. It solves problems of complexity and concurrency that are
+difficult in object-oriented systems.&lt;/p&gt;
 
-&lt;p&gt;I&amp;#8217;m looking forward to learning more about it through &lt;a href='http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/'&gt;Programming Clojure&lt;/a&gt; and will post anything I find interesting.&lt;/p&gt;
+&lt;p&gt;I&#39;m looking forward to learning more about it through
+&lt;a href=&quot;http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/&quot;&gt;Programming Clojure&lt;/a&gt;
+and will post anything I find interesting.&lt;/p&gt;
 
-&lt;p&gt;My entire career has been spent honing my object-oriented programming skills. When I first started out, I taught myself about relational data. Then I moved to imperative programming, creating data-driven websites with classic asp and vbscript. (ugh). I quickly figured out that sucked and moved into Java. That&amp;#8217;s where my love affair with object-oriented programming was born. I cut my teeth with Jrun after a brief detour into CF.&lt;/p&gt;
+&lt;p&gt;My entire career has been spent honing my object-oriented programming skills.
+When I first started out, I taught myself about relational data. Then I moved
+to imperative programming, creating data-driven websites with classic asp and
+vbscript. (ugh). I quickly figured out that sucked and moved into Java.  That&#39;s
+where my love affair with object-oriented programming was born.  I cut my teeth
+with Jrun after a brief detour into CF.&lt;/p&gt;
 
-&lt;p&gt;I love OO. It provides a fantastic abstraction that has allowed me to think about software in concrete terms that are somewhat relatable to my clients. I spent years doing it in C#. And now I&amp;#8217;m doing it in Ruby.&lt;/p&gt;
+&lt;p&gt;I love OO. It provides a fantastic abstraction that has allowed me to think
+about software in concrete terms that are somewhat relatable to my clients. I
+spent years doing it in C#. And now I&#39;m doing it in Ruby.&lt;/p&gt;
 
-&lt;p&gt;To give you an idea how different the implementation is between a statically-typed OO language and a functional language, check this out:&lt;/p&gt;
+&lt;p&gt;To give you an idea how different the implementation is between a
+statically-typed OO language and a functional language, check this out:&lt;/p&gt;
 
-&lt;h3 id='example'&gt;Example&lt;/h3&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
 
-&lt;h4 id='java'&gt;Java&lt;/h4&gt;
+&lt;h4&gt;Java&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;public class StringUtils {
   public static boolean isBlank(String str) {
@@ -695,35 +983,53 @@ ownage=# \d
     }
     return true;
   }
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id='clojure'&gt;Clojure&lt;/h4&gt;
+&lt;h4&gt;Clojure&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;(defn blank? [str]
-  (every? #(Character/isWhitespace %) str))&lt;/code&gt;&lt;/pre&gt;
+  (every? #(Character/isWhitespace %) str))
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Expressive and succinct. I am intrigued.&lt;/p&gt;</description>
+&lt;p&gt;Expressive and succinct. I am intrigued.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Plans For the New Year</title>
-      <link>http://scotthelm.com/2012/12/31/plans-for-the-new-year.html</link>
+      <link>http://scotthelm.com/2012/12/31/plans-for-the-new-year/</link>
       <pubDate>Mon, 31 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/31/plans-for-the-new-year</guid>
       <description>&lt;p&gt;I made some major changes over the last year.&lt;/p&gt;
 
-&lt;h3 id='i_changed_jobs'&gt;I changed jobs.&lt;/h3&gt;
+&lt;h3&gt;I changed jobs.&lt;/h3&gt;
 
-&lt;p&gt;People do this all the time. I don&amp;#8217;t. I spent 8 great years with the last company I worked for. I think the world of them. We simply had different visions for my future. They wanted me to go into a software dev managment sort of role. That did not appeal to me. I like building things and solving problems. We parted ways as friends, which I&amp;#8217;m pretty proud of. Not only because of the amicability of the parting, but because I recognized its necessity, and was willing to get out of my comfort zone to stay happy.&lt;/p&gt;
+&lt;p&gt;People do this all the time. I don&#39;t. I spent 8 great years
+with the last company I worked for. I think the world of them. We simply had
+different visions for my future. They wanted me to go into a software dev
+managment sort of role. That did not appeal to me. I like building things and
+solving problems. We parted ways as friends, which I&#39;m pretty proud of. Not
+only because of the amicability of the parting, but because I recognized its
+necessity, and was willing to get out of my comfort zone to stay happy.&lt;/p&gt;
 
-&lt;h3 id='i_completely_changed_my_tech'&gt;I completely changed my tech.&lt;/h3&gt;
+&lt;h3&gt;I completely changed my tech.&lt;/h3&gt;
 
-&lt;p&gt;I mean completely. I am an .net enterprise architect. I have delivered large- scale custom applications to fortune 500 companies. I used ASP.Net, MVC, EF and really enjoyed it. Heck, I even managed to wrangle SharePoint 2010 into a passable externally-facing customer portal.&lt;/p&gt;
+&lt;p&gt;I mean completely. I am an .net enterprise architect. I have delivered large-
+scale custom applications to fortune 500 companies. I used ASP.Net, MVC, EF and
+really enjoyed it. Heck, I even managed to wrangle SharePoint 2010 into a
+passable externally-facing customer portal.&lt;/p&gt;
 
-&lt;p&gt;Even so, I felt that I wasn&amp;#8217;t learning very much, and that there was a lot more out there. I had played around with Ruby and Ruby on Rails producing the &lt;a href='http://www.stuffsimple.com'&gt;StuffSimple&lt;/a&gt; site. But I knew I was barely scratching the surface. With the changes at work looming, I decided to make the change and jump on the open source wagon.&lt;/p&gt;
+&lt;p&gt;Even so, I felt that I wasn&#39;t learning very much, and that there was a lot more
+out there.  I had played around with Ruby and Ruby on Rails producing the
+&lt;a href=&quot;http://www.stuffsimple.com&quot;&gt;StuffSimple&lt;/a&gt; site.  But I knew I was barely
+scratching the surface. With the changes at work looming, I decided to make the
+change and jump on the open source wagon.&lt;/p&gt;
 
-&lt;p&gt;I talked to a friend who had already made the leap, and as he was working with some people I already knew, I asked to come aboard. They agreed, and here I am today.&lt;/p&gt;
+&lt;p&gt;I talked to a friend who had already made the leap, and as he was working with
+some people I already knew, I asked to come aboard. They agreed, and here I am
+today.&lt;/p&gt;
 
 &lt;p&gt;Now my toolset is very different:&lt;/p&gt;
 
@@ -734,149 +1040,172 @@ ownage=# \d
     :typed          =&amp;gt;      :dynamic,
     :iis            =&amp;gt;      :unicorn_and_nginx,
     :gui            =&amp;gt;      :linux_command_line
-  }&lt;/code&gt;&lt;/pre&gt;
+  }
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The list goes on, but needless to say, I have had a steep learning curve, and I love it.&lt;/p&gt;
+&lt;p&gt;The list goes on, but needless to say, I have had a steep learning curve, and
+I love it.&lt;/p&gt;
 
-&lt;h3 id='my_plans_for_the_coming_year'&gt;My plans for the coming year&lt;/h3&gt;
+&lt;h3&gt;My plans for the coming year&lt;/h3&gt;
 
-&lt;h4 id='learn_more'&gt;Learn More&lt;/h4&gt;
+&lt;h4&gt;Learn More&lt;/h4&gt;
 
-&lt;p&gt;It&amp;#8217;s my key personal key to happiness. It&amp;#8217;s what keeps me going. I plan to tackle a functional language of some sort. Probably Clojure.&lt;/p&gt;
+&lt;p&gt;It&#39;s my key personal key to happiness. It&#39;s what keeps me going. I plan to
+tackle a functional language of some sort.  Probably Clojure.&lt;/p&gt;
 
-&lt;h4 id='write_more_music'&gt;Write More Music&lt;/h4&gt;
+&lt;h4&gt;Write More Music&lt;/h4&gt;
 
-&lt;p&gt;It&amp;#8217;s something I enjoy very much. I need to do more of it.&lt;/p&gt;
+&lt;p&gt;It&#39;s something I enjoy very much. I need to do more of it.&lt;/p&gt;
 
-&lt;h4 id='stay_active'&gt;Stay Active&lt;/h4&gt;
+&lt;h4&gt;Stay Active&lt;/h4&gt;
 
-&lt;p&gt;I did a fairly good job last year, but I need to keep it up. This is that reminder.&lt;/p&gt;
+&lt;p&gt;I did a fairly good job last year, but I need to keep it up. This is that
+reminder.&lt;/p&gt;
 
-&lt;h4 id='cultivate_voiceovers'&gt;Cultivate Voiceovers&lt;/h4&gt;
+&lt;h4&gt;Cultivate Voiceovers&lt;/h4&gt;
 
-&lt;p&gt;Last year was pretty good, but I can do better. I would love to get on a cartoon, or an audible book gig. Let&amp;#8217;s see if I can do that this year.&lt;/p&gt;
+&lt;p&gt;Last year was pretty good, but I can do better. I would love to get on a
+cartoon, or an audible book gig. Let&#39;s see if I can do that this year.&lt;/p&gt;
 
-&lt;h4 id='spend_more_time_with_family_and_friends'&gt;Spend more time with family and friends&lt;/h4&gt;
+&lt;h4&gt;Spend more time with family and friends&lt;/h4&gt;
 
-&lt;p&gt;Game night. Let&amp;#8217;s do this.&lt;/p&gt;
+&lt;p&gt;Game night. Let&#39;s do this.&lt;/p&gt;
 
-&lt;h4 id='finish_stuffsimple'&gt;Finish StuffSimple&lt;/h4&gt;
+&lt;h4&gt;Finish StuffSimple&lt;/h4&gt;
 
-&lt;p&gt;I have a working implementation, but it&amp;#8217;s using dated tech. I want to revamp it with all the stuff I&amp;#8217;ve learned over the last year.&lt;/p&gt;
+&lt;p&gt;I have a working implementation, but it&#39;s using dated tech. I want to revamp it
+with all the stuff I&#39;ve learned over the last year.&lt;/p&gt;
 
-&lt;p&gt;It&amp;#8217;s going to be exciting! I wish you many joys and triumphs in the coming year! Happy 2013 all!&lt;/p&gt;</description>
+&lt;p&gt;It&#39;s going to be exciting!  I wish you many joys and triumphs in the coming
+year!  Happy 2013 all!&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Rainbows</title>
-      <link>http://scotthelm.com/2012/12/29/rainbows.html</link>
+      <link>http://scotthelm.com/2012/12/29/rainbows/</link>
       <pubDate>Sat, 29 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/29/rainbows</guid>
-      <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
+      <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me
+dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
 
-&lt;p&gt;I had started the melody a while back, but had no lyrics. I put the lyrics together today.&lt;/p&gt;
+&lt;p&gt;I had started the melody a while back, but had no lyrics.  I put the lyrics
+together today.&lt;/p&gt;
 
-&lt;p&gt;in a corner of the room&lt;br /&gt;underneath the moving boxes&lt;br /&gt;in a chest of faded memories there&lt;br /&gt;is a picture of us dancing&lt;/p&gt;
+&lt;p&gt;in a corner of the room&lt;br/&gt;
+underneath the moving boxes&lt;br/&gt;
+in a chest of faded memories there&lt;br/&gt;
+is a picture of us dancing&lt;/p&gt;
 
-&lt;p&gt;after all this time flows&lt;br /&gt;out the door and through the windows&lt;br /&gt;through these tears I look up&lt;br /&gt;and see rainbows&lt;/p&gt;
+&lt;p&gt;after all this time flows&lt;br/&gt;
+out the door and through the windows&lt;br/&gt;
+through these tears I look up&lt;br/&gt;
+and see rainbows&lt;/p&gt;
 
-&lt;p&gt;I often think of you&lt;br /&gt;in my mind I see you smiling&lt;br /&gt;like a vision of the loveliest smile&lt;br /&gt;that anyone has ever&lt;/p&gt;
+&lt;p&gt;I often think of you&lt;br/&gt;
+in my mind I see you smiling&lt;br/&gt;
+like a vision of the loveliest smile&lt;br/&gt;
+that anyone has ever&lt;/p&gt;
 
-&lt;p&gt;after all this time flows&lt;br /&gt;out the door and through the windows&lt;br /&gt;through these tears I look up&lt;br /&gt;and see rainbows&lt;/p&gt;
-&lt;iframe frameborder='no' height='166' scrolling='no' src='http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F72984244&amp;amp;show_artwork=true' width='100%' /&gt;</description>
+&lt;p&gt;after all this time flows&lt;br/&gt;
+out the door and through the windows&lt;br/&gt;
+through these tears I look up&lt;br/&gt;
+and see rainbows&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F72984244&amp;amp;show_artwork=true&quot;&gt;&lt;/iframe&gt;
+
+
+
+</description>
     </item>
     
     <item>
       <title>It's the end of the world, and I feel fine</title>
-      <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine.html</link>
+      <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine/</link>
       <pubDate>Thu, 20 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine</guid>
-      <description>&lt;p&gt;I was amazed by how much the world didn&amp;#8217;t end today.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I was amazed by how much the world didn&#39;t end today.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Three Four for Twelve Twelve</title>
-      <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve.html</link>
+      <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve/</link>
       <pubDate>Wed, 12 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve</guid>
       <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.&lt;/p&gt;
 
-&lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it. This list is just off the top of my head, and is in no particular order&amp;#8230;and yes, there are 2 Queen songs. Sue me.&lt;/p&gt;
+&lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it.  This list is just off the top of my head, and is in no particular order...and yes, there are 2 Queen songs.  Sue me.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=-lG3nXyI41M'&gt;She&amp;#8217;s Leaving Home - Beatles&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=Hvfzrffto2I'&gt;Manic Depression - Jimi Hendirx&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=47leRbuaOxo'&gt;Birdland - Patti Smith&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=qWG2dsXV5HI'&gt;My Favorite Things - John Coltrane&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=k1G1xZsLb3c'&gt;Drowse - Queen&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=qwXtHZeBb7M'&gt;Dead Melodies - Beck&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=1ky1td3_6LY'&gt;Nude - Radiohead&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=04854XqcfCY'&gt;We Are The Champions - Queen&lt;/a&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://www.youtube.com/watch?v=GPG3zSgm_Qo'&gt;Christmas Time Is Here - Charlie Brown Christmas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=-lG3nXyI41M&quot;&gt;She&#39;s Leaving Home - Beatles&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=Hvfzrffto2I&quot;&gt;Manic Depression - Jimi Hendirx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=47leRbuaOxo&quot;&gt;Birdland - Patti Smith&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qWG2dsXV5HI&quot;&gt;My Favorite Things - John Coltrane&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=k1G1xZsLb3c&quot;&gt;Drowse - Queen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=qwXtHZeBb7M&quot;&gt;Dead Melodies - Beck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=1ky1td3_6LY&quot;&gt;Nude - Radiohead&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=04854XqcfCY&quot;&gt;We Are The Champions - Queen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=GPG3zSgm_Qo&quot;&gt;Christmas Time Is Here - Charlie Brown Christmas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;interestingly, &lt;a href='http://www.youtube.com/watch?v=XrkThaBWa5c'&gt;Waltzing Matilda&lt;/a&gt; isn&amp;#8217;t in 3/4 unless you count it in triplets. But hey, it&amp;#8217;s a great song, so I&amp;#8217;m including it.&lt;/p&gt;
 
-&lt;p&gt;Enjoy your 12/12/12!&lt;/p&gt;</description>
+&lt;p&gt;interestingly, &lt;a href=&quot;http://www.youtube.com/watch?v=XrkThaBWa5c&quot;&gt;Waltzing Matilda&lt;/a&gt; isn&#39;t in 3/4 unless you count it in triplets.  But hey, it&#39;s a great song, so I&#39;m including it.&lt;/p&gt;
+
+&lt;p&gt;Enjoy your 12/12/12!&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Some Postgres Shortcuts</title>
-      <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts.html</link>
+      <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts/</link>
       <pubDate>Tue, 11 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/11/some-postgres-shortcuts</guid>
-      <description>&lt;h3 id='command_line'&gt;Command Line&lt;/h3&gt;
+      <description>&lt;h3&gt;Command Line&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;
-pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;-s Schema only, please. No data&lt;/li&gt;
-
-&lt;li&gt;-O (that&amp;#8217;s an O as in &amp;#8220;Oh&amp;#8221;): don&amp;#8217;t script ownership of objects&lt;/li&gt;
-
-&lt;li&gt;-h the host. If you&amp;#8217;re on the box with the database, then localhost usually works&lt;/li&gt;
-
+&lt;li&gt;-s Schema only, please.  No data&lt;/li&gt;
+&lt;li&gt;-O (that&#39;s an O as in &quot;Oh&quot;): don&#39;t script ownership of objects&lt;/li&gt;
+&lt;li&gt;-h the host.  If you&#39;re on the box with the database, then localhost usually works&lt;/li&gt;
 &lt;li&gt;-U the username that you want to connect to the database with&lt;/li&gt;
-
-&lt;li&gt;-W prompt me for a password. If you don&amp;#8217;t want this, then you will need to set the PG_PASS environment variable&lt;/li&gt;
-
-&lt;li&gt;-n schema name. Postgres has the concept of schemas. Think of them as namespaces. You can pass a list with multiple -n or leave it blank and get all of them&lt;/li&gt;
+&lt;li&gt;-W prompt me for a password.  If you don&#39;t want this, then you will need to set the PG_PASS environment variable&lt;/li&gt;
+&lt;li&gt;-n schema name.  Postgres has the concept of schemas.  Think of them as namespaces.  You can pass a list with multiple -n or leave it blank and get all of them&lt;/li&gt;
 &lt;/ul&gt;
+
 
 &lt;p&gt;The -h, -U and -W work with psql as well&lt;/p&gt;
 
-&lt;h3 id='psql'&gt;psql&lt;/h3&gt;
+&lt;h3&gt;psql&lt;/h3&gt;
 
-&lt;p&gt;within psql, \e will open your editor of choice. I usually use vim. It creates a file in &lt;code&gt;
+&lt;p&gt;within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in
+&lt;code&gt;
 /tmp/psql.edit.&amp;lt;pid&amp;gt;
-&lt;/code&gt; where pid is the process ID of psql. You edit your sql in that file. When you :wq to write and quit vim, psql will use that file as it&amp;#8217;s command. So if you want it to execute, then make sure it ends with a semicolon; or it won&amp;#8217;t run.&lt;/p&gt;
+&lt;/code&gt;
+where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it&#39;s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won&#39;t run.&lt;/p&gt;
 
-&lt;p&gt;More to come. These are ones I&amp;#8217;ve used today.&lt;/p&gt;</description>
+&lt;p&gt;More to come. These are ones I&#39;ve used today.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Me and The Boys</title>
-      <link>http://scotthelm.com/2012/12/03/me-and-the-boys.html</link>
+      <link>http://scotthelm.com/2012/12/03/me-and-the-boys/</link>
       <pubDate>Mon, 03 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/03/me-and-the-boys</guid>
-      <description>&lt;p&gt;Every now and then, I&amp;#8217;m able to get the boys together with me long enough to take a picture. Their reaction to the countdown in the Photobooth app is always unpredictable.&lt;/p&gt;
+      <description>&lt;p&gt;Every now and then, I&#39;m able to get the boys together with me long enough to
+take a picture. Their reaction to the countdown in the Photobooth app is
+always unpredictable.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='me and the boys' src='http://s3.amazonaws.com/ScottHelm/stuff/pics/20121203.jpg' /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&quot;http://s3.amazonaws.com/ScottHelm/stuff/pics/20121203.jpg&quot; alt=&quot;me and the boys&quot; /&gt;&lt;/p&gt;
+</description>
     </item>
     
 
