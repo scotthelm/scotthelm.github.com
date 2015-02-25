@@ -6,9 +6,99 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Sat, 07 Feb 2015 09:54:48 -0500</pubDate>
-    <lastBuildDate>Sat, 07 Feb 2015 09:54:48 -0500</lastBuildDate>
+    <pubDate>Tue, 24 Feb 2015 23:12:50 -0500</pubDate>
+    <lastBuildDate>Tue, 24 Feb 2015 23:12:50 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Vimitude</title>
+      <link>http://scotthelm.com/2015/02/24/vimitude.html</link>
+      <pubDate>Tue, 24 Feb 2015 00:00:00 -0500</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2015/02/24/vimitude</guid>
+      <description>&lt;h2 id=&quot;love&quot;&gt;Love&lt;/h2&gt;
+&lt;p&gt;I have enjoyed moving to an open-source development stack. I use Ruby and
+Ruby-On-Rails on a daily basis. I love writing golang code. I am intimately
+familiar with Postgresql, Elasticsearch, and Redis. I can read a man page and
+know what I’m looking at. I have written a 4-line bash script that helps me fill
+out my timesheets by reading all of my git commits and arranging them in
+chronological order.&lt;/p&gt;
+
+&lt;p&gt;In short, I love working in Linux. I love bending computers to my will. I love
+creating things that people use to make their lives easier.&lt;/p&gt;
+
+&lt;h2 id=&quot;magic&quot;&gt;Magic&lt;/h2&gt;
+&lt;p&gt;I do all this with text. The files I write are compiled or interpreted by the
+computer and turned into action. It’s like designing and building a machine in
+the air that you can’t really see, but you know is there by its effects. Writing
+code is like weaving a magic spell. It’s like invoking the arcane language to
+create something that wasn’t there before. It’s exhilarating when the elements
+come together and the pieces fit and the solution to the problem you want to
+solve falls out in front of you because you picked the right abstraction.&lt;/p&gt;
+
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;/h2&gt;
+&lt;p&gt;The editor I use (vim) was invented in the 1976 and IMproved in 1991. I am
+writing what you see here using it. What I write is interpreted by Jekyll and
+Markdown (two other open source projects that simplify creating static sites
+like this one).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/348407/6364073/4cefc06e-bc6f-11e4-9499-6a85be3fef82.png&quot; alt=&quot;my editor - how meta&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Vim is “highly configurable”, read “highly configurable if you know what the
+hell you’re doing and are not afraid”. &lt;em&gt;nerd humor alert&lt;/em&gt;: “There are two types
+of people in the world: Those who know vimscript, and those who aren’t Tim Pope.”&lt;/p&gt;
+
+&lt;p&gt;As great and wonderful as my editor is, and despite the fact that I have learned
+to use plugins to extend it, and make modifications to it on startup that make
+my editor my own, there are some things I was missing from my days as a .NET
+developer using Visual Studio. Tab-completion for known properties of objects
+I’m dealing with, and snippets that allow me to quickly create boilerplate code
+that I write all the time. Stuff that’s necessary, but I don’t even have to
+think about. It’s the meter in which I have to rhyme.&lt;/p&gt;
+
+&lt;p&gt;The problem is that the package that my OS comes with for Vim is outdated,
+meaning I have an older version of it. There are plugins for Vim like
+YouCompleteMe (for tab-completion)  and Ultisnips (for that boilerplate code)
+that I could use if only my version of Vim were up to date.&lt;/p&gt;
+
+&lt;h2 id=&quot;making-the-tools-better&quot;&gt;Making the Tools Better&lt;/h2&gt;
+
+&lt;h3 id=&quot;step-1-install-the-new-version-of-vim&quot;&gt;Step 1: Install the new version of Vim&lt;/h3&gt;
+&lt;p&gt;In order to get back some of the things I miss, I need to install the latest
+version of vim so I can install the plugins I want. Luckily, YouCompleteMe had
+&lt;a href=&quot;https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source&quot;&gt;instructions for installing the latest version of vim&lt;/a&gt;.
+Follow the instructions on that page to complete your new installation.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-2-install-plugins&quot;&gt;Step 2: Install Plugins&lt;/h3&gt;
+&lt;p&gt;I want to use &lt;a href=&quot;https://github.com/Valloric/YouCompleteMe&quot;&gt;YouCompleteMe&lt;/a&gt; and
+&lt;a href=&quot;https://github.com/SirVer/ultisnips&quot;&gt;Ultisnips&lt;/a&gt;. With &lt;a href=&quot;http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme&quot;&gt;a little configuration&lt;/a&gt;,
+and a third plugin called &lt;a href=&quot;https://github.com/ervandew/supertab&quot;&gt;Supertab&lt;/a&gt;, they
+go together like chocolate and peanut butter. A quick reminder - read the installation
+docs for YouCompleteMe. It’s a compiled component, so you’ll have to compile it
+before you can use it. You’ll probably also want to install the
+&lt;a href=&quot;https://github.com/honza/vim-snippets&quot;&gt;default snippets for Ultisnips&lt;/a&gt; and
+make them all work together with this bit of vimscript in your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```vim
+“ make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = [‘&lt;c-n&gt;&#39;, &#39;&lt;down&gt;&#39;]
+let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;up&gt;&#39;]
+let g:SuperTabDefaultCompletionType = &#39;&lt;c-n&gt;&#39;&lt;/c-n&gt;&lt;/up&gt;&lt;/c-p&gt;&lt;/down&gt;&lt;/c-n&gt;&lt;/p&gt;
+
+&lt;p&gt;” better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = “&lt;tab&gt;&quot;
+let g:UltiSnipsJumpForwardTrigger = &quot;&lt;tab&gt;&quot;
+let g:UltiSnipsJumpBackwardTrigger = &quot;&lt;s-tab&gt;&quot;
+```&lt;/s-tab&gt;&lt;/tab&gt;&lt;/tab&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3-profit&quot;&gt;Step 3: Profit&lt;/h3&gt;
+&lt;p&gt;Once you’ve followed the steps above, you should be up and running with tab-completion
+and, voila! Happy Vimming!&lt;/p&gt;
+
+&lt;iframe width=&quot;854&quot; height=&quot;510&quot; src=&quot;https://www.youtube.com/embed/1r4Vx4EXIfI&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Postgres to CSV</title>
