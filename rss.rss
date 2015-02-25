@@ -6,8 +6,8 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Feb 2015 23:15:53 -0500</pubDate>
-    <lastBuildDate>Tue, 24 Feb 2015 23:15:53 -0500</lastBuildDate>
+    <pubDate>Tue, 24 Feb 2015 23:25:42 -0500</pubDate>
+    <lastBuildDate>Tue, 24 Feb 2015 23:25:42 -0500</lastBuildDate>
 
     
     <item>
@@ -79,17 +79,16 @@ before you can use it. You’ll probably also want to install the
 &lt;a href=&quot;https://github.com/honza/vim-snippets&quot;&gt;default snippets for Ultisnips&lt;/a&gt; and
 make them all work together with this bit of vimscript in your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;```vim
-“ make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = [‘&lt;c-n&gt;&#39;, &#39;&lt;down&gt;&#39;]
-let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;up&gt;&#39;]
-let g:SuperTabDefaultCompletionType = &#39;&lt;c-n&gt;&#39;&lt;/c-n&gt;&lt;/up&gt;&lt;/c-p&gt;&lt;/down&gt;&lt;/c-n&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot; make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = [&#39;&amp;lt;C-n&amp;gt;&#39;, &#39;&amp;lt;Down&amp;gt;&#39;]
+let g:ycm_key_list_previous_completion = [&#39;&amp;lt;C-p&amp;gt;&#39;, &#39;&amp;lt;Up&amp;gt;&#39;]
+let g:SuperTabDefaultCompletionType = &#39;&amp;lt;C-n&amp;gt;&#39;
 
-&lt;p&gt;” better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = “&lt;tab&gt;&quot;
-let g:UltiSnipsJumpForwardTrigger = &quot;&lt;tab&gt;&quot;
-let g:UltiSnipsJumpBackwardTrigger = &quot;&lt;s-tab&gt;&quot;
-```&lt;/s-tab&gt;&lt;/tab&gt;&lt;/tab&gt;&lt;/p&gt;
+&quot; better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = &quot;&amp;lt;tab&amp;gt;&quot;
+let g:UltiSnipsJumpForwardTrigger = &quot;&amp;lt;tab&amp;gt;&quot;
+let g:UltiSnipsJumpBackwardTrigger = &quot;&amp;lt;s-tab&amp;gt;&quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;step-3-profit&quot;&gt;Step 3: Profit&lt;/h3&gt;
 &lt;p&gt;Once you’ve followed the steps above, you should be up and running with tab-completion

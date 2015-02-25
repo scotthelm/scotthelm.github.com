@@ -130,17 +130,16 @@ before you can use it. You’ll probably also want to install the
 <a href="https://github.com/honza/vim-snippets">default snippets for Ultisnips</a> and
 make them all work together with this bit of vimscript in your <code>.vimrc</code>:</p>
 
-<p>```vim
-“ make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = [‘<c-n>', '<down>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<up>']
-let g:SuperTabDefaultCompletionType = '<c-n>'</c-n></up></c-p></down></c-n></p>
+<pre><code>" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['&lt;C-n&gt;', '&lt;Down&gt;']
+let g:ycm_key_list_previous_completion = ['&lt;C-p&gt;', '&lt;Up&gt;']
+let g:SuperTabDefaultCompletionType = '&lt;C-n&gt;'
 
-<p>” better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = “<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-```</s-tab></tab></tab></p>
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "&lt;tab&gt;"
+let g:UltiSnipsJumpForwardTrigger = "&lt;tab&gt;"
+let g:UltiSnipsJumpBackwardTrigger = "&lt;s-tab&gt;"
+</code></pre>
 
 <h3 id="step-3-profit">Step 3: Profit</h3>
 <p>Once you’ve followed the steps above, you should be up and running with tab-completion
