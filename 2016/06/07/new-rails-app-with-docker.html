@@ -213,18 +213,18 @@ COPY Gemfile.lock .</p>
 <p>We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our <code>docker-compose.yml</code> file:</p>
 
 <p><code>
-version: "2"
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/app
-    links:
-      - db
-  db:
-    image: postgres:9.5.3
+    version: "2"
+    services:
+      app:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        volumes:
+          - .:/usr/src/app
+        links:
+          - db
+      db:
+        image: postgres:9.5.3
 </code></p>
 
 <h2 id="installing-rails">Installing Rails</h2>

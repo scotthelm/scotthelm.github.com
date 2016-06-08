@@ -6,8 +6,8 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Wed, 08 Jun 2016 01:20:16 -0400</pubDate>
-    <lastBuildDate>Wed, 08 Jun 2016 01:20:16 -0400</lastBuildDate>
+    <pubDate>Wed, 08 Jun 2016 01:22:43 -0400</pubDate>
+    <lastBuildDate>Wed, 08 Jun 2016 01:22:43 -0400</lastBuildDate>
 
     
     <item>
@@ -162,18 +162,18 @@ COPY Gemfile.lock .&lt;/p&gt;
 &lt;p&gt;We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our &lt;code&gt;docker-compose.yml&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;
-version: &quot;2&quot;
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/app
-    links:
-      - db
-  db:
-    image: postgres:9.5.3
+    version: &quot;2&quot;
+    services:
+      app:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        volumes:
+          - .:/usr/src/app
+        links:
+          - db
+      db:
+        image: postgres:9.5.3
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;installing-rails&quot;&gt;Installing Rails&lt;/h2&gt;
