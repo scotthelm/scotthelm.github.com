@@ -93,9 +93,10 @@ home folder:</p>
 <p><code>
 ~/development $ mkdir myapp
 ~/development $ cd myapp
-</code>
-##The Gemfile
-The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.</p>
+</code></p>
+
+<h2 id="the-gemfile">The Gemfile</h2>
+<p>The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.</p>
 
 <p>```
 # ./Gemfile
@@ -109,9 +110,10 @@ source ‘https://rubygems.org’</p>
   gem ‘guard-rspec’
   gem ‘rubocop’
 end
-```
-##The Dockerfile
-Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
+```</p>
+
+<h2 id="the-dockerfile">The Dockerfile</h2>
+<p>Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
 photoshop image. You start with a base layer (in this case, it’s <code>ruby:latest</code>) and then we start layering our changes on top of it. Every command you see in the <code>Dockerfile</code> changes the file system in some way. Docker responds to this by creating another layer on top of the base image. In our first iteration of the Dockerfile, we specify that we want Ruby 2.3.1, and that we want our code to live in <code>/usr/src/app</code>. We set our working directory to that location and copy our gemfile into it.</p>
 
 <p>```
@@ -143,8 +145,9 @@ services:
 
 <p><code>
 ~/development/myapp $ docker-compose build
-</code>
-We should get some output like this (yours will probably need to pull the ruby base image down, so you will see some progress bars as this happens).</p>
+</code></p>
+
+<p>We should get some output like this (yours will probably need to pull the ruby base image down, so you will see some progress bars as this happens).</p>
 
 <p><code>
 Building app
@@ -158,8 +161,9 @@ Step 3 : COPY Gemfile .
  ---&gt; 64cd3ad6bf21
 Removing intermediate container 6b71f68d3fc7
 Successfully built 64cd3ad6bf21
-</code>
-We now have a Docker image of our app that has our Gemfile in it. Now we need to install the gems.</p>
+</code></p>
+
+<p>We now have a Docker image of our app that has our Gemfile in it. Now we need to install the gems.</p>
 
 <h2 id="running-our-first-container">Running our first container</h2>
 <p>You can think of the difference between an image and a container much like the difference between a class and an instance of a class. The image is the class. It is a full filesystem, and it has everthing needed for running your ruby process. However, it’s static. It is an image of a running system. The running system is a container. The container uses the image to run a single process. When that process ends, so does the container. Poetic, really. The first thing we are going to do is run a bash session so we can bundle our gems. Because our current directory is mounted as the volume <code>/usr/src/app</code> in the container, changes to that directory in the container are reflected in our host system. The <code>--rm</code> indicates that we want to remove the <code>app</code> container when the bash process ends.</p>
