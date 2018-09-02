@@ -100,26 +100,27 @@ spent years doing it in C#. And now I’m doing it in Ruby.</p>
 statically-typed OO language and a functional language, check this out:</p>
 
 <h3 id="example">Example</h3>
-<p>#### Java
-    public class StringUtils {
-      public static boolean isBlank(String str) {
-        int strLen;
-        if (str == null || (strLen = str.length()) == 0) {
-          return true;
-        }
-        for (int i = 0; i &lt; strLen; i++) {
-          if ((Character.isWhitespace(str.charAt(i)) == false)) {
-            return false;
-          }
-        }
-        return true;
+<h4 id="java">Java</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class StringUtils {
+  public static boolean isBlank(String str) {
+    int strLen;
+    if (str == null || (strLen = str.length()) == 0) {
+      return true;
+    }
+    for (int i = 0; i &lt; strLen; i++) {
+      if ((Character.isWhitespace(str.charAt(i)) == false)) {
+        return false;
       }
-    }</p>
+    }
+    return true;
+  }
+}
+</code></pre></div></div>
 
 <h4 id="clojure">Clojure</h4>
-<pre><code>(defn blank? [str]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(defn blank? [str]
   (every? #(Character/isWhitespace %) str))
-</code></pre>
+</code></pre></div></div>
 
 <p>Expressive and succinct. I am intrigued.</p>
 

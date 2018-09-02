@@ -90,14 +90,14 @@ If you are in a linux environment, you will need:</p>
 volumes to play nicely, you’ll need to create this directory somewhere in your
 home folder:</p>
 
-<pre><code>~/development $ mkdir myapp
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development $ mkdir myapp
 ~/development $ cd myapp
-</code></pre>
+</code></pre></div></div>
 
-<h2 id="the-gemfile">The Gemfile</h2>
-<p>The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.</p>
+<p>##The Gemfile
+The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.</p>
 
-<pre><code># frozen_string_literal: true
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># frozen_string_literal: true
 source 'https://rubygems.org'
 
 gem 'rails'
@@ -107,23 +107,23 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rubocop'
 end
-</code></pre>
+</code></pre></div></div>
 
-<h2 id="the-dockerfile">The Dockerfile</h2>
-<p>Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
-photoshop image. You start with a base layer (in this case, it’s <code>ruby:latest</code>) and then we start layering our changes on top of it. Every command you see in the <code>Dockerfile</code> changes the file system in some way. Docker responds to this by creating another layer on top of the base image. In our first iteration of the Dockerfile, we specify that we want Ruby 2.3.1, and that we want our code to live in <code>/usr/src/app</code>. We set our working directory to that location and copy our gemfile into it.</p>
+<p>##The Dockerfile
+Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
+photoshop image. You start with a base layer (in this case, it’s <code class="highlighter-rouge">ruby:latest</code>) and then we start layering our changes on top of it. Every command you see in the <code class="highlighter-rouge">Dockerfile</code> changes the file system in some way. Docker responds to this by creating another layer on top of the base image. In our first iteration of the Dockerfile, we specify that we want Ruby 2.3.1, and that we want our code to live in <code class="highlighter-rouge">/usr/src/app</code>. We set our working directory to that location and copy our gemfile into it.</p>
 
-<pre><code>FROM ruby:2.3.1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
 COPY Gemfile .
-</code></pre>
+</code></pre></div></div>
 
 <h1 id="the-docker-composeyml">The docker-compose.yml</h1>
 <p>This file describes the services in our application. This will be an iterative process to build our application step-by step. Doing it this way, we don’t even have to have ruby installed on our system. The Docker image handles that for us.</p>
 
-<pre><code>version: "2"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "2"
 services:
   app:
     context:
@@ -131,19 +131,19 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
-</code></pre>
+</code></pre></div></div>
 
-<p>This file lets us specify that we have a service called <code>app</code>. We want to build an image for <code>app</code> using the current directory as the contents to layer on top of the base image. We want to use the Dockerfile that we created earlier, and we want to mount our current directory (in this case: <code>~/development/myapp</code>) to the /user/src/app directory in the container. We’ll get into the difference between an Docker image and a Docker container later.</p>
+<p>This file lets us specify that we have a service called <code class="highlighter-rouge">app</code>. We want to build an image for <code class="highlighter-rouge">app</code> using the current directory as the contents to layer on top of the base image. We want to use the Dockerfile that we created earlier, and we want to mount our current directory (in this case: <code class="highlighter-rouge">~/development/myapp</code>) to the /user/src/app directory in the container. We’ll get into the difference between an Docker image and a Docker container later.</p>
 
 <h2 id="building-our-app-image">Building our app image</h2>
 <p>So now that we have the rough-in of our plumbing done, we should be able to build the Docker image for our app. We can do this by using docker-compose:</p>
 
-<pre><code>~/development/myapp $ docker-compose build
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose build
+</code></pre></div></div>
 
 <p>We should get some output like this (yours will probably need to pull the ruby base image down, so you will see some progress bars as this happens).</p>
 
-<pre><code>Building app
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Building app
 Step 1 : FROM ruby:2.3.1
  ---&gt; 316ceaa79560
 Step 2 : WORKDIR /usr/src/app
@@ -154,33 +154,33 @@ Step 3 : COPY Gemfile .
  ---&gt; 64cd3ad6bf21
 Removing intermediate container 6b71f68d3fc7
 Successfully built 64cd3ad6bf21
-</code></pre>
+</code></pre></div></div>
 
 <p>We now have a Docker image of our app that has our Gemfile in it. Now we need to install the gems.</p>
 
 <h2 id="running-our-first-container">Running our first container</h2>
-<p>You can think of the difference between an image and a container much like the difference between a class and an instance of a class. The image is the class. It is a full filesystem, and it has everthing needed for running your ruby process. However, it’s static. It is an image of a running system. The running system is a container. The container uses the image to run a single process. When that process ends, so does the container. Poetic, really. The first thing we are going to do is run a bash session so we can bundle our gems. Because our current directory is mounted as the volume <code>/usr/src/app</code> in the container, changes to that directory in the container are reflected in our host system. The <code>--rm</code> indicates that we want to remove the <code>app</code> container when the bash process ends.</p>
+<p>You can think of the difference between an image and a container much like the difference between a class and an instance of a class. The image is the class. It is a full filesystem, and it has everthing needed for running your ruby process. However, it’s static. It is an image of a running system. The running system is a container. The container uses the image to run a single process. When that process ends, so does the container. Poetic, really. The first thing we are going to do is run a bash session so we can bundle our gems. Because our current directory is mounted as the volume <code class="highlighter-rouge">/usr/src/app</code> in the container, changes to that directory in the container are reflected in our host system. The <code class="highlighter-rouge">--rm</code> indicates that we want to remove the <code class="highlighter-rouge">app</code> container when the bash process ends.</p>
 
-<pre><code>~/development/myapp $ docker-compose run --rm app /bin/bash
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose run --rm app /bin/bash
+</code></pre></div></div>
 
 <p>You should now be at a prompt as root in your new container:</p>
 
-<pre><code>Creating network "myapp_default" with the default driver
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Creating network "myapp_default" with the default driver
 root@ff372d086cd0:/usr/src/app#
-</code></pre>
+</code></pre></div></div>
 
-<p>Here, we will run </p>
+<p>Here, we will run</p>
 
-<pre><code>root@ff372d086cd0:/usr/src/app# bundle install
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@ff372d086cd0:/usr/src/app# bundle install
+</code></pre></div></div>
 
-<p>This will install the gems from our <code>Gemfile</code> and create a new <code>Gemfile.lock</code> in the container AND on our host system. You should get the usual bundler output. type <code>exit</code> at the prompt and you should be back on the host system. If you <code>ls</code> you should now see a new file: <code>Gemfile.lock</code></p>
+<p>This will install the gems from our <code class="highlighter-rouge">Gemfile</code> and create a new <code class="highlighter-rouge">Gemfile.lock</code> in the container AND on our host system. You should get the usual bundler output. type <code class="highlighter-rouge">exit</code> at the prompt and you should be back on the host system. If you <code class="highlighter-rouge">ls</code> you should now see a new file: <code class="highlighter-rouge">Gemfile.lock</code></p>
 
 <h2 id="dockerfile-part-deux">Dockerfile Part Deux</h2>
-<p>Now that we have a Gemfile.lock, we need to get that into our image. Additionally, we need to install the gems into the image. To do this, we need to modify our <code>Dockerfile</code> so the image has everything our container needs in order to install our rails app. The new dockerfile should look like this:</p>
+<p>Now that we have a Gemfile.lock, we need to get that into our image. Additionally, we need to install the gems into the image. To do this, we need to modify our <code class="highlighter-rouge">Dockerfile</code> so the image has everything our container needs in order to install our rails app. The new dockerfile should look like this:</p>
 
-<pre><code>FROM ruby:2.3.1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
@@ -188,19 +188,19 @@ COPY Gemfile .
 COPY Gemfile.lock .
 
 RUN bundle install
-</code></pre>
+</code></pre></div></div>
 
 <p>Now we need to run</p>
 
-<pre><code>~/development/myapp $ docker-compose build
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose build
+</code></pre></div></div>
 
 <p>again. This will install the gems into the image, and allow us to use them when we launch the image as a container</p>
 
 <h2 id="docker-composeyml-part-deux">docker-compose.yml Part Deux</h2>
-<p>We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our <code>docker-compose.yml</code> file:</p>
+<p>We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our <code class="highlighter-rouge">docker-compose.yml</code> file:</p>
 
-<pre><code>version: "2"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "2"
 services:
   app:
     build:
@@ -212,24 +212,24 @@ services:
       - db
   db:
     image: postgres:9.5.3
-</code></pre>
+</code></pre></div></div>
 
 <h2 id="installing-rails">Installing Rails</h2>
 <p>Start a new container using</p>
 
-<pre><code>~/development/myapp $ docker-compose run --rm app /bin/bash
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose run --rm app /bin/bash
+</code></pre></div></div>
 
 <p>Now that we’re back inside the container, we can install rails with Postgres as the database, and skipping tests (we’ll set up rspec in a minute):</p>
 
-<pre><code>root@5ff8a0519772:/usr/src/app# rails new -T --database=postgresql .
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@5ff8a0519772:/usr/src/app# rails new -T --database=postgresql .
+</code></pre></div></div>
 
-<p>You’ll be prompted to overwrite your Gemfile…type Y. You’ll also be warned not to run bundler as root. Ignore that since this is a container, and the only user is root! Once that’s done, you can <code>exit</code> out of the container, and you should have all the files for a new Rails application in your host directory.</p>
+<p>You’ll be prompted to overwrite your Gemfile…type Y. You’ll also be warned not to run bundler as root. Ignore that since this is a container, and the only user is root! Once that’s done, you can <code class="highlighter-rouge">exit</code> out of the container, and you should have all the files for a new Rails application in your host directory.</p>
 
-<p>There’s a couple of other modifications we’ll need to make. We’ll need a javascript runtime, so we can uncomment <code>gem 'therubyracer'</code> in the Gemfile. Wel’ll also need to set up our database connections in our <code>config/database.yml</code> file:</p>
+<p>There’s a couple of other modifications we’ll need to make. We’ll need a javascript runtime, so we can uncomment <code class="highlighter-rouge">gem 'therubyracer'</code> in the Gemfile. Wel’ll also need to set up our database connections in our <code class="highlighter-rouge">config/database.yml</code> file:</p>
 
-<pre><code>development:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>development:
   &lt;&lt;: *default
   host: db
   database: &lt;%= ENV['RAILS_DATABASE_NAME'] %&gt;
@@ -241,22 +241,22 @@ test:
   database: &lt;%= ENV['RAILS_TEST_DATABASE_NAME'] %&gt;
   username: &lt;%= ENV['RAILS_DATABASE_USER'] %&gt;
   password: &lt;%= ENV['RAILS_DATABASE_PASSWORD'] %&gt;
-</code></pre>
+</code></pre></div></div>
 
 <p>“Wait…” I hear you say. “Where do those environment variables come from?” I’m glad you asked:</p>
 
 <h2 id="environment-variables">Environment Variables</h2>
-<p>The easiest way to accomplish this is with a <code>.env</code> file. This file can be git ignored so it never hits your remote repo, but still has your super secret username/password stuff. It has this format:</p>
+<p>The easiest way to accomplish this is with a <code class="highlighter-rouge">.env</code> file. This file can be git ignored so it never hits your remote repo, but still has your super secret username/password stuff. It has this format:</p>
 
-<pre><code>RAILS_DATABASE_NAME=app
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RAILS_DATABASE_NAME=app
 RAILS_TEST_DATABASE_NAME=app_test
 RAILS_DATABASE_USER=postgres
 RAILS_DATABASE_PASSWORD=
-</code></pre>
+</code></pre></div></div>
 
-<p>To use it we need to modify our <code>docker-compose.yml</code> again</p>
+<p>To use it we need to modify our <code class="highlighter-rouge">docker-compose.yml</code> again</p>
 
-<pre><code>version: "2"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "2"
 services:
   app:
     build:
@@ -269,15 +269,15 @@ services:
     env_file: .env
   db:
     image: postgres:9.5.3
-</code></pre>
+</code></pre></div></div>
 
 <h2 id="safety-third">Safety Third</h2>
-<p>If you haven’t already…Now is probably a good time to <code>git init</code> and make your initial commit.</p>
+<p>If you haven’t already…Now is probably a good time to <code class="highlighter-rouge">git init</code> and make your initial commit.</p>
 
 <h2 id="dockerfile-part-the-one-after-deux">Dockerfile Part The-One-After-Deux</h2>
-<p>Installing rails modified our Gemfile and Gemfile.lock. It also added all the files for a rails app - so we need to build the new image. In order to do that, our new <code>Dockerfile</code> should look like this:</p>
+<p>Installing rails modified our Gemfile and Gemfile.lock. It also added all the files for a rails app - so we need to build the new image. In order to do that, our new <code class="highlighter-rouge">Dockerfile</code> should look like this:</p>
 
-<pre><code>FROM ruby:2.3.1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
@@ -287,38 +287,38 @@ COPY Gemfile.lock .
 RUN bundle install
 
 COPY . /usr/src/app
-</code></pre>
+</code></pre></div></div>
 
 <p>now build it again</p>
 
-<pre><code>~/development/myapp $ docker-compose build
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose build
+</code></pre></div></div>
 
 <h2 id="starting-postgres">Starting Postgres</h2>
 <p>The first thing we need to do is create our database. In order to do that, we’re going to start our postgresql container thusly:</p>
 
-<pre><code>~/development/myapp $ docker-compose up -d db
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose up -d db
+</code></pre></div></div>
 
-<p>This command starts a postgres container in the background (-d) as defined by our <code>db:</code> service in our <code>docker-compose.yml</code></p>
+<p>This command starts a postgres container in the background (-d) as defined by our <code class="highlighter-rouge">db:</code> service in our <code class="highlighter-rouge">docker-compose.yml</code></p>
 
 <h2 id="creating-the-database">Creating The Database</h2>
 <p>Now that we have a running postgres instance, we can create our development and test databases</p>
 
-<pre><code>~/development/myapp $ docker-compose run --rm app rake db:create
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose run --rm app rake db:create
+</code></pre></div></div>
 
 <p>If all goes well, it should simply return. On repeat invocations, you should get the following output:</p>
 
-<pre><code>~/development/myapp $ docker-compose run --rm app rake db:create
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose run --rm app rake db:create
 app already exists
 app_test already exists
-</code></pre>
+</code></pre></div></div>
 
-<h2 id="running-the-app">Running The App</h2>
-<p>To do this, we’re going to need to add a command and open some ports to our <code>app:</code> container. To do that, we’re going to modify our docker-compose file again:</p>
+<p>##Running The App
+To do this, we’re going to need to add a command and open some ports to our <code class="highlighter-rouge">app:</code> container. To do that, we’re going to modify our docker-compose file again:</p>
 
-<pre><code>version: "2"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "2"
 services:
   app:
     build:
@@ -334,16 +334,16 @@ services:
       - "3000:3000"
   db:
     image: postgres:9.5.3
-</code></pre>
+</code></pre></div></div>
 
 <p>This starts a server when we bring the container up, it also exposes port 3000 all the way to the host machine. To start the server, we run</p>
 
-<pre><code>~/development/myapp $ docker-compose up -d
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-compose up -d
+</code></pre></div></div>
 
 <p>To find out where the app is running, you can use</p>
 
-<pre><code>~/development/myapp $ docker-machine ls
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/development/myapp $ docker-machine ls
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
 default    *        virtualbox   Running   tcp://192.168.99.100:2376           v1.10.2
 
@@ -352,12 +352,12 @@ export DOCKER_TLS_VERIFY="1"
 export DOCKER_HOST="tcp://192.168.99.100:2376"
 export DOCKER_CERT_PATH="/Users/Scott/.docker/machine/machines/default"
 export DOCKER_MACHINE_NAME="default"
-</code></pre>
+</code></pre></div></div>
 
-<p>That docker host ip is what we’re interested in. Now you should be able to open your browser to <code>http://192.168.99.100:300</code> and see that lovely new rails app page.</p>
+<p>That docker host ip is what we’re interested in. Now you should be able to open your browser to <code class="highlighter-rouge">http://192.168.99.100:300</code> and see that lovely new rails app page.</p>
 
 <h2 id="next-time">Next Time…</h2>
-<p>The next article will be all about setting up rspec and guard </p>
+<p>The next article will be all about setting up rspec and guard</p>
 
           <hr/>
         <!-- #################### DISQUS ############################# -->

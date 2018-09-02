@@ -6,9 +6,47 @@
     <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Your Website</description>
     <language>en-us</language>
-    <pubDate>Thu, 09 Jun 2016 11:47:04 -0400</pubDate>
-    <lastBuildDate>Thu, 09 Jun 2016 11:47:04 -0400</lastBuildDate>
+    <pubDate>Sun, 02 Sep 2018 17:12:49 -0400</pubDate>
+    <lastBuildDate>Sun, 02 Sep 2018 17:12:49 -0400</lastBuildDate>
 
+    
+    <item>
+      <title>Remembering Dean Whitworth</title>
+      <link>http://scotthelm.com/2018/09/02/remembering-dean-whitworth.html</link>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 -0400</pubDate>
+      <author>you@scotthelm.com (Your Name)</author>
+      <guid>http://scotthelm.com/2018/09/02/remembering-dean-whitworth</guid>
+      <description>&lt;p&gt;I first met Dean in February of 1993. Claire and I drove her 72 Beetle into the mountains, passing over a bridge that looked like you would just crash into the cliff at the end of it. We kept driving around the mountain and up the hill, where I met Tyler, his dog, for the first time.&lt;/p&gt;
+
+&lt;p&gt;Dean once told me - “They say when you learn things, that you get wrinkles in your brain. That dog’s brain is completely smooth.” But man, he loved that dog, and that dog was a force of nature unto himself. And when Tyler died, Dean grieved for a great long while until he got Tyla (his last dog, and the one Van and Katherine will take care of from now on).&lt;/p&gt;
+
+&lt;p&gt;It was snowing, and we parked, and I got up enough courage to face Cerberus aka Tyler and see Dean’s cabin for the first time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scotthelm.s3.amazonaws.com/pictures/dean/cabin.jpg&quot; alt=&quot;Dean's Cabin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dean’s cabin is like something out of a movie set. Built 200-some-odd years ago, and situated in a little hollow in the mountain beside a stream and a little down the hill from a meadow. There’s a gazebo in the meadow, along with a fenced-in garden. There’s a lumber shed along one side, and a garden shed, where the walls are made from windows he reclaimed when Claire and I renovated our house in Charlotte and got new ones.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scotthelm.s3.amazonaws.com/pictures/dean/meadow.jpg&quot; alt=&quot;The Meadow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where I parked the night I met him, there was just the top of a hill. Now there’s a two-story garage he built with his own hands using the wood he got from the old Arnold barn after it fell down. He built it all by himself. I helped a little bit. I would help him get the foundations laid, mixing concrete and setting stones. He taught me how to use a water level, and how to square things up over long distances. I would help him do the things you need 2 people for. He did absolutely everything else.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scotthelm.s3.amazonaws.com/pictures/dean/garage.jpg&quot; alt=&quot;The Garage&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dean loved his mountain and would do anything to protect it. He worked for Sierra Club for a while and led &lt;a href=&quot;https://cherokeeforestvoices.org&quot;&gt;Cherokee Forest Voices&lt;/a&gt;, a non-profit that works to protect the wilderness areas of the Cherokee National Forest. He met Catherine Murray, his long-time parter, at a Sierra Club meeting. And together they have worked tirelessly to ensure the survival of the forest.&lt;/p&gt;
+
+&lt;p&gt;More than twenty years ago, Dean sold part of his land and the house on it to Van and Katherine Miller. That became Horsehead Manor. Dean and Katherine had been friends for many years, and it made sense for them to take on the house across the creek.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scotthelm.s3.amazonaws.com/pictures/dean/bridge.jpg&quot; alt=&quot;The Bridge&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So great was their friendship, that in his last days, Van and Katherine offered their home to Dean so he could keep his mobility on a single level, and stay on his mountain until the end. I am grateful beyond words for the love and care that Claire, Katherine Miller and Catherine Murray showed to Dean as he died. Thanks to their efforts, he was able to stay on his mountain until his very last breath. He died yesterday, the first of September, 2018. He died with dignity in his sleep surrounded by people that love him.&lt;/p&gt;
+
+&lt;p&gt;I’ve known Dean for more than half my life - almost as long as I’ve known Claire. Crazily enough, Dean and my stepfather, Terry Loughlin, worked together in theatre, film and tv back in the early 80s. It’s entirely likely that Claire and I met each other during one of those summers I spent in Charlotte, though neither of us remember it. Something I will never forget is how much his friendship and guidance have helped shape me.&lt;/p&gt;
+
+&lt;p&gt;Dean was defined by his fierce independence, his self-reliance, his humor, his love of life, his love of nature, of his home, of his forest, of his friends, and of his family - both given and chosen. He has indelibly marked my own life, and the lives of everyone I know that knew him.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scotthelm.s3.amazonaws.com/pictures/dean/dean.jpg&quot; alt=&quot;Dean&quot; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>New Rails App With Docker</title>
@@ -39,40 +77,40 @@ If you are in a linux environment, you will need:&lt;/p&gt;
 volumes to play nicely, you’ll need to create this directory somewhere in your
 home folder:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development $ mkdir myapp
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development $ mkdir myapp
 ~/development $ cd myapp
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;the-gemfile&quot;&gt;The Gemfile&lt;/h2&gt;
-&lt;p&gt;The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.&lt;/p&gt;
+&lt;p&gt;##The Gemfile
+The next thing we’ll need is a Gemfile. This is where we’ll start setting up our development environment.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# frozen_string_literal: true
-source &#39;https://rubygems.org&#39;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# frozen_string_literal: true
+source 'https://rubygems.org'
 
-gem &#39;rails&#39;
+gem 'rails'
 
 group :development, :test do
-  gem &#39;rspec-rails&#39;
-  gem &#39;guard-rspec&#39;
-  gem &#39;rubocop&#39;
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'rubocop'
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;the-dockerfile&quot;&gt;The Dockerfile&lt;/h2&gt;
-&lt;p&gt;Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
-photoshop image. You start with a base layer (in this case, it’s &lt;code&gt;ruby:latest&lt;/code&gt;) and then we start layering our changes on top of it. Every command you see in the &lt;code&gt;Dockerfile&lt;/code&gt; changes the file system in some way. Docker responds to this by creating another layer on top of the base image. In our first iteration of the Dockerfile, we specify that we want Ruby 2.3.1, and that we want our code to live in &lt;code&gt;/usr/src/app&lt;/code&gt;. We set our working directory to that location and copy our gemfile into it.&lt;/p&gt;
+&lt;p&gt;##The Dockerfile
+Now that we have a Gemfile, we can start building our docker image. Docker works on the principal of linux containers, and uses a layered file system. A docker image is like a
+photoshop image. You start with a base layer (in this case, it’s &lt;code class=&quot;highlighter-rouge&quot;&gt;ruby:latest&lt;/code&gt;) and then we start layering our changes on top of it. Every command you see in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; changes the file system in some way. Docker responds to this by creating another layer on top of the base image. In our first iteration of the Dockerfile, we specify that we want Ruby 2.3.1, and that we want our code to live in &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/src/app&lt;/code&gt;. We set our working directory to that location and copy our gemfile into it.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;FROM ruby:2.3.1
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
 COPY Gemfile .
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;the-docker-composeyml&quot;&gt;The docker-compose.yml&lt;/h1&gt;
 &lt;p&gt;This file describes the services in our application. This will be an iterative process to build our application step-by step. Doing it this way, we don’t even have to have ruby installed on our system. The Docker image handles that for us.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;version: &quot;2&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: &quot;2&quot;
 services:
   app:
     context:
@@ -80,19 +118,19 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This file lets us specify that we have a service called &lt;code&gt;app&lt;/code&gt;. We want to build an image for &lt;code&gt;app&lt;/code&gt; using the current directory as the contents to layer on top of the base image. We want to use the Dockerfile that we created earlier, and we want to mount our current directory (in this case: &lt;code&gt;~/development/myapp&lt;/code&gt;) to the /user/src/app directory in the container. We’ll get into the difference between an Docker image and a Docker container later.&lt;/p&gt;
+&lt;p&gt;This file lets us specify that we have a service called &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt;. We want to build an image for &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; using the current directory as the contents to layer on top of the base image. We want to use the Dockerfile that we created earlier, and we want to mount our current directory (in this case: &lt;code class=&quot;highlighter-rouge&quot;&gt;~/development/myapp&lt;/code&gt;) to the /user/src/app directory in the container. We’ll get into the difference between an Docker image and a Docker container later.&lt;/p&gt;
 
 &lt;h2 id=&quot;building-our-app-image&quot;&gt;Building our app image&lt;/h2&gt;
 &lt;p&gt;So now that we have the rough-in of our plumbing done, we should be able to build the Docker image for our app. We can do this by using docker-compose:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;We should get some output like this (yours will probably need to pull the ruby base image down, so you will see some progress bars as this happens).&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Building app
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Building app
 Step 1 : FROM ruby:2.3.1
  ---&amp;gt; 316ceaa79560
 Step 2 : WORKDIR /usr/src/app
@@ -103,33 +141,33 @@ Step 3 : COPY Gemfile .
  ---&amp;gt; 64cd3ad6bf21
 Removing intermediate container 6b71f68d3fc7
 Successfully built 64cd3ad6bf21
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;We now have a Docker image of our app that has our Gemfile in it. Now we need to install the gems.&lt;/p&gt;
 
 &lt;h2 id=&quot;running-our-first-container&quot;&gt;Running our first container&lt;/h2&gt;
-&lt;p&gt;You can think of the difference between an image and a container much like the difference between a class and an instance of a class. The image is the class. It is a full filesystem, and it has everthing needed for running your ruby process. However, it’s static. It is an image of a running system. The running system is a container. The container uses the image to run a single process. When that process ends, so does the container. Poetic, really. The first thing we are going to do is run a bash session so we can bundle our gems. Because our current directory is mounted as the volume &lt;code&gt;/usr/src/app&lt;/code&gt; in the container, changes to that directory in the container are reflected in our host system. The &lt;code&gt;--rm&lt;/code&gt; indicates that we want to remove the &lt;code&gt;app&lt;/code&gt; container when the bash process ends.&lt;/p&gt;
+&lt;p&gt;You can think of the difference between an image and a container much like the difference between a class and an instance of a class. The image is the class. It is a full filesystem, and it has everthing needed for running your ruby process. However, it’s static. It is an image of a running system. The running system is a container. The container uses the image to run a single process. When that process ends, so does the container. Poetic, really. The first thing we are going to do is run a bash session so we can bundle our gems. Because our current directory is mounted as the volume &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/src/app&lt;/code&gt; in the container, changes to that directory in the container are reflected in our host system. The &lt;code class=&quot;highlighter-rouge&quot;&gt;--rm&lt;/code&gt; indicates that we want to remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; container when the bash process ends.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app /bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;You should now be at a prompt as root in your new container:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Creating network &quot;myapp_default&quot; with the default driver
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Creating network &quot;myapp_default&quot; with the default driver
 root@ff372d086cd0:/usr/src/app#
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Here, we will run &lt;/p&gt;
+&lt;p&gt;Here, we will run&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;root@ff372d086cd0:/usr/src/app# bundle install
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@ff372d086cd0:/usr/src/app# bundle install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This will install the gems from our &lt;code&gt;Gemfile&lt;/code&gt; and create a new &lt;code&gt;Gemfile.lock&lt;/code&gt; in the container AND on our host system. You should get the usual bundler output. type &lt;code&gt;exit&lt;/code&gt; at the prompt and you should be back on the host system. If you &lt;code&gt;ls&lt;/code&gt; you should now see a new file: &lt;code&gt;Gemfile.lock&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will install the gems from our &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; and create a new &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; in the container AND on our host system. You should get the usual bundler output. type &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt; at the prompt and you should be back on the host system. If you &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; you should now see a new file: &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;dockerfile-part-deux&quot;&gt;Dockerfile Part Deux&lt;/h2&gt;
-&lt;p&gt;Now that we have a Gemfile.lock, we need to get that into our image. Additionally, we need to install the gems into the image. To do this, we need to modify our &lt;code&gt;Dockerfile&lt;/code&gt; so the image has everything our container needs in order to install our rails app. The new dockerfile should look like this:&lt;/p&gt;
+&lt;p&gt;Now that we have a Gemfile.lock, we need to get that into our image. Additionally, we need to install the gems into the image. To do this, we need to modify our &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; so the image has everything our container needs in order to install our rails app. The new dockerfile should look like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;FROM ruby:2.3.1
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
@@ -137,19 +175,19 @@ COPY Gemfile .
 COPY Gemfile.lock .
 
 RUN bundle install
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now we need to run&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;again. This will install the gems into the image, and allow us to use them when we launch the image as a container&lt;/p&gt;
 
 &lt;h2 id=&quot;docker-composeyml-part-deux&quot;&gt;docker-compose.yml Part Deux&lt;/h2&gt;
-&lt;p&gt;We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our &lt;code&gt;docker-compose.yml&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;We want to mimic our production environment, so we want to use Postgresql as our database. Turns out, Postgresql has an official image that we can use - so let’s add it as a service and link it to our app in our &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;version: &quot;2&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: &quot;2&quot;
 services:
   app:
     build:
@@ -161,51 +199,51 @@ services:
       - db
   db:
     image: postgres:9.5.3
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;installing-rails&quot;&gt;Installing Rails&lt;/h2&gt;
 &lt;p&gt;Start a new container using&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app /bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now that we’re back inside the container, we can install rails with Postgres as the database, and skipping tests (we’ll set up rspec in a minute):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;root@5ff8a0519772:/usr/src/app# rails new -T --database=postgresql .
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@5ff8a0519772:/usr/src/app# rails new -T --database=postgresql .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You’ll be prompted to overwrite your Gemfile…type Y. You’ll also be warned not to run bundler as root. Ignore that since this is a container, and the only user is root! Once that’s done, you can &lt;code&gt;exit&lt;/code&gt; out of the container, and you should have all the files for a new Rails application in your host directory.&lt;/p&gt;
+&lt;p&gt;You’ll be prompted to overwrite your Gemfile…type Y. You’ll also be warned not to run bundler as root. Ignore that since this is a container, and the only user is root! Once that’s done, you can &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt; out of the container, and you should have all the files for a new Rails application in your host directory.&lt;/p&gt;
 
-&lt;p&gt;There’s a couple of other modifications we’ll need to make. We’ll need a javascript runtime, so we can uncomment &lt;code&gt;gem &#39;therubyracer&#39;&lt;/code&gt; in the Gemfile. Wel’ll also need to set up our database connections in our &lt;code&gt;config/database.yml&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;There’s a couple of other modifications we’ll need to make. We’ll need a javascript runtime, so we can uncomment &lt;code class=&quot;highlighter-rouge&quot;&gt;gem 'therubyracer'&lt;/code&gt; in the Gemfile. Wel’ll also need to set up our database connections in our &lt;code class=&quot;highlighter-rouge&quot;&gt;config/database.yml&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;development:
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;development:
   &amp;lt;&amp;lt;: *default
   host: db
-  database: &amp;lt;%= ENV[&#39;RAILS_DATABASE_NAME&#39;] %&amp;gt;
-  username: &amp;lt;%= ENV[&#39;RAILS_DATABASE_USER&#39;] %&amp;gt;
-  password: &amp;lt;%= ENV[&#39;RAILS_DATABASE_PASSWORD&#39;] %&amp;gt;
+  database: &amp;lt;%= ENV['RAILS_DATABASE_NAME'] %&amp;gt;
+  username: &amp;lt;%= ENV['RAILS_DATABASE_USER'] %&amp;gt;
+  password: &amp;lt;%= ENV['RAILS_DATABASE_PASSWORD'] %&amp;gt;
 test:
 &amp;lt;&amp;lt;: *default
   host: db
-  database: &amp;lt;%= ENV[&#39;RAILS_TEST_DATABASE_NAME&#39;] %&amp;gt;
-  username: &amp;lt;%= ENV[&#39;RAILS_DATABASE_USER&#39;] %&amp;gt;
-  password: &amp;lt;%= ENV[&#39;RAILS_DATABASE_PASSWORD&#39;] %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+  database: &amp;lt;%= ENV['RAILS_TEST_DATABASE_NAME'] %&amp;gt;
+  username: &amp;lt;%= ENV['RAILS_DATABASE_USER'] %&amp;gt;
+  password: &amp;lt;%= ENV['RAILS_DATABASE_PASSWORD'] %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;“Wait…” I hear you say. “Where do those environment variables come from?” I’m glad you asked:&lt;/p&gt;
 
 &lt;h2 id=&quot;environment-variables&quot;&gt;Environment Variables&lt;/h2&gt;
-&lt;p&gt;The easiest way to accomplish this is with a &lt;code&gt;.env&lt;/code&gt; file. This file can be git ignored so it never hits your remote repo, but still has your super secret username/password stuff. It has this format:&lt;/p&gt;
+&lt;p&gt;The easiest way to accomplish this is with a &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. This file can be git ignored so it never hits your remote repo, but still has your super secret username/password stuff. It has this format:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;RAILS_DATABASE_NAME=app
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RAILS_DATABASE_NAME=app
 RAILS_TEST_DATABASE_NAME=app_test
 RAILS_DATABASE_USER=postgres
 RAILS_DATABASE_PASSWORD=
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;To use it we need to modify our &lt;code&gt;docker-compose.yml&lt;/code&gt; again&lt;/p&gt;
+&lt;p&gt;To use it we need to modify our &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; again&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;version: &quot;2&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: &quot;2&quot;
 services:
   app:
     build:
@@ -218,15 +256,15 @@ services:
     env_file: .env
   db:
     image: postgres:9.5.3
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;safety-third&quot;&gt;Safety Third&lt;/h2&gt;
-&lt;p&gt;If you haven’t already…Now is probably a good time to &lt;code&gt;git init&lt;/code&gt; and make your initial commit.&lt;/p&gt;
+&lt;p&gt;If you haven’t already…Now is probably a good time to &lt;code class=&quot;highlighter-rouge&quot;&gt;git init&lt;/code&gt; and make your initial commit.&lt;/p&gt;
 
 &lt;h2 id=&quot;dockerfile-part-the-one-after-deux&quot;&gt;Dockerfile Part The-One-After-Deux&lt;/h2&gt;
-&lt;p&gt;Installing rails modified our Gemfile and Gemfile.lock. It also added all the files for a rails app - so we need to build the new image. In order to do that, our new &lt;code&gt;Dockerfile&lt;/code&gt; should look like this:&lt;/p&gt;
+&lt;p&gt;Installing rails modified our Gemfile and Gemfile.lock. It also added all the files for a rails app - so we need to build the new image. In order to do that, our new &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; should look like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;FROM ruby:2.3.1
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM ruby:2.3.1
 
 WORKDIR /usr/src/app
 
@@ -236,38 +274,38 @@ COPY Gemfile.lock .
 RUN bundle install
 
 COPY . /usr/src/app
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;now build it again&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;starting-postgres&quot;&gt;Starting Postgres&lt;/h2&gt;
 &lt;p&gt;The first thing we need to do is create our database. In order to do that, we’re going to start our postgresql container thusly:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose up -d db
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose up -d db
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This command starts a postgres container in the background (-d) as defined by our &lt;code&gt;db:&lt;/code&gt; service in our &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This command starts a postgres container in the background (-d) as defined by our &lt;code class=&quot;highlighter-rouge&quot;&gt;db:&lt;/code&gt; service in our &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;creating-the-database&quot;&gt;Creating The Database&lt;/h2&gt;
 &lt;p&gt;Now that we have a running postgres instance, we can create our development and test databases&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app rake db:create
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app rake db:create
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If all goes well, it should simply return. On repeat invocations, you should get the following output:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app rake db:create
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose run --rm app rake db:create
 app already exists
 app_test already exists
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;running-the-app&quot;&gt;Running The App&lt;/h2&gt;
-&lt;p&gt;To do this, we’re going to need to add a command and open some ports to our &lt;code&gt;app:&lt;/code&gt; container. To do that, we’re going to modify our docker-compose file again:&lt;/p&gt;
+&lt;p&gt;##Running The App
+To do this, we’re going to need to add a command and open some ports to our &lt;code class=&quot;highlighter-rouge&quot;&gt;app:&lt;/code&gt; container. To do that, we’re going to modify our docker-compose file again:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;version: &quot;2&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: &quot;2&quot;
 services:
   app:
     build:
@@ -283,16 +321,16 @@ services:
       - &quot;3000:3000&quot;
   db:
     image: postgres:9.5.3
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This starts a server when we bring the container up, it also exposes port 3000 all the way to the host machine. To start the server, we run&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-compose up -d
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;To find out where the app is running, you can use&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~/development/myapp $ docker-machine ls
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/development/myapp $ docker-machine ls
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
 default    *        virtualbox   Running   tcp://192.168.99.100:2376           v1.10.2
 
@@ -301,12 +339,12 @@ export DOCKER_TLS_VERIFY=&quot;1&quot;
 export DOCKER_HOST=&quot;tcp://192.168.99.100:2376&quot;
 export DOCKER_CERT_PATH=&quot;/Users/Scott/.docker/machine/machines/default&quot;
 export DOCKER_MACHINE_NAME=&quot;default&quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;That docker host ip is what we’re interested in. Now you should be able to open your browser to &lt;code&gt;http://192.168.99.100:300&lt;/code&gt; and see that lovely new rails app page.&lt;/p&gt;
+&lt;p&gt;That docker host ip is what we’re interested in. Now you should be able to open your browser to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://192.168.99.100:300&lt;/code&gt; and see that lovely new rails app page.&lt;/p&gt;
 
 &lt;h2 id=&quot;next-time&quot;&gt;Next Time…&lt;/h2&gt;
-&lt;p&gt;The next article will be all about setting up rspec and guard &lt;/p&gt;
+&lt;p&gt;The next article will be all about setting up rspec and guard&lt;/p&gt;
 </description>
     </item>
     
@@ -377,18 +415,18 @@ go together like chocolate and peanut butter. A quick reminder - read the instal
 docs for YouCompleteMe. It’s a compiled component, so you’ll have to compile it
 before you can use it. You’ll probably also want to install the
 &lt;a href=&quot;https://github.com/honza/vim-snippets&quot;&gt;default snippets for Ultisnips&lt;/a&gt; and
-make them all work together with this bit of vimscript in your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
+make them all work together with this bit of vimscript in your &lt;code class=&quot;highlighter-rouge&quot;&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&quot; make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = [&#39;&amp;lt;C-n&amp;gt;&#39;, &#39;&amp;lt;Down&amp;gt;&#39;]
-let g:ycm_key_list_previous_completion = [&#39;&amp;lt;C-p&amp;gt;&#39;, &#39;&amp;lt;Up&amp;gt;&#39;]
-let g:SuperTabDefaultCompletionType = &#39;&amp;lt;C-n&amp;gt;&#39;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot; make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['&amp;lt;C-n&amp;gt;', '&amp;lt;Down&amp;gt;']
+let g:ycm_key_list_previous_completion = ['&amp;lt;C-p&amp;gt;', '&amp;lt;Up&amp;gt;']
+let g:SuperTabDefaultCompletionType = '&amp;lt;C-n&amp;gt;'
 
 &quot; better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = &quot;&amp;lt;tab&amp;gt;&quot;
 let g:UltiSnipsJumpForwardTrigger = &quot;&amp;lt;tab&amp;gt;&quot;
 let g:UltiSnipsJumpBackwardTrigger = &quot;&amp;lt;s-tab&amp;gt;&quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;step-3-profit&quot;&gt;Step 3: Profit&lt;/h3&gt;
 &lt;p&gt;Once you’ve followed the steps above, you should be up and running with tab-completion
@@ -407,59 +445,59 @@ and, voila! Happy Vimming!&lt;/p&gt;
       <guid>http://scotthelm.com/2014/07/24/postgresql-to-csv</guid>
       <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you’re anything
 like me, Then you’re all about automating automatable things. And you’re also
-probably all about simplicity. So I turned to my old friends, &lt;code&gt;psql&lt;/code&gt; and &lt;code&gt;cron&lt;/code&gt;.&lt;/p&gt;
+probably all about simplicity. So I turned to my old friends, &lt;code class=&quot;highlighter-rouge&quot;&gt;psql&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;cron&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you want to automate something in Linux, figure out how to run it from the
-command line. Then run it from &lt;code&gt;cron&lt;/code&gt;. You can automate &lt;code&gt;cron&lt;/code&gt; from something like
+command line. Then run it from &lt;code class=&quot;highlighter-rouge&quot;&gt;cron&lt;/code&gt;. You can automate &lt;code class=&quot;highlighter-rouge&quot;&gt;cron&lt;/code&gt; from something like
 &lt;a href=&quot;http://puppetlabs.com&quot;&gt;puppet&lt;/a&gt; or
 &lt;a href=&quot;http://www.getchef.com/chef/&quot;&gt;chef&lt;/a&gt; or
 &lt;a href=&quot;http://www.docker.com&quot;&gt;docker&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;the-command&quot;&gt;The Command&lt;/h2&gt;
 &lt;p&gt;First of all - you will probably want to wrap a thing like this in a shell
-script. I use bash, so my &lt;code&gt;~/psql_report_script.sh&lt;/code&gt; would be like this: &lt;/p&gt;
+script. I use bash, so my &lt;code class=&quot;highlighter-rouge&quot;&gt;~/psql_report_script.sh&lt;/code&gt; would be like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#!/bin/bash
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
 
- PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &amp;lt;database&amp;gt; -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -c &#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&#39; -o /path/to/your/file.csv
-&lt;/code&gt;&lt;/pre&gt;
+ &lt;span class=&quot;nv&quot;&gt;PGPASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$YOUR_ENVIRONMENT_VARIABLE&lt;/span&gt; psql &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &amp;lt;database&amp;gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &amp;lt;host&amp;gt; &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &amp;lt;username&amp;gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'copy (select something from your_tables) TO STDOUT WITH CSV HEADER'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /path/to/your/file.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now chmod +x that file, and let’s break that command down just a little.&lt;/p&gt;
 
 &lt;dl&gt;
 &lt;dt&gt;PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE&lt;/dt&gt;
-&lt;dd&gt;Now that&#39;s sensitive information. But it allows us to run the command without
-having to type the password in, and that&#39;s a good thing. That&#39;s why we use an
-environment variable. Pro tip - if you don&#39;t want a command to show up in &lt;code&gt;history&lt;/code&gt; then put a space before it.&lt;/dd&gt;
+&lt;dd&gt;Now that's sensitive information. But it allows us to run the command without
+having to type the password in, and that's a good thing. That's why we use an
+environment variable. Pro tip - if you don't want a command to show up in &lt;code&gt;history&lt;/code&gt; then put a space before it.&lt;/dd&gt;
 
 &lt;dt&gt;psql&lt;/dt&gt;
-&lt;dd&gt;That&#39;s our actual command&lt;/dd&gt;
+&lt;dd&gt;That's our actual command&lt;/dd&gt;
 
 &lt;dt&gt;-d&lt;/dt&gt;
-&lt;dd&gt;that&#39;s the name of your database&lt;/dd&gt;
+&lt;dd&gt;that's the name of your database&lt;/dd&gt;
 
 &lt;dt&gt;-h&lt;/dt&gt;
-&lt;dd&gt;that&#39;s the hostname of your database server&lt;/dd&gt;
+&lt;dd&gt;that's the hostname of your database server&lt;/dd&gt;
 
 &lt;dt&gt;-U&lt;/dt&gt;
-&lt;dd&gt;that&#39;s the database username&lt;/dd&gt;
+&lt;dd&gt;that's the database username&lt;/dd&gt;
 
 &lt;dt&gt;-c&lt;/dt&gt;
-&lt;dd&gt;that&#39;s the sql command to run. Since we want to output the contents of the
+&lt;dd&gt;that's the sql command to run. Since we want to output the contents of the
 query, we use the &lt;code&gt;COPY&lt;/code&gt; command.[more on that here](http://www.postgresql.org/docs/current/static/sql-copy.html). This is pretty much the guts of the 
 command. If your SQL is complicated, consider using the -f argument to pass in
-a file containing your sql command. In our COPY command we&#39;re telling psql to
+a file containing your sql command. In our COPY command we're telling psql to
 copy the result of the query to STDOUT and in a CSV format with headers&lt;/dd&gt;
 
 &lt;dt&gt;-o&lt;/dt&gt;
-&lt;dd&gt;that&#39;s where we want the file to be saved&lt;/dd&gt;
+&lt;dd&gt;that's where we want the file to be saved&lt;/dd&gt;
 &lt;/dl&gt;
 
 &lt;h2 id=&quot;the-automation&quot;&gt;The Automation&lt;/h2&gt;
 
 &lt;p&gt;I like cron. It’s the easiest, fastest way to make things happen on a schedule
-on a linux machine. Here’s &lt;a href=&quot;https://help.ubuntu.com/community/CronHowto&quot;&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top
+on a linux machine. Here’s &lt;a href=&quot;https://help.ubuntu.com/community/CronHowto&quot;&gt;how to set it up&lt;/a&gt;. TLDR: type in &lt;code class=&quot;highlighter-rouge&quot;&gt;crontab -e&lt;/code&gt; to edit your crontab file, and read the top
 line. From the how to set it up link:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -469,14 +507,14 @@ line. From the how to set it up link:&lt;/p&gt;
 &lt;p&gt;The last part of the file is your command. So if I wanted this to run every day
 at 2am, my crontab line would look like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;01 02 * * * /home/my_user/reports/psql_report_script.sh
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;01 02 * * * /home/my_user/reports/psql_report_script.sh
 30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Here, I’m also exporting the file out to another server at 2:30am every morning.&lt;/p&gt;
 
 &lt;p&gt;As you can see it’s not hard at all to set up a repeatable report extract using
-simple command-line tools. &lt;/p&gt;
+simple command-line tools.&lt;/p&gt;
 </description>
     </item>
     
@@ -547,7 +585,7 @@ the deep dive. I cut the right wire. Now what?&lt;/p&gt;
 
 &lt;p&gt;Heroic effort is only a good answer if you ignore the cost to the hero. Otherwise, it’s not sustainable.
 Sooner or later, you’re going to run out of heroes. Prime developer talent is rare, so burning through it is
-not an option. But avoiding heroic effort isn’t that easy. &lt;/p&gt;
+not an option. But avoiding heroic effort isn’t that easy.&lt;/p&gt;
 
 &lt;p&gt;The sales pressures on software development are real. To developers they seem
 capricious or arbitrary. But there they are. And they often stem from a real
@@ -561,7 +599,7 @@ they can reach the best comprimise, and set the customer’s expectations proper
 
 &lt;p&gt;That puts the whole team on the submarine, working together to get to the surface.
 It makes for a stronger, smarter team. One that learns to pull together in a crisis. One
-that is less likely to write checks they can’t cash. &lt;/p&gt;
+that is less likely to write checks they can’t cash.&lt;/p&gt;
 
 &lt;p&gt;And, for the developer/development team, at least, it’s a much nicer place to be than alone
 at the bottom of the abyss.&lt;/p&gt;
@@ -622,9 +660,11 @@ they use their powers only for good.&lt;/p&gt;
 year. I’m looking forward to continuing in the new year. There’s much more than
 a physical component to Systema, but I’m including it here for brevity.&lt;/p&gt;
 
-&lt;p&gt;And The Obligatory:
-- Eat better
-- Exercise more&lt;/p&gt;
+&lt;p&gt;And The Obligatory:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Eat better&lt;/li&gt;
+  &lt;li&gt;Exercise more&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;in-conclusion&quot;&gt;In Conclusion&lt;/h2&gt;
 &lt;p&gt;May your coming year be better than the last.&lt;/p&gt;
@@ -653,7 +693,7 @@ out of date or not present. I downloaded the &lt;a href=&quot;http://www.rabbitm
 and expected a quick dpkg -i install. However, instead of a quick list of
 additional packages that would be installed and a friendly “Y/n?”, I got:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 ...stuff...
 dpkg: dependency problems prevent configuration of rabbitmq-server:
  rabbitmq-server depends on erlang-nox (&amp;gt;= 1:13.b.3) | esl-erlang; however:
@@ -663,19 +703,19 @@ dpkg: error processing rabbitmq-server (--install):
 ...stuff...
 Errors were encountered while processing:
  rabbitmq-server
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;So. I tried installing Erlang from the Ubuntu packages and got this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox esl-erlang
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang-nox esl-erlang
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
 Package esl-erlang is not available, but is referred to by another package.
 This may mean that the package is missing, has been obsoleted, or
 is only available from another source
-E: Package &#39;esl-erlang&#39; has no installation candidate
-&lt;/code&gt;&lt;/pre&gt;
+E: Package 'esl-erlang' has no installation candidate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div style=&quot;text-align: center&quot;&gt;
   &lt;img src=&quot;http://i.qkme.me/MR.jpg&quot; alt=&quot;Wat do?&quot; /&gt;
@@ -685,44 +725,44 @@ E: Package &#39;esl-erlang&#39; has no installation candidate
 
 &lt;p&gt;Go to &lt;a href=&quot;http://erlang.org&quot;&gt;erlang.org&lt;/a&gt;. Find the &lt;a href=&quot;https://www.erlang-solutions.com/downloads/download-erlang-otp#ubuntu&quot;&gt;download page for Ubuntu&lt;/a&gt;
 which is NOT at erlang.org - it is at &lt;a href=&quot;http://www.erlang-solutions.com&quot;&gt;www.erlang-solutions.com&lt;/a&gt;. Craziness. I
-follow the directions and add this line to my &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
+follow the directions and add this line to my &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/debian precise contrib
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;then&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/debian precise contrib
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then… I still had a problem. The first time I dpkg-ed the rabbitmq-server, it
 added it to invoke-rc. So when I tried to install erlang, it gave me this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;rabbitmq-server : Depends: erlang-nox (&amp;gt;= 1:13.b.3) but it is not going to be installed or
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rabbitmq-server : Depends: erlang-nox (&amp;gt;= 1:13.b.3) but it is not going to be installed or
                         esl-erlang but it is not going to be installed
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;so to get rid of the invalid package, I&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -r rabbitmq-server
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo dpkg -r rabbitmq-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Success was in my grasp! However tantilizingly close it may be, however… It
 still eluded me.&lt;/p&gt;
 
 &lt;p&gt;When I tried to install the package again, I got this nasty little message:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
 ...stuff...
 dpkg: dependency problems prevent configuration of rabbitmq-server:
  rabbitmq-server depends on erlang-nox (&amp;gt;= 1:13.b.3) | esl-erlang; however:
@@ -733,7 +773,7 @@ dpkg: error processing rabbitmq-server (--install):
 ...stuff...
 Errors were encountered while processing:
  rabbitmq-server
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div style=&quot;text-align: center&quot;&gt;
 &lt;img alt=&quot;head banging on desk&quot; src=&quot;http://25.media.tumblr.com/tumblr_lej9mdqBSZ1qdltfjo1_400.gif&quot; /&gt;
@@ -743,20 +783,20 @@ Errors were encountered while processing:
 package for erlang for stuff that doesn’t require X to be running -get it? “no X”).
 So I gave it a shot.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang-nox
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;It worked.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And I was finally greeted with this little beauty:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Selecting previously unselected package rabbitmq-server.
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Selecting previously unselected package rabbitmq-server.
 ...stuff...
  * Starting message broker rabbitmq-server [OK]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;victory-was-mine&quot;&gt;Victory was mine.&lt;/h4&gt;
 
@@ -769,37 +809,37 @@ So I gave it a shot.&lt;/p&gt;
 &lt;p&gt;download rabbitmq-server debian package from &lt;a href=&quot;http://www.rabbitmq.com/install-debian.html&quot;&gt;here&lt;/a&gt;
 but DO NOT run it yet.&lt;/p&gt;
 
-&lt;p&gt;add this line to your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;
+&lt;p&gt;add this line to your &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apt/sources.list&lt;/code&gt;
 (I updated the link below based on an update from Mark J Williams)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/ubuntu precise contrib
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb http://packages.erlang-solutions.com/ubuntu precise contrib
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Next, you may need to add the Erlang Solutions public key for apt-secure&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
 sudo apt-key add erlang_solutions.asc
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get update
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install erlang-nox
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install erlang-nox
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;then have a hot chocolate. You’ve earned it.&lt;/p&gt;
 </description>
@@ -819,9 +859,9 @@ have to keep repeating it.&lt;/p&gt;
 &lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;Ruby on Rails changed the way it handles input from a web request from version
 3.2 to 4.0. It used to be that you defined what you allowed to be set via
-update_attributes in the model itself by using &lt;code&gt;attr_accessible&lt;/code&gt;. This was all
+update_attributes in the model itself by using &lt;code class=&quot;highlighter-rouge&quot;&gt;attr_accessible&lt;/code&gt;. This was all
 well and good until the new version of Rails removed that mechanism for
-model security in favor of something called &lt;code&gt;strong_parameters&lt;/code&gt;.&lt;/p&gt;
+model security in favor of something called &lt;code class=&quot;highlighter-rouge&quot;&gt;strong_parameters&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Strong Parameters are a good thing. They increase the flexibility of the application
 by letting you define which parameters are allowed to be passed to your models
@@ -842,17 +882,17 @@ declarations in an intuitive way. The following is from the README for the gem:
 
 &lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
 
-&lt;p&gt;Add &lt;code&gt;fencepost&lt;/code&gt; to your &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Add &lt;code class=&quot;highlighter-rouge&quot;&gt;fencepost&lt;/code&gt; to your &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem &#39;fencepost&#39;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem 'fencepost'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;rails g fencepost_config
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails g fencepost_config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This creates a yaml map of your models in &lt;code&gt;config/fencepost.yml&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This creates a yaml map of your models in &lt;code class=&quot;highlighter-rouge&quot;&gt;config/fencepost.yml&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can re-run the initializer at any time. You will be asked if you want to
 overwrite the existing config. “Y” will force an overwrite of the file, and you
@@ -869,23 +909,23 @@ model graph (a class-level variable)&lt;/p&gt;
 &lt;h3 id=&quot;dev-mode&quot;&gt;Dev Mode&lt;/h3&gt;
 
 &lt;p&gt;During the early stages of development where your code is in flux, you can set
-&lt;code&gt;dev_mode=true&lt;/code&gt; in &lt;code&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load
+&lt;code class=&quot;highlighter-rouge&quot;&gt;dev_mode=true&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;config/initializers/fencepost.rb&lt;/code&gt;. dev mode will eager load
 and read in all your models dynamically every time the class is instantiated.
 (Ignoring the yaml in the initializer)&lt;/p&gt;
 
 &lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
 
-&lt;p&gt;The gem creates a &lt;code&gt;fencepost&lt;/code&gt; method in your contollers. This returns a
-&lt;code&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong
+&lt;p&gt;The gem creates a &lt;code class=&quot;highlighter-rouge&quot;&gt;fencepost&lt;/code&gt; method in your contollers. This returns a
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Fencepost&lt;/code&gt; object that has read your models and given you access to strong
 params for any ActiveRecord model in your application.&lt;/p&gt;
 
 &lt;h3 id=&quot;simplest-case&quot;&gt;Simplest Case&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.person_params)
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;simple-allow--deny-for-top-level-model&quot;&gt;Simple allow / deny for top level model&lt;/h3&gt;
 
@@ -893,22 +933,22 @@ end
 NOT allow dob (date of birth). In this example we want to allow date of birth but
 deny weight.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params)
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;more-complex-allow--deny-for-nested-models&quot;&gt;More complex allow / deny for nested models&lt;/h3&gt;
 
 &lt;p&gt;In this example, the Person model has a collection of addresses. We want to
 deny latitude and longitude from the acceptable attributes.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# app/controllers/people_controller
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/controllers/people_controller
 def create
   @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params)
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;tldr&quot;&gt;TLDR&lt;/h2&gt;
 
@@ -943,28 +983,28 @@ keep this utility as light as possible, and put my fledgeling Linux skills to th
 and discovered that I could output the results of a query back to the shell by
 invoking mongo with a script thusly:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;mongo hostname/databasename path/to/script
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongo hostname/databasename path/to/script
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;my script returned the name and elastic search url for each client:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{name: 1, elastic_search_url: 1});
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{name: 1, elastic_search_url: 1});
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
 }
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And this was where I ran into my first roadblock. JSON. It just so happens that
-JSON is not that easy to parse with &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;sed&lt;/code&gt;, and &lt;code&gt;grep&lt;/code&gt;. So I lurked on stackoverflow
+JSON is not that easy to parse with &lt;code class=&quot;highlighter-rouge&quot;&gt;awk&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt;. So I lurked on stackoverflow
 and stumbled on the &lt;a href=&quot;http://stedolan.github.io/jq/&quot;&gt;JQ&lt;/a&gt; library. It has been a
 godsend for dealing with JSON on the command line.&lt;/p&gt;
 
 &lt;p&gt;Installation of the binary was really quick and painless:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;wget http://stedolan.github.io/jq/download/linux64/jq
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://stedolan.github.io/jq/download/linux64/jq
 chmod +x jq
 sudo mv jq /usr/bin/
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And I had JSON parsing available on my command line. (There are source install
 options as well to be found on the &lt;a href=&quot;http://stedolan.github.io/jq/download/&quot;&gt;dowloads page&lt;/a&gt;).&lt;/p&gt;
@@ -972,7 +1012,7 @@ options as well to be found on the &lt;a href=&quot;http://stedolan.github.io/jq
 &lt;p&gt;I found that I needed to modify the output of my mongo script so that it was
 close to valid json:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{key: 1, elastic_search_url: 1});
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cursor = db[&quot;clients&quot;].find({},{key: 1, elastic_search_url: 1});
 print(&quot;{ \&quot;clients\&quot; : [&quot;);
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
@@ -980,27 +1020,27 @@ while ( cursor.hasNext() ) {
 }
 print(&quot;{}&quot;)
 print(&quot;]}&quot;);
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;then I turned to my trusty pal, &lt;code&gt;awk&lt;/code&gt; and wrote this little script to clean up
+&lt;p&gt;then I turned to my trusty pal, &lt;code class=&quot;highlighter-rouge&quot;&gt;awk&lt;/code&gt; and wrote this little script to clean up
 the client output:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#! /usr/bin/awk -f
-/[{,\]]/ {
-  gsub(&quot;ObjectId\(&quot;,&quot;&quot;,$0);
-  gsub(&quot;\)&quot;,&quot;&quot;,$0);
-  print $0
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#! /usr/bin/awk -f&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ObjectId\(&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;That allowed me to pipe the valid json output to &lt;code&gt;jq&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;That allowed me to pipe the valid json output to &lt;code class=&quot;highlighter-rouge&quot;&gt;jq&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq &#39;.[&quot;clients&quot;]&#39;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq '.[&quot;clients&quot;]'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;and I get really pretty output like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[
   {
     &quot;key&quot;: &quot;development_client&quot;,
     &quot;elastic_search_url&quot;: &quot;http://search.dev:9200&quot;,
@@ -1018,7 +1058,7 @@ the client output:&lt;/p&gt;
   },
   {}
 ]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Then I started dealing with elasticsearch. I have many indexes for various clients
 so when I make a curl to the cluster status endpoint, the output is easily over 
@@ -1026,12 +1066,12 @@ so when I make a curl to the cluster status endpoint, the output is easily over
 name of the indexes (which is all I really want for this particular function) is
 amazingly simple:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -s -XGET 'http://search.dev:9200/_status' | jq '.[&quot;indices&quot;]' | jq 'keys'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;and produces what I really want to see:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[
   &quot;client_509aada36224051fec000001&quot;,
   &quot;client_50a6a3d86224051db2000016&quot;,
   &quot;client_50d093c96224051f91000002&quot;,
@@ -1044,16 +1084,16 @@ amazingly simple:&lt;/p&gt;
   &quot;client_51bf5685622405297a000002&quot;,
   &quot;client_51e441a8622405799900000e&quot;,
 ]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;and another call tells me how many indexes I have:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ curl -s -XGET &#39;http://search.dev:9200/_status&#39; | jq &#39;.[&quot;indices&quot;]&#39; | jq &#39;keys&#39; | jq &#39;length&#39;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl -s -XGET 'http://search.dev:9200/_status' | jq '.[&quot;indices&quot;]' | jq 'keys' | jq 'length'
 $ 11
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This makes it incredibly easy to work with data retrieved from JSON services
-using &lt;code&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script service interruption
+using &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt;. Which makes it incredibly easy to script service interruption
 detection and health monitoring.&lt;/p&gt;
 
 &lt;p&gt;I am now in the process of wrapping a good many elasticsearch and mongo calls in
@@ -1074,29 +1114,29 @@ have found this to be the best option. Cheers, Stedolan, for the great contribut
       <description>&lt;p&gt;Even now&lt;br /&gt;
 I can hear my heartbeat in my ears&lt;br /&gt;
 the need to get the words out&lt;br /&gt;
-before it’s too late  &lt;/p&gt;
+before it’s too late&lt;/p&gt;
 
 &lt;p&gt;Even now&lt;br /&gt;
 there’s so much more I want to tell you&lt;br /&gt;
 in the midnight confessional&lt;br /&gt;
-the silent return  &lt;/p&gt;
+the silent return&lt;/p&gt;
 
 &lt;p&gt;Even now&lt;br /&gt;
 I wish I could see through your eyes&lt;br /&gt;
 standing on the shore with the boatman&lt;br /&gt;
-looking back over your shoulder  &lt;/p&gt;
+looking back over your shoulder&lt;/p&gt;
 
 &lt;p&gt;Even now&lt;br /&gt;
-Even still  &lt;/p&gt;
+Even still&lt;/p&gt;
 
 &lt;p&gt;I always think of you when I least expect it&lt;br /&gt;
 like a flash in my periphery&lt;br /&gt;
 that draws my eye&lt;br /&gt;
 and I sit there, rapt for a while searching&lt;br /&gt;
-searching for what’s no longer there  &lt;/p&gt;
+searching for what’s no longer there&lt;/p&gt;
 
 &lt;p&gt;Even now&lt;br /&gt;
-Even still  &lt;/p&gt;
+Even still&lt;/p&gt;
 </description>
     </item>
     
@@ -1116,18 +1156,18 @@ underlying table column’s datatype. The plan is that I will create the view
 refugees from pg_views, drop the views, run the migration, then recreate the
 views.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; do $$declare r record;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; do $$declare r record;
   begin
     for r in select viewname, schemaname from view_refugees
     loop
-      execute &#39;drop view &#39;
+      execute 'drop view '
       || r.schemaname
-      || &#39;.&#39;
+      || '.'
       || r.viewname
-      || &#39; cascade&#39;;
+      || ' cascade';
     end loop;
   end$$;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;DO block makes that easier.&lt;/p&gt;
 </description>
@@ -1170,7 +1210,7 @@ we are killing in the name of our “national interest” abroad.&lt;/p&gt;
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward</guid>
       <description>&lt;p&gt;It’s kind of a joke around where I work. I saw a data import script my boss had
-written that used &lt;code&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into
+written that used &lt;code class=&quot;highlighter-rouge&quot;&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into
 record-type-specific files for use with BCP. Since then, I have (jokingly)
 declared that the combination of awk and elasticsearch is my hammer, and all
 problems are nails.&lt;/p&gt;
@@ -1181,55 +1221,55 @@ in multiple forks and datasets separated by modulus math), I needed an easy way 
 keep track of the progress. I already had the processes writing to a log file
 with this format:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;20755 processed 1000 objects ending with: 18000 in 53 seconds
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;20755 processed 1000 objects ending with: 18000 in 53 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The first number is the process id or pid.
 Since I had multiple processes running, I didn’t want to have to find the last
 entry for each pid and do math to find out how quickly things were going. So I
 whipped up this little import_stats.awk script:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#! /bin/awk -f
-# this section happens before any lines are read.
-# it allows you to set up variables that you can
-# use as the program executes
-BEGIN {
-  total_seconds = 0;
-  count = 0;
-}
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#! /bin/awk -f&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# this section happens before any lines are read.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# it allows you to set up variables that you can&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# use as the program executes&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;BEGIN&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;total_seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-# the unnamed section here is what is executed 
-# for each line. In this case, it&#39;s checking to
-# see if a line begins with a number, and 
-# incrementing counts and totals on if it does.
-# the $9 variable is the ninth column in the 
-# data line
-{
-  if ($1 ~ /^[0-9]*$/) {
-    total_seconds += $9;
-    ++count;
-  }
-}
+&lt;span class=&quot;c1&quot;&gt;# the unnamed section here is what is executed &lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# for each line. In this case, it's checking to&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# see if a line begins with a number, and &lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# incrementing counts and totals on if it does.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# the $9 variable is the ninth column in the &lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# data line&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/^&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;0-9&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;*$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;total_seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-# The end section allows you to sum up, peforming
-# actions to clean up or print results. In this
-# case I&#39;m printing my results
-END {
-  print &quot;average seconds per thousand: &quot; total_seconds / count;
-  print &quot;total processed_thus far: &quot; count * 1000;
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;c1&quot;&gt;# The end section allows you to sum up, peforming&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# actions to clean up or print results. In this&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# case I'm printing my results&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;average seconds per thousand: &quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;total_seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;total processed_thus far: &quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;now I can check on progress by typing this from the app’s root:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat log/import.log | awk -f import_stats.awk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;and I get&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;average seconds per thousand: 50.4306
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;average seconds per thousand: 50.4306
 total processed_thus far: 432000
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Linux and Unix have so many great tools that have been developed over the years
 that are rock solid foundations for new things. I found this site to be helpful
@@ -1258,7 +1298,7 @@ scripts would run correctly.&lt;/p&gt;
 effect, and run the command. It transfers ownership from the old role to the
 new role for all objects in the database.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;postgres=# create database ownage;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;postgres=# create database ownage;
 CREATE DATABASE
 postgres=# grant all on database ownage to old_owner;
 GRANT
@@ -1295,7 +1335,7 @@ ownage=# \d
  public | users         | table    | owner_wannabe
  public | users_id_seq  | sequence | owner_wannabe
 (4 rows)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;With that, we no longer have to iterate over objects one by one and alter owner.&lt;/p&gt;
 
@@ -1343,26 +1383,27 @@ spent years doing it in C#. And now I’m doing it in Ruby.&lt;/p&gt;
 statically-typed OO language and a functional language, check this out:&lt;/p&gt;
 
 &lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
-&lt;p&gt;#### Java
-    public class StringUtils {
-      public static boolean isBlank(String str) {
-        int strLen;
-        if (str == null || (strLen = str.length()) == 0) {
-          return true;
-        }
-        for (int i = 0; i &amp;lt; strLen; i++) {
-          if ((Character.isWhitespace(str.charAt(i)) == false)) {
-            return false;
-          }
-        }
-        return true;
+&lt;h4 id=&quot;java&quot;&gt;Java&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class StringUtils {
+  public static boolean isBlank(String str) {
+    int strLen;
+    if (str == null || (strLen = str.length()) == 0) {
+      return true;
+    }
+    for (int i = 0; i &amp;lt; strLen; i++) {
+      if ((Character.isWhitespace(str.charAt(i)) == false)) {
+        return false;
       }
-    }&lt;/p&gt;
+    }
+    return true;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;clojure&quot;&gt;Clojure&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;(defn blank? [str]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(defn blank? [str]
   (every? #(Character/isWhitespace %) str))
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Expressive and succinct. I am intrigued.&lt;/p&gt;
 </description>
@@ -1376,8 +1417,8 @@ statically-typed OO language and a functional language, check this out:&lt;/p&gt
       <guid>http://scotthelm.com/2012/12/31/plans-for-the-new-year</guid>
       <description>&lt;p&gt;I made some major changes over the last year.&lt;/p&gt;
 
-&lt;h3 id=&quot;i-changed-jobs&quot;&gt;I changed jobs.&lt;/h3&gt;
-&lt;p&gt;People do this all the time. I don’t. I spent 8 great years
+&lt;p&gt;###I changed jobs.
+People do this all the time. I don’t. I spent 8 great years
 with the last company I worked for. I think the world of them. We simply had
 different visions for my future. They wanted me to go into a software dev
 managment sort of role. That did not appeal to me. I like building things and
@@ -1385,8 +1426,8 @@ solving problems. We parted ways as friends, which I’m pretty proud of. Not
 only because of the amicability of the parting, but because I recognized its 
 necessity, and was willing to get out of my comfort zone to stay happy.&lt;/p&gt;
 
-&lt;h3 id=&quot;i-completely-changed-my-tech&quot;&gt;I completely changed my tech.&lt;/h3&gt;
-&lt;p&gt;I mean completely. I am an .net enterprise architect. I have delivered large-
+&lt;p&gt;###I completely changed my tech.
+I mean completely. I am an .net enterprise architect. I have delivered large-
 scale custom applications to fortune 500 companies. I used ASP.Net, MVC, EF and
 really enjoyed it. Heck, I even managed to wrangle SharePoint 2010 into a
 passable externally-facing customer portal.&lt;/p&gt;
@@ -1403,7 +1444,7 @@ today.&lt;/p&gt;
 
 &lt;p&gt;Now my toolset is very different:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  {
     :studio         =&amp;gt;      :vim,
     :dotnet         =&amp;gt;      :ruby,
     :xml            =&amp;gt;      :json,
@@ -1411,32 +1452,32 @@ today.&lt;/p&gt;
     :iis            =&amp;gt;      :unicorn_and_nginx,
     :gui            =&amp;gt;      :linux_command_line
   }
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The list goes on, but needless to say, I have had a steep learning curve, and
 I love it.&lt;/p&gt;
 
-&lt;h3 id=&quot;my-plans-for-the-coming-year&quot;&gt;My plans for the coming year&lt;/h3&gt;
-&lt;p&gt;####Learn More
+&lt;p&gt;###My plans for the coming year
+####Learn More
 It’s my key personal key to happiness. It’s what keeps me going. I plan to
 tackle a functional language of some sort.  Probably Clojure.&lt;/p&gt;
 
-&lt;h4 id=&quot;write-more-music&quot;&gt;Write More Music&lt;/h4&gt;
-&lt;p&gt;It’s something I enjoy very much. I need to do more of it.&lt;/p&gt;
+&lt;p&gt;####Write More Music
+It’s something I enjoy very much. I need to do more of it.&lt;/p&gt;
 
-&lt;h4 id=&quot;stay-active&quot;&gt;Stay Active&lt;/h4&gt;
-&lt;p&gt;I did a fairly good job last year, but I need to keep it up. This is that 
+&lt;p&gt;####Stay Active
+I did a fairly good job last year, but I need to keep it up. This is that 
 reminder.&lt;/p&gt;
 
-&lt;h4 id=&quot;cultivate-voiceovers&quot;&gt;Cultivate Voiceovers&lt;/h4&gt;
-&lt;p&gt;Last year was pretty good, but I can do better. I would love to get on a 
+&lt;p&gt;####Cultivate Voiceovers
+Last year was pretty good, but I can do better. I would love to get on a 
 cartoon, or an audible book gig. Let’s see if I can do that this year.&lt;/p&gt;
 
-&lt;h4 id=&quot;spend-more-time-with-family-and-friends&quot;&gt;Spend more time with family and friends&lt;/h4&gt;
-&lt;p&gt;Game night. Let’s do this.&lt;/p&gt;
+&lt;p&gt;####Spend more time with family and friends
+Game night. Let’s do this.&lt;/p&gt;
 
-&lt;h4 id=&quot;finish-stuffsimple&quot;&gt;Finish StuffSimple&lt;/h4&gt;
-&lt;p&gt;I have a working implementation, but it’s using dated tech. I want to revamp it
+&lt;p&gt;####Finish StuffSimple
+I have a working implementation, but it’s using dated tech. I want to revamp it
 with all the stuff I’ve learned over the last year.&lt;/p&gt;
 
 &lt;p&gt;It’s going to be exciting!  I wish you many joys and triumphs in the coming 
@@ -1452,7 +1493,7 @@ year!  Happy 2013 all!&lt;/p&gt;
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/29/rainbows</guid>
       <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me
-dancing at my wedding. It was a beautiful gift. &lt;/p&gt;
+dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
 
 &lt;p&gt;I had started the melody a while back, but had no lyrics.  I put the lyrics
 together today.&lt;/p&gt;
@@ -1460,17 +1501,17 @@ together today.&lt;/p&gt;
 &lt;p&gt;in a corner of the room&lt;br /&gt;
 underneath the moving boxes&lt;br /&gt;
 in a chest of faded memories there&lt;br /&gt;
-is a picture of us dancing  &lt;/p&gt;
+is a picture of us dancing&lt;/p&gt;
 
 &lt;p&gt;after all this time flows&lt;br /&gt;
 out the door and through the windows&lt;br /&gt;
 through these tears I look up&lt;br /&gt;
-and see rainbows  &lt;/p&gt;
+and see rainbows&lt;/p&gt;
 
 &lt;p&gt;I often think of you&lt;br /&gt;
 in my mind I see you smiling&lt;br /&gt;
 like a vision of the loveliest smile&lt;br /&gt;
-that anyone has ever  &lt;/p&gt;
+that anyone has ever&lt;/p&gt;
 
 &lt;p&gt;after all this time flows&lt;br /&gt;
 out the door and through the windows&lt;br /&gt;
@@ -1498,7 +1539,7 @@ and see rainbows&lt;/p&gt;
       <pubDate>Wed, 12 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve</guid>
-      <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.  &lt;/p&gt;
+      <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.&lt;/p&gt;
 
 &lt;p&gt;Here are a few songs in that time signature (technically, some are in 6/8, but if I can count it in threes, I count it.  This list is just off the top of my head, and is in no particular order…and yes, there are 2 Queen songs.  Sue me.&lt;/p&gt;
 
@@ -1526,10 +1567,9 @@ and see rainbows&lt;/p&gt;
       <pubDate>Tue, 11 Dec 2012 00:00:00 -0500</pubDate>
       <author>you@scotthelm.com (Your Name)</author>
       <guid>http://scotthelm.com/2012/12/11/some-postgres-shortcuts</guid>
-      <description>&lt;h3 id=&quot;command-line&quot;&gt;Command Line&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;
-pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
-&lt;/code&gt;&lt;/p&gt;
+      <description>&lt;p&gt;###Command Line&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;-s Schema only, please.  No data&lt;/li&gt;
@@ -1542,13 +1582,12 @@ pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;u
 
 &lt;p&gt;The -h, -U and -W work with psql as well&lt;/p&gt;
 
-&lt;h3 id=&quot;psql&quot;&gt;psql&lt;/h3&gt;
+&lt;p&gt;###psql&lt;/p&gt;
 
-&lt;p&gt;within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in
-&lt;code&gt;
-/tmp/psql.edit.&amp;lt;pid&amp;gt;
-&lt;/code&gt;
-where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.&lt;/p&gt;
+&lt;p&gt;within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/tmp/psql.edit.&amp;lt;pid&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.&lt;/p&gt;
 
 &lt;p&gt;More to come. These are ones I’ve used today.&lt;/p&gt;
 </description>

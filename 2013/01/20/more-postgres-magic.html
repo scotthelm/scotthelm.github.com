@@ -78,7 +78,7 @@ scripts would run correctly.</p>
 effect, and run the command. It transfers ownership from the old role to the
 new role for all objects in the database.</p>
 
-<pre><code>postgres=# create database ownage;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postgres=# create database ownage;
 CREATE DATABASE
 postgres=# grant all on database ownage to old_owner;
 GRANT
@@ -115,7 +115,7 @@ ownage=# \d
  public | users         | table    | owner_wannabe
  public | users_id_seq  | sequence | owner_wannabe
 (4 rows)
-</code></pre>
+</code></pre></div></div>
 
 <p>With that, we no longer have to iterate over objects one by one and alter owner.</p>
 

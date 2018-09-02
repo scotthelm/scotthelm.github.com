@@ -67,10 +67,9 @@
         <div class="span6">
           <h2> Some Postgres Shortcuts </h2>
           <hr/>
-          <h3 id="command-line">Command Line</h3>
-<p><code>
-pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
-</code></p>
+          <p>###Command Line</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
+</code></pre></div></div>
 
 <ul>
   <li>-s Schema only, please.  No data</li>
@@ -83,13 +82,12 @@ pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &l
 
 <p>The -h, -U and -W work with psql as well</p>
 
-<h3 id="psql">psql</h3>
+<p>###psql</p>
 
-<p>within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in
-<code>
-/tmp/psql.edit.&lt;pid&gt;
-</code>
-where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.</p>
+<p>within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/tmp/psql.edit.&lt;pid&gt;
+</code></pre></div></div>
+<p>where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.</p>
 
 <p>More to come. These are ones I’ve used today.</p>
 
