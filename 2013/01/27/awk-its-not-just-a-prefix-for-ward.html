@@ -68,7 +68,7 @@
           <h2> Awk - It's not just a prefix for "ward" </h2>
           <hr/>
           <p>It’s kind of a joke around where I work. I saw a data import script my boss had
-written that used <code class="highlighter-rouge">awk</code> to preprocess massive data files, separating them into
+written that used <code class="language-plaintext highlighter-rouge">awk</code> to preprocess massive data files, separating them into
 record-type-specific files for use with BCP. Since then, I have (jokingly)
 declared that the combination of awk and elasticsearch is my hammer, and all
 problems are nails.</p>
@@ -79,7 +79,7 @@ in multiple forks and datasets separated by modulus math), I needed an easy way 
 keep track of the progress. I already had the processes writing to a log file
 with this format:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>20755 processed 1000 objects ending with: 18000 in 53 seconds
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>20755 processed 1000 objects ending with: 18000 in 53 seconds
 </code></pre></div></div>
 
 <p>The first number is the process id or pid.
@@ -87,45 +87,45 @@ Since I had multiple processes running, I didn’t want to have to find the last
 entry for each pid and do math to find out how quickly things were going. So I
 whipped up this little import_stats.awk script:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /bin/awk -f</span>
-<span class="c1"># this section happens before any lines are read.</span>
-<span class="c1"># it allows you to set up variables that you can</span>
-<span class="c1"># use as the program executes</span>
-<span class="kr">BEGIN</span> <span class="p">{</span>
-  <span class="nx">total_seconds</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#! /bin/awk -f
+# this section happens before any lines are read.
+# it allows you to set up variables that you can
+# use as the program executes
+BEGIN {
+  total_seconds = 0;
+  count = 0;
+}
 
-<span class="c1"># the unnamed section here is what is executed </span>
-<span class="c1"># for each line. In this case, it's checking to</span>
-<span class="c1"># see if a line begins with a number, and </span>
-<span class="c1"># incrementing counts and totals on if it does.</span>
-<span class="c1"># the $9 variable is the ninth column in the </span>
-<span class="c1"># data line</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$1</span> <span class="o">~</span> <span class="sr">/^</span><span class="se">[</span><span class="sr">0-9</span><span class="se">]</span><span class="sr">*$/</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">total_seconds</span> <span class="o">+=</span> <span class="nv">$9</span><span class="p">;</span>
-    <span class="o">++</span><span class="nx">count</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+# the unnamed section here is what is executed 
+# for each line. In this case, it's checking to
+# see if a line begins with a number, and 
+# incrementing counts and totals on if it does.
+# the $9 variable is the ninth column in the 
+# data line
+{
+  if ($1 ~ /^[0-9]*$/) {
+    total_seconds += $9;
+    ++count;
+  }
+}
 
-<span class="c1"># The end section allows you to sum up, peforming</span>
-<span class="c1"># actions to clean up or print results. In this</span>
-<span class="c1"># case I'm printing my results</span>
-<span class="kr">END</span> <span class="p">{</span>
-  <span class="k">print</span> <span class="s2">"average seconds per thousand: "</span> <span class="nx">total_seconds</span> <span class="o">/</span> <span class="nx">count</span><span class="p">;</span>
-  <span class="k">print</span> <span class="s2">"total processed_thus far: "</span> <span class="nx">count</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="p">}</span>
+# The end section allows you to sum up, peforming
+# actions to clean up or print results. In this
+# case I'm printing my results
+END {
+  print "average seconds per thousand: " total_seconds / count;
+  print "total processed_thus far: " count * 1000;
+}
 </code></pre></div></div>
 
 <p>now I can check on progress by typing this from the app’s root:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat log/import.log | awk -f import_stats.awk
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat log/import.log | awk -f import_stats.awk
 </code></pre></div></div>
 
 <p>and I get</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>average seconds per thousand: 50.4306
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>average seconds per thousand: 50.4306
 total processed_thus far: 432000
 </code></pre></div></div>
 
@@ -161,11 +161,8 @@ makes me happy.</p>
      <div class="row-fluid">
        <div class="span3">&nbsp;</div>
        <div class="span6">
-         <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2016</p>
-         <p style="text-align:center">
-           <a href="https://twitter.com/scott_helm" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @scott_helm</a>
-           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         </p>
+         <p>&copy; Scott Helm 2023</p>
+         <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
        </div>
        <div class="span3">&nbsp;</div>
      </div>

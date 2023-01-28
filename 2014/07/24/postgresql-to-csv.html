@@ -69,22 +69,22 @@
           <hr/>
           <p>Here lately, I have had to produce several reports from psql. If you’re anything
 like me, Then you’re all about automating automatable things. And you’re also
-probably all about simplicity. So I turned to my old friends, <code class="highlighter-rouge">psql</code> and <code class="highlighter-rouge">cron</code>.</p>
+probably all about simplicity. So I turned to my old friends, <code class="language-plaintext highlighter-rouge">psql</code> and <code class="language-plaintext highlighter-rouge">cron</code>.</p>
 
 <h2 id="overview">Overview</h2>
 <p>If you want to automate something in Linux, figure out how to run it from the
-command line. Then run it from <code class="highlighter-rouge">cron</code>. You can automate <code class="highlighter-rouge">cron</code> from something like
+command line. Then run it from <code class="language-plaintext highlighter-rouge">cron</code>. You can automate <code class="language-plaintext highlighter-rouge">cron</code> from something like
 <a href="http://puppetlabs.com">puppet</a> or
 <a href="http://www.getchef.com/chef/">chef</a> or
 <a href="http://www.docker.com">docker</a></p>
 
 <h2 id="the-command">The Command</h2>
 <p>First of all - you will probably want to wrap a thing like this in a shell
-script. I use bash, so my <code class="highlighter-rouge">~/psql_report_script.sh</code> would be like this:</p>
+script. I use bash, so my <code class="language-plaintext highlighter-rouge">~/psql_report_script.sh</code> would be like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
 
- <span class="nv">PGPASSWORD</span><span class="o">=</span><span class="nv">$YOUR_ENVIRONMENT_VARIABLE</span> psql <span class="nt">-d</span> &lt;database&gt; <span class="nt">-h</span> &lt;host&gt; <span class="nt">-U</span> &lt;username&gt; <span class="nt">-c</span> <span class="s1">'copy (select something from your_tables) TO STDOUT WITH CSV HEADER'</span> <span class="nt">-o</span> /path/to/your/file.csv
+ PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &lt;database&gt; -h &lt;host&gt; -U &lt;username&gt; -c 'copy (select something from your_tables) TO STDOUT WITH CSV HEADER' -o /path/to/your/file.csv
 </code></pre></div></div>
 
 <p>Now chmod +x that file, and let’s break that command down just a little.</p>
@@ -121,7 +121,7 @@ copy the result of the query to STDOUT and in a CSV format with headers</dd>
 <h2 id="the-automation">The Automation</h2>
 
 <p>I like cron. It’s the easiest, fastest way to make things happen on a schedule
-on a linux machine. Here’s <a href="https://help.ubuntu.com/community/CronHowto">how to set it up</a>. TLDR: type in <code class="highlighter-rouge">crontab -e</code> to edit your crontab file, and read the top
+on a linux machine. Here’s <a href="https://help.ubuntu.com/community/CronHowto">how to set it up</a>. TLDR: type in <code class="language-plaintext highlighter-rouge">crontab -e</code> to edit your crontab file, and read the top
 line. From the how to set it up link:</p>
 
 <blockquote>
@@ -131,7 +131,7 @@ line. From the how to set it up link:</p>
 <p>The last part of the file is your command. So if I wanted this to run every day
 at 2am, my crontab line would look like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>01 02 * * * /home/my_user/reports/psql_report_script.sh
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>01 02 * * * /home/my_user/reports/psql_report_script.sh
 30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv
 </code></pre></div></div>
 
@@ -164,11 +164,8 @@ simple command-line tools.</p>
      <div class="row-fluid">
        <div class="span3">&nbsp;</div>
        <div class="span6">
-         <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2016</p>
-         <p style="text-align:center">
-           <a href="https://twitter.com/scott_helm" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @scott_helm</a>
-           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         </p>
+         <p>&copy; Scott Helm 2023</p>
+         <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
        </div>
        <div class="span3">&nbsp;</div>
      </div>

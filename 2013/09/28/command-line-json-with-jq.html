@@ -82,25 +82,25 @@ keep this utility as light as possible, and put my fledgeling Linux skills to th
 and discovered that I could output the results of a query back to the shell by
 invoking mongo with a script thusly:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo hostname/databasename path/to/script
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo hostname/databasename path/to/script
 </code></pre></div></div>
 
 <p>my script returned the name and elastic search url for each client:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cursor = db["clients"].find({},{name: 1, elastic_search_url: 1});
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cursor = db["clients"].find({},{name: 1, elastic_search_url: 1});
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
 }
 </code></pre></div></div>
 
 <p>And this was where I ran into my first roadblock. JSON. It just so happens that
-JSON is not that easy to parse with <code class="highlighter-rouge">awk</code>, <code class="highlighter-rouge">sed</code>, and <code class="highlighter-rouge">grep</code>. So I lurked on stackoverflow
+JSON is not that easy to parse with <code class="language-plaintext highlighter-rouge">awk</code>, <code class="language-plaintext highlighter-rouge">sed</code>, and <code class="language-plaintext highlighter-rouge">grep</code>. So I lurked on stackoverflow
 and stumbled on the <a href="http://stedolan.github.io/jq/">JQ</a> library. It has been a
 godsend for dealing with JSON on the command line.</p>
 
 <p>Installation of the binary was really quick and painless:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://stedolan.github.io/jq/download/linux64/jq
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://stedolan.github.io/jq/download/linux64/jq
 chmod +x jq
 sudo mv jq /usr/bin/
 </code></pre></div></div>
@@ -111,7 +111,7 @@ options as well to be found on the <a href="http://stedolan.github.io/jq/downloa
 <p>I found that I needed to modify the output of my mongo script so that it was
 close to valid json:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cursor = db["clients"].find({},{key: 1, elastic_search_url: 1});
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cursor = db["clients"].find({},{key: 1, elastic_search_url: 1});
 print("{ \"clients\" : [");
 while ( cursor.hasNext() ) {
    printjsononeline( cursor.next() );
@@ -121,25 +121,25 @@ print("{}")
 print("]}");
 </code></pre></div></div>
 
-<p>then I turned to my trusty pal, <code class="highlighter-rouge">awk</code> and wrote this little script to clean up
+<p>then I turned to my trusty pal, <code class="language-plaintext highlighter-rouge">awk</code> and wrote this little script to clean up
 the client output:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/awk -f</span>
-<span class="o">/</span><span class="p">[{,</span><span class="err">\</span><span class="p">]]</span><span class="o">/</span> <span class="p">{</span>
-  <span class="nb">gsub</span><span class="p">(</span><span class="s2">"ObjectId\("</span><span class="p">,</span><span class="s2">""</span><span class="p">,</span><span class="nv">$0</span><span class="p">);</span>
-  <span class="nb">gsub</span><span class="p">(</span><span class="s2">"\)"</span><span class="p">,</span><span class="s2">""</span><span class="p">,</span><span class="nv">$0</span><span class="p">);</span>
-  <span class="k">print</span> <span class="nv">$0</span>
-<span class="p">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#! /usr/bin/awk -f
+/[{,\]]/ {
+  gsub("ObjectId\(","",$0);
+  gsub("\)","",$0);
+  print $0
+}
 </code></pre></div></div>
 
-<p>That allowed me to pipe the valid json output to <code class="highlighter-rouge">jq</code>:</p>
+<p>That allowed me to pipe the valid json output to <code class="language-plaintext highlighter-rouge">jq</code>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq '.["clients"]'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  mongo $MONGODB ./clients.js | ./client_cleanup.awk | jq '.["clients"]'
 </code></pre></div></div>
 
 <p>and I get really pretty output like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
   {
     "key": "development_client",
     "elastic_search_url": "http://search.dev:9200",
@@ -165,12 +165,12 @@ so when I make a curl to the cluster status endpoint, the output is easily over
 name of the indexes (which is all I really want for this particular function) is
 amazingly simple:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -s -XGET 'http://search.dev:9200/_status' | jq '.["indices"]' | jq 'keys'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -s -XGET 'http://search.dev:9200/_status' | jq '.["indices"]' | jq 'keys'
 </code></pre></div></div>
 
 <p>and produces what I really want to see:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
   "client_509aada36224051fec000001",
   "client_50a6a3d86224051db2000016",
   "client_50d093c96224051f91000002",
@@ -187,12 +187,12 @@ amazingly simple:</p>
 
 <p>and another call tells me how many indexes I have:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -s -XGET 'http://search.dev:9200/_status' | jq '.["indices"]' | jq 'keys' | jq 'length'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -s -XGET 'http://search.dev:9200/_status' | jq '.["indices"]' | jq 'keys' | jq 'length'
 $ 11
 </code></pre></div></div>
 
 <p>This makes it incredibly easy to work with data retrieved from JSON services
-using <code class="highlighter-rouge">curl</code>. Which makes it incredibly easy to script service interruption
+using <code class="language-plaintext highlighter-rouge">curl</code>. Which makes it incredibly easy to script service interruption
 detection and health monitoring.</p>
 
 <p>I am now in the process of wrapping a good many elasticsearch and mongo calls in
@@ -226,11 +226,8 @@ have found this to be the best option. Cheers, Stedolan, for the great contribut
      <div class="row-fluid">
        <div class="span3">&nbsp;</div>
        <div class="span6">
-         <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2016</p>
-         <p style="text-align:center">
-           <a href="https://twitter.com/scott_helm" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @scott_helm</a>
-           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         </p>
+         <p>&copy; Scott Helm 2023</p>
+         <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
        </div>
        <div class="span3">&nbsp;</div>
      </div>

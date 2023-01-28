@@ -68,7 +68,7 @@
           <h2> Some Postgres Shortcuts </h2>
           <hr/>
           <p>###Command Line</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_dump &lt;database_name&gt; -s -O -h &lt;host&gt; -U &lt;username&gt; -W -f &lt;path_to_target_file&gt; -n &lt;schema_name&gt; -n &lt;schema_name&gt;
 </code></pre></div></div>
 
 <ul>
@@ -85,7 +85,7 @@
 <p>###psql</p>
 
 <p>within psql, \e will open your editor of choice.  I usually use vim.  It creates a file in</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/tmp/psql.edit.&lt;pid&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/tmp/psql.edit.&lt;pid&gt;
 </code></pre></div></div>
 <p>where pid is the process ID of psql.  You edit your sql in that file.  When you :wq to write and quit vim, psql will use that file as it’s command.  So if you want it to execute, then make sure it ends with a semicolon; or it won’t run.</p>
 
@@ -115,11 +115,8 @@
      <div class="row-fluid">
        <div class="span3">&nbsp;</div>
        <div class="span6">
-         <p>&copy; <a href="mailto:helm.scott+scotthelm@gmail.com">Scott Helm</a> 2016</p>
-         <p style="text-align:center">
-           <a href="https://twitter.com/scott_helm" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @scott_helm</a>
-           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         </p>
+         <p>&copy; Scott Helm 2023</p>
+         <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
        </div>
        <div class="span3">&nbsp;</div>
      </div>
