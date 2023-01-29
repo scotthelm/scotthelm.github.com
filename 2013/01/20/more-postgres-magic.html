@@ -20,7 +20,16 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-01-20T00:00:00-05:00","datePublished":"2013-01-20T00:00:00-05:00","description":"[REASSIGN OWNED BY old_role new_role] (http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html) This command saved my bacon today. I had to apply some scripts that dropped a couple of database objects. The role I was using did not have ownership of the objects in question, so the script failed. I needed to change ownership so the scripts would run correctly. REASSIGN OWNED BY does just what it says - log into the database you want to effect, and run the command. It transfers ownership from the old role to the new role for all objects in the database. postgres=# create database ownage; CREATE DATABASE postgres=# grant all on database ownage to old_owner; GRANT postgres=# grant all on database ownage to owner_wannabe; GRANT postgres=# \\q psql ownage -U old_owner -h localhost ownage=# create table users (id serial, username text, password text); NOTICE: CREATE TABLE will create implicit sequence &quot;users_id_seq&quot; for serial column &quot;users.id&quot; CREATE TABLE ownage=# create table things (id serial, user_id integer, name text); NOTICE: CREATE TABLE will create implicit sequence &quot;things_id_seq&quot; for serial column &quot;things.id&quot; CREATE TABLE ownage=# \\d List of relations Schema | Name | Type | Owner --------+---------------+----------+---------- public | things | table | old_owner public | things_id_seq | sequence | old_owner public | users | table | old_owner public | users_id_seq | sequence | old_owner (4 rows) ownage=# reassign owned by old_owner to owner_wannabe; REASSIGN OWNED ownage=# \\d List of relations Schema | Name | Type | Owner --------+---------------+----------+--------------- public | things | table | owner_wannabe public | things_id_seq | sequence | owner_wannabe public | users | table | owner_wannabe public | users_id_seq | sequence | owner_wannabe (4 rows) With that, we no longer have to iterate over objects one by one and alter owner. And that, my friends is more Postgres magic.","headline":"More Postgres Magic","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/01/20/more-postgres-magic.html"},"url":"/2013/01/20/more-postgres-magic.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<script>
+  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49576057-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -107,7 +116,42 @@ ownage=# \d
 <p>And that, my friends is more Postgres magic.</p>
 
 
-  </div><a class="u-url" href="/2013/01/20/more-postgres-magic.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = '/2013/01/20/more-postgres-magic.html';
+      this.page.identifier = '/2013/01/20/more-postgres-magic.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2013/01/20/more-postgres-magic.html" hidden></a>
 </article>
 
       </div>

@@ -20,7 +20,16 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2015-02-24T00:00:00-05:00","datePublished":"2015-02-24T00:00:00-05:00","description":"Love I have enjoyed moving to an open-source development stack. I use Ruby and Ruby-On-Rails on a daily basis. I love writing golang code. I am intimately familiar with Postgresql, Elasticsearch, and Redis. I can read a man page and know what I’m looking at. I have written a 4-line bash script that helps me fill out my timesheets by reading all of my git commits and arranging them in chronological order. In short, I love working in Linux. I love bending computers to my will. I love creating things that people use to make their lives easier. Magic I do all this with text. The files I write are compiled or interpreted by the computer and turned into action. It’s like designing and building a machine in the air that you can’t really see, but you know is there by its effects. Writing code is like weaving a magic spell. It’s like invoking the arcane language to create something that wasn’t there before. It’s exhilarating when the elements come together and the pieces fit and the solution to the problem you want to solve falls out in front of you because you picked the right abstraction. Tools The editor I use (vim) was invented in the 1976 and IMproved in 1991. I am writing what you see here using it. What I write is interpreted by Jekyll and Markdown (two other open source projects that simplify creating static sites like this one). Vim is “highly configurable”, read “highly configurable if you know what the hell you’re doing and are not afraid”. nerd humor alert: “There are two types of people in the world: Those who know vimscript, and those who aren’t Tim Pope.” As great and wonderful as my editor is, and despite the fact that I have learned to use plugins to extend it, and make modifications to it on startup that make my editor my own, there are some things I was missing from my days as a .NET developer using Visual Studio. Tab-completion for known properties of objects I’m dealing with, and snippets that allow me to quickly create boilerplate code that I write all the time. Stuff that’s necessary, but I don’t even have to think about. It’s the meter in which I have to rhyme. The problem is that the package that my OS comes with for Vim is outdated, meaning I have an older version of it. There are plugins for Vim like YouCompleteMe (for tab-completion) and Ultisnips (for that boilerplate code) that I could use if only my version of Vim were up to date. Making the Tools Better Step 1: Install the new version of Vim In order to get back some of the things I miss, I need to install the latest version of vim so I can install the plugins I want. Luckily, YouCompleteMe had instructions for installing the latest version of vim. Follow the instructions on that page to complete your new installation. Step 2: Install Plugins I want to use YouCompleteMe and Ultisnips. With a little configuration, and a third plugin called Supertab, they go together like chocolate and peanut butter. A quick reminder - read the installation docs for YouCompleteMe. It’s a compiled component, so you’ll have to compile it before you can use it. You’ll probably also want to install the default snippets for Ultisnips and make them all work together with this bit of vimscript in your .vimrc: &quot; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = [&#39;&lt;C-n&gt;&#39;, &#39;&lt;Down&gt;&#39;] let g:ycm_key_list_previous_completion = [&#39;&lt;C-p&gt;&#39;, &#39;&lt;Up&gt;&#39;] let g:SuperTabDefaultCompletionType = &#39;&lt;C-n&gt;&#39; &quot; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &quot;&lt;tab&gt;&quot; let g:UltiSnipsJumpForwardTrigger = &quot;&lt;tab&gt;&quot; let g:UltiSnipsJumpBackwardTrigger = &quot;&lt;s-tab&gt;&quot; Step 3: Profit Once you’ve followed the steps above, you should be up and running with tab-completion and, voila! Happy Vimming!","headline":"Vimitude","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/02/24/vimitude.html"},"url":"/2015/02/24/vimitude.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<script>
+  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49576057-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -133,7 +142,42 @@ and, voila! Happy Vimming!</p>
 <iframe width="854" height="510" src="https://www.youtube.com/embed/1r4Vx4EXIfI" frameborder="0" allowfullscreen=""></iframe>
 
 
-  </div><a class="u-url" href="/2015/02/24/vimitude.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = '/2015/02/24/vimitude.html';
+      this.page.identifier = '/2015/02/24/vimitude.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2015/02/24/vimitude.html" hidden></a>
 </article>
 
       </div>

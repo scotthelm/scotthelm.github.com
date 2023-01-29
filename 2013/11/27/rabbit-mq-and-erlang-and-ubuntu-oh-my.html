@@ -20,7 +20,16 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-11-27T00:00:00-05:00","datePublished":"2013-11-27T00:00:00-05:00","description":"As part of an upcoming development effort for a new client, I am looking at using a message broker to facilitate inter-app communications. The use case is that the new system integrates several different data sources into a consolidated view. For example: When changes are made to the canonical source in postgres, we need to let the our indexer service know that it needs to update the elasticsearch index so the front-end application can serve the freshest data. The Problem In 2 words: Unmet Dependencies. Rabbit MQ is built with Erlang. The Erlang packages in Ubuntu 12.04 (Precise) are out of date or not present. I downloaded the RabbitMQ Ubuntu Debian package and expected a quick dpkg -i install. However, instead of a quick list of additional packages that would be installed and a friendly “Y/n?”, I got: sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb ...stuff... dpkg: dependency problems prevent configuration of rabbitmq-server: rabbitmq-server depends on erlang-nox (&gt;= 1:13.b.3) | esl-erlang; however: Package erlang-nox is not installed. Package esl-erlang is not installed. dpkg: error processing rabbitmq-server (--install): ...stuff... Errors were encountered while processing: rabbitmq-server So. I tried installing Erlang from the Ubuntu packages and got this: sudo apt-get install erlang-nox esl-erlang Reading package lists... Done Building dependency tree Reading state information... Done Package esl-erlang is not available, but is referred to by another package. This may mean that the package is missing, has been obsoleted, or is only available from another source E: Package &#39;esl-erlang&#39; has no installation candidate The Solution Go to erlang.org. Find the download page for Ubuntu which is NOT at erlang.org - it is at www.erlang-solutions.com. Craziness. I follow the directions and add this line to my /etc/apt/sources.list deb http://packages.erlang-solutions.com/debian precise contrib then sudo apt-get update then sudo apt-get install erlang then… I still had a problem. The first time I dpkg-ed the rabbitmq-server, it added it to invoke-rc. So when I tried to install erlang, it gave me this: rabbitmq-server : Depends: erlang-nox (&gt;= 1:13.b.3) but it is not going to be installed or esl-erlang but it is not going to be installed so to get rid of the invalid package, I sudo dpkg -r rabbitmq-server then sudo apt-get install erlang Success was in my grasp! However tantilizingly close it may be, however… It still eluded me. When I tried to install the package again, I got this nasty little message: sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb ...stuff... dpkg: dependency problems prevent configuration of rabbitmq-server: rabbitmq-server depends on erlang-nox (&gt;= 1:13.b.3) | esl-erlang; however: Package erlang-nox is not installed. Package esl-erlang is not installed. dpkg: error processing rabbitmq-server (--install): dependency problems - leaving unconfigured ...stuff... Errors were encountered while processing: rabbitmq-server so I looked more closely and saw that I could install erlang-nox (which is a package for erlang for stuff that doesn’t require X to be running -get it? “no X”). So I gave it a shot. sudo apt-get install erlang-nox It worked. sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb And I was finally greeted with this little beauty: Selecting previously unselected package rabbitmq-server. ...stuff... * Starting message broker rabbitmq-server [OK] Victory was mine. TLDR download rabbitmq-server debian package from here but DO NOT run it yet. add this line to your /etc/apt/sources.list (I updated the link below based on an update from Mark J Williams) deb http://packages.erlang-solutions.com/ubuntu precise contrib Next, you may need to add the Erlang Solutions public key for apt-secure wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc sudo apt-key add erlang_solutions.asc then sudo apt-get update then sudo apt-get install erlang then sudo apt-get install erlang-nox then sudo dpkg -i rabbitmq-server_3.2.1-1_all.deb then have a hot chocolate. You’ve earned it.","headline":"RabbitMQ and Erlang and Ubuntu (12.04) Oh My!","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html"},"url":"/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<script>
+  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49576057-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -218,7 +227,42 @@ sudo apt-key add erlang_solutions.asc
 
 <p>then have a hot chocolate. You’ve earned it.</p>
 
-  </div><a class="u-url" href="/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = '/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html';
+      this.page.identifier = '/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html" hidden></a>
 </article>
 
       </div>

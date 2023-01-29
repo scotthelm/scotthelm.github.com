@@ -20,7 +20,16 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-01-05T00:00:00-05:00","datePublished":"2013-01-05T00:00:00-05:00","description":"My first foray into the world of functional programming is going to be Clojure (pronounced “closure”). This Lisp derivative is not a purely functional language like Haskell or standard Lisp. It is built on top of the Java Virtual Machine (JVM) which gives it a wide deployment reach, and has some conveniences that make it easier to get into for OO heads like me. Functional programming is a REALLY different way of viewing the problem of how to tell a computer what to do. I am seeing some value from learning about functional programming already. Lambdas, for example, make a whole lot more sense to me now. It solves problems of complexity and concurrency that are difficult in object-oriented systems. I’m looking forward to learning more about it through Programming Clojure and will post anything I find interesting. My entire career has been spent honing my object-oriented programming skills. When I first started out, I taught myself about relational data. Then I moved to imperative programming, creating data-driven websites with classic asp and vbscript. (ugh). I quickly figured out that sucked and moved into Java. That’s where my love affair with object-oriented programming was born. I cut my teeth with Jrun after a brief detour into CF. I love OO. It provides a fantastic abstraction that has allowed me to think about software in concrete terms that are somewhat relatable to my clients. I spent years doing it in C#. And now I’m doing it in Ruby. To give you an idea how different the implementation is between a statically-typed OO language and a functional language, check this out: Example Java public class StringUtils { public static boolean isBlank(String str) { int strLen; if (str == null || (strLen = str.length()) == 0) { return true; } for (int i = 0; i &lt; strLen; i++) { if ((Character.isWhitespace(str.charAt(i)) == false)) { return false; } } return true; } } Clojure (defn blank? [str] (every? #(Character/isWhitespace %) str)) Expressive and succinct. I am intrigued.","headline":"Clojure Is Bending My Brain","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/01/05/clojure-is-bending-my-brain.html"},"url":"/2013/01/05/clojure-is-bending-my-brain.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<script>
+  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49576057-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -109,7 +118,42 @@ statically-typed OO language and a functional language, check this out:</p>
 
 <p>Expressive and succinct. I am intrigued.</p>
 
-  </div><a class="u-url" href="/2013/01/05/clojure-is-bending-my-brain.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = '/2013/01/05/clojure-is-bending-my-brain.html';
+      this.page.identifier = '/2013/01/05/clojure-is-bending-my-brain.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2013/01/05/clojure-is-bending-my-brain.html" hidden></a>
 </article>
 
       </div>

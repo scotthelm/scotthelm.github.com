@@ -20,7 +20,16 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-01-27T00:00:00-05:00","datePublished":"2013-01-27T00:00:00-05:00","description":"It’s kind of a joke around where I work. I saw a data import script my boss had written that used awk to preprocess massive data files, separating them into record-type-specific files for use with BCP. Since then, I have (jokingly) declared that the combination of awk and elasticsearch is my hammer, and all problems are nails. I was looking for speed improvements for our index import process. Having made said improvements (by parallelizing the tasks - invoking the import process in multiple forks and datasets separated by modulus math), I needed an easy way to keep track of the progress. I already had the processes writing to a log file with this format: 20755 processed 1000 objects ending with: 18000 in 53 seconds The first number is the process id or pid. Since I had multiple processes running, I didn’t want to have to find the last entry for each pid and do math to find out how quickly things were going. So I whipped up this little import_stats.awk script: #! /bin/awk -f # this section happens before any lines are read. # it allows you to set up variables that you can # use as the program executes BEGIN { total_seconds = 0; count = 0; } # the unnamed section here is what is executed # for each line. In this case, it&#39;s checking to # see if a line begins with a number, and # incrementing counts and totals on if it does. # the $9 variable is the ninth column in the # data line { if ($1 ~ /^[0-9]*$/) { total_seconds += $9; ++count; } } # The end section allows you to sum up, peforming # actions to clean up or print results. In this # case I&#39;m printing my results END { print &quot;average seconds per thousand: &quot; total_seconds / count; print &quot;total processed_thus far: &quot; count * 1000; } now I can check on progress by typing this from the app’s root: cat log/import.log | awk -f import_stats.awk and I get average seconds per thousand: 50.4306 total processed_thus far: 432000 Linux and Unix have so many great tools that have been developed over the years that are rock solid foundations for new things. I found this site to be helpful as I was writing my little script: Awk - A Tutorial and Introduction It took no time at all to develop this utility. It’s simple, saves me time and makes me happy.","headline":"Awk - It’s not just a prefix for “ward”","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/01/27/awk-its-not-just-a-prefix-for-ward.html"},"url":"/2013/01/27/awk-its-not-just-a-prefix-for-ward.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<script>
+  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49576057-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -122,7 +131,42 @@ as I was writing my little script:
 <p>It took no time at all to develop this utility. It’s simple, saves me time and
 makes me happy.</p>
 
-  </div><a class="u-url" href="/2013/01/27/awk-its-not-just-a-prefix-for-ward.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = '/2013/01/27/awk-its-not-just-a-prefix-for-ward.html';
+      this.page.identifier = '/2013/01/27/awk-its-not-just-a-prefix-for-ward.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2013/01/27/awk-its-not-just-a-prefix-for-ward.html" hidden></a>
 </article>
 
       </div>
