@@ -1,73 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Fencepost</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Fencepost | Scott Helm</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Fencepost" />
+<meta name="author" content="Scott Helm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When it comes to writing and maintianing software, I’m lazy. I don’t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don’t have to keep repeating it. The Problem Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using attr_accessible. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called strong_parameters. Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves. The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I’m lazy. And that means I need to automate this in some way or I will go insane. Enter Fencepost I solved this problem by creating a gem called Fencepost. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: on Github Installation Add fencepost to your Gemfile gem &#39;fencepost&#39; Configuration rails g fencepost_config This creates a yaml map of your models in config/fencepost.yml. You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. “Y” will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default. Default Configuration The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable) Dev Mode During the early stages of development where your code is in flux, you can set dev_mode=true in config/initializers/fencepost.rb. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer) Usage The gem creates a fencepost method in your contollers. This returns a Fencepost object that has read your models and given you access to strong params for any ActiveRecord model in your application. Simplest Case # app/controllers/people_controller def create @person = Person.create(fencepost.person_params) end Simple allow / deny for top level model In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight. # app/controllers/people_controller def create @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params) end More complex allow / deny for nested models In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes. # app/controllers/people_controller def create @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params) end TLDR This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly. Please have a look at the gem and feel free to submit a pull request if you can make it better." />
+<meta property="og:description" content="When it comes to writing and maintianing software, I’m lazy. I don’t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don’t have to keep repeating it. The Problem Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using attr_accessible. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called strong_parameters. Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves. The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I’m lazy. And that means I need to automate this in some way or I will go insane. Enter Fencepost I solved this problem by creating a gem called Fencepost. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: on Github Installation Add fencepost to your Gemfile gem &#39;fencepost&#39; Configuration rails g fencepost_config This creates a yaml map of your models in config/fencepost.yml. You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. “Y” will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default. Default Configuration The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable) Dev Mode During the early stages of development where your code is in flux, you can set dev_mode=true in config/initializers/fencepost.rb. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer) Usage The gem creates a fencepost method in your contollers. This returns a Fencepost object that has read your models and given you access to strong params for any ActiveRecord model in your application. Simplest Case # app/controllers/people_controller def create @person = Person.create(fencepost.person_params) end Simple allow / deny for top level model In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight. # app/controllers/people_controller def create @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params) end More complex allow / deny for nested models In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes. # app/controllers/people_controller def create @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params) end TLDR This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly. Please have a look at the gem and feel free to submit a pull request if you can make it better." />
+<link rel="canonical" href="/2013/11/13/fencepost.html" />
+<meta property="og:url" content="/2013/11/13/fencepost.html" />
+<meta property="og:site_name" content="Scott Helm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-11-13T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fencepost" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-11-13T00:00:00-05:00","datePublished":"2013-11-13T00:00:00-05:00","description":"When it comes to writing and maintianing software, I’m lazy. I don’t like doing mindless work. If I find myself doing the same thing more than twice, I will find a way to automate that thing in some way so I don’t have to keep repeating it. The Problem Ruby on Rails changed the way it handles input from a web request from version 3.2 to 4.0. It used to be that you defined what you allowed to be set via update_attributes in the model itself by using attr_accessible. This was all well and good until the new version of Rails removed that mechanism for model security in favor of something called strong_parameters. Strong Parameters are a good thing. They increase the flexibility of the application by letting you define which parameters are allowed to be passed to your models outside the models themselves. The Problem is that I have more than a few applications I need to upgrade to Rails 4, and that means I have to go into every controller in each of those applications and create my strong parameters declarations. Not only that: I’m lazy. And that means I need to automate this in some way or I will go insane. Enter Fencepost I solved this problem by creating a gem called Fencepost. This gem solves the strong parameters problem in an elegant way, freeing you from needless declarations in your controllers, and giving you access to those declarations in an intuitive way. The following is from the README for the gem: on Github Installation Add fencepost to your Gemfile gem &#39;fencepost&#39; Configuration rails g fencepost_config This creates a yaml map of your models in config/fencepost.yml. You can re-run the initializer at any time. You will be asked if you want to overwrite the existing config. “Y” will force an overwrite of the file, and you will need to re-comment out any attributes you want to remove by default. Default Configuration The yaml map is where you can edit the allowable attributes for your models. In the 80/20 rule, this would be the %80. Removing attributes in the configuration yaml lets you set reasonable defaults for strong parameter behavior. This map is read one time during intialization and stored in the Fencepost model graph (a class-level variable) Dev Mode During the early stages of development where your code is in flux, you can set dev_mode=true in config/initializers/fencepost.rb. dev mode will eager load and read in all your models dynamically every time the class is instantiated. (Ignoring the yaml in the initializer) Usage The gem creates a fencepost method in your contollers. This returns a Fencepost object that has read your models and given you access to strong params for any ActiveRecord model in your application. Simplest Case # app/controllers/people_controller def create @person = Person.create(fencepost.person_params) end Simple allow / deny for top level model In this example, the Person model allows height and weight by default, but does NOT allow dob (date of birth). In this example we want to allow date of birth but deny weight. # app/controllers/people_controller def create @person = Person.create(fencepost.allow(:dob).deny(:weight).person_params) end More complex allow / deny for nested models In this example, the Person model has a collection of addresses. We want to deny latitude and longitude from the acceptable attributes. # app/controllers/people_controller def create @person = Person.create(fencepost.deny(addresses_attributes: [:latitude, :longitude]).person_params) end TLDR This gem creates strong parameter declarations based on you ActiveRecord models. It makes this configuration available in all your controllers, and gives you the flexibility to allow or deny attributes on the fly. Please have a look at the gem and feel free to submit a pull request if you can make it better.","headline":"Fencepost","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/11/13/fencepost.html"},"url":"/2013/11/13/fencepost.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest"></head>
+<body><header class="site-header">
 
-    <!-- Le styles -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/overrides.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-      ul.plain-list
-      {
-        margin-left: 0;
-        padding-left: 0;
-        list-style-type: none;
-        font-size: 14px;
-        line-height: 17px;
-        font-family: Trebuchet MS, sans-serif, Arial, Helvetica;
-      }
-      .hero-content {
-        background: rgb(137,229,0); /* Old browsers */
-        background: -moz-linear-gradient(top,  rgba(137,229,0,1) 0%, rgba(26,96,25,1) 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(137,229,0,1)), color-stop(100%,rgba(26,96,25,1))); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  rgba(137,229,0,1) 0%,rgba(26,96,25,1) 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  rgba(137,229,0,1) 0%,rgba(26,96,25,1) 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  rgba(137,229,0,1) 0%,rgba(26,96,25,1) 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  rgba(137,229,0,1) 0%,rgba(26,96,25,1) 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89e500', endColorstr='#1a6019',GradientType=0 ); /* IE6-9 */
-      }
-    </style>
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Helm</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm">
-  </head>
+        <div class="trigger"><a class="page-link" href="/all_posts.html">All Posts</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <body>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fencepost</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2013-11-13T00:00:00-05:00" itemprop="datePublished">
+        2013-11-13
+      </time></p>
+  </header>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="row-fluid">
-          <div class="span3">&nbsp;</div>
-          <div class="span6" style="padding-left:10px">
-            <a class="brand" href="/">Scott Helm</a>
-          </div>
-          <div class="span3">&nbsp;</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">&nbsp;</div>
-        <div class="span6">
-          <h2> Fencepost </h2>
-          <hr/>
-          <p>When it comes to writing and maintianing software, I’m lazy.
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>When it comes to writing and maintianing software, I’m lazy.
 I don’t like doing mindless work. If I find myself doing the same thing
 more than twice, I will find a way to automate that thing in some way so I don’t
 have to keep repeating it.</p>
@@ -176,65 +161,84 @@ the flexibility to allow or deny attributes on the fly.</p>
 can make it better.</p>
 
 
-          <hr/>
-        <!-- #################### DISQUS ############################# -->
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-         })();
-       </script>
-       <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-       <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-        <div class="span3">&nbsp;</div>
-     </div>
-
-     <footer>
-     <div class="row-fluid">
-       <div class="span3">&nbsp;</div>
-       <div class="span6">
-         <p>&copy; Scott Helm 2023</p>
-         <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
-       </div>
-       <div class="span3">&nbsp;</div>
-     </div>
-     </footer>
-
-   </div><!--/.fluid-container-->
-
-   <!-- Le javascript
-   ================================================== -->
-   <!-- Placed at the end of the document so the pages load faster -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-   <script src="/js/bootstrap.min.js"></script>
-   <script type="text/javascript">
-     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-   var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
-
-   /* * * DON'T EDIT BELOW THIS LINE * * */
-   (function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-  </script>
+  </div><div id="disqus_thread"></div>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    var disqus_config = function () {
+      this.page.url = '/2013/11/13/fencepost.html';
+      this.page.identifier = '/2013/11/13/fencepost.html';
+    };
 
-    ga('create', 'UA-49576057-1', 'scotthelm.com');
-    ga('send', 'pageview');
+    (function() {
+      var d = document, s = d.createElement('script');
 
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2013/11/13/fencepost.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/rss.rss">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">&copy; Scott Helm 2023</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Father, Husband, Technologist, Actor, Musician, Life-long Learner</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/scotthelm" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://linkedin.com/in/scott-helm-4a1aa52" target="_blank" title="linkedin">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#linkedin"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://stackoverflow.com/users/1518852/plasticide" target="_blank" title="stackoverflow">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/scott_helm" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
 </body>
+
 </html>

@@ -1,224 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Scott Helm Dot Com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Scott Helm | Father, Husband, Technologist, Actor, Musician, Life-long Learner</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Scott Helm" />
+<meta name="author" content="Scott Helm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Father, Husband, Technologist, Actor, Musician, Life-long Learner" />
+<meta property="og:description" content="Father, Husband, Technologist, Actor, Musician, Life-long Learner" />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="Scott Helm" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Scott Helm" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Scott Helm"},"description":"Father, Husband, Technologist, Actor, Musician, Life-long Learner","headline":"Scott Helm","name":"Scott Helm","url":"/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest"></head>
+<body><header class="site-header">
 
-    <!-- Le styles -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet"/>
-    <style type="text/css">
-      #intro { 
-        background: url(img/about.png) 50% 0 fixed; 
-        height: auto;  
-        margin: -20px auto 0 auto; 
-          width: 100%; 
-          position: relative; 
-          box-shadow: 0 0 50px rgba(0,0,0,0.8);
-          padding: 100px 0;
-      }
-      #home { 
-        background: url(img/home.jpg) 50% 0 fixed; 
-        height: auto;  
-        margin: 0 auto; 
-          width: 100%; 
-          position: relative; 
-          box-shadow: 0 0 50px rgba(0,0,0,0.8) inset;
-          padding: 200px 0;
-      }
-      #about { 
-        background: url(img/about.png) 50% 0 fixed; 
-        height: auto;
-        margin: 0 auto; 
-          width: 100%; 
-          position: relative; 
-          box-shadow: 0 0 50px rgba(0,0,0,0.8);
-          padding: 100px 0;
-          color: #fff;
-      }
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Helm</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
 
-      /* Non-essential demo stuff */
-      .hero-unit {
-        color: #fff;
-      }
-      .media-object { width: 64px; height: 64px; padding-bottom: 30px }
-      ul.plain-list
-      {
-        margin-left: 0;
-        padding-left: 0;
-        list-style-type: none;
-        font-size: 14px;
-        line-height: 17px;
-        font-family: Trebuchet MS, sans-serif, Arial, Helvetica;
-      }
-
-      .navbar-inner {
-        background: #073642; /* Old browsers */
-        background: -moz-linear-gradient(top,  #073642 0%, #002b36 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#073642), color-stop(100%,#002b36)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #073642 0%,#002b36 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #073642 0%,#002b36 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #073642 0%,#002b36 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #073642 0%,#002b36 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#073642', endColorstr='#002b36',GradientType=0 ); /* IE6-9 */
-      }
-
-      .larger-than-life {
-        color: #fff;
-        padding: 50px 0px;
-      }
-      @media (max-width: 767px){
-        body {
-          padding-right: 0px;
-          padding-left: 0px;
-        }
-      }
-      @media (max-width: 979px){
-        .navbar .brand {
-          padding-right: 10px;
-          padding-left: 10px;
-          margin: 0 0 0 15px;
-        }
-      }
-      /* inline styles are the new hotness */
-    </style>
+        <div class="trigger"><a class="page-link" href="/all_posts.html">All Posts</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
 
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/scotthelm"/>
-  </head>
-  <body>
+  <div class="footer-col-wrapper">
+    <div class="footer-col">
+      <h2>Technical</h2>
+      <p>Industry professional since 1998</p>
+      <p>Systems Architect</p>
+      <p><a href="https://gist.github.com/scotthelm/f194535fcaf1759c24fa17e74cb224ec">My Resume</a></p>
+      <p>
+        <a href="https://github.com/scotthelm">My github page</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h2>Acting</h2>
+      <p>
+      Experience in over thirty professional plays. A member of Actor's Equity
+      Association.  Hundreds of commercial voiceovers.
+      </p>
+      <p>
+      <a href="http://s3.amazonaws.com/ScottHelm/demo/Scott%20Helm%20Commercial%20Demo%202011.mp3">My voiceover demo</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h2>Music</h2>
+      <p>Playing music on multiple instruments for... a long time, I started recording it. The results can be found on</p>
+      <p> 
+        <a href="http://soundcloud.com/plasticide"> My Soundcloud</a>
+      </p>
+    </div>
+  </div>
+  <hr/>
+    <h2>Most Recent Post</h2>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">Scott Helm</a>
+    <ul class="post-list"><li>
+        <span class="post-meta">2023-01-28</span>
+        <h3>
+          <a class="post-link" href="/2023/01/28/been-a-while.html">
+            Been A While
+          </a>
+        </h3></li></ul>
+
+    </div>
+
       </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/rss.rss">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">&copy; Scott Helm 2023</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Father, Husband, Technologist, Actor, Musician, Life-long Learner</p>
       </div>
     </div>
-    <section id="intro" data-speeed="6" data-type="background">
-      <div class="container">
-        <div class="row-fluid">
-          <div class="span12 larger-than-life">
-            <h2 style="font-size: 70px; line-height: 70px; letter-spacing: -1px; text-align: center">Engineer / Actor / Musician</h2>
-            <p style="text-transform: uppercase; letter-spacing: 3px; color: #eee; text-align: center">Adventures of a lifelong learner</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="home" data-speed="4" data-type="background">
-      <div class="container">
-        <div class="row-fluid">
-          <div class="span4 well">
-            <h2>Technical</h2>
-            <p>Industry professional since 1998</p>
-            <p>Systems Architect</p>
-            <p><a href="https://gist.github.com/scotthelm/f194535fcaf1759c24fa17e74cb224ec">My Resume</a></p>
-            <p>
-              <a href="https://github.com/scotthelm">My github page</a>
-            </p>
-          </div>
 
-          <div class="span4 well">
-            <h2>Theatre</h2>
-            <p>
-            Experience in over thirty professional plays. A member of Actor's Equity
-            Association.  Hundreds of commercial voiceovers.
-            </p>
-            <p>
-            <a href="http://s3.amazonaws.com/ScottHelm/demo/Scott%20Helm%20Commercial%20Demo%202011.mp3">My voiceover demo</a>
-            </p>
-          </div>
-          <div class="span4 well">
-            <h2>Musical</h2>
-            <p>Playing music on multiple instruments for... a long time, I started recording it. The results can be found on</p>
-            <p> 
-              <a href="http://soundcloud.com/plasticide"> MySoundcloud</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="about" data-speed="2" data-type="background">
-      <div class="container">
-        <div class="row-fluid">
-          <div class="span8">
-            <h2>Posts</h2>
-            <ul class="plain-list">
-            <li><a href="/all_posts">All Posts</a></li>
-            <li>&nbsp;</li>
-            
-              <li>
-                <a href="/2023/01/28/been-a-while.html">Been A While</a>
-              </li>
-            
-              <li>
-                <a href="/2018/09/27/remembering-nanny.html">Remembering Nanny</a>
-              </li>
-            
-              <li>
-                <a href="/2018/09/02/remembering-dean-whitworth.html">Remembering Dean Whitworth</a>
-              </li>
-            
-              <li>
-                <a href="/2016/06/07/new-rails-app-with-docker.html">New Rails App With Docker</a>
-              </li>
-            
-              <li>
-                <a href="/2015/02/24/vimitude.html">Vimitude</a>
-              </li>
-            
-              <li>
-                <a href="/2014/07/24/postgresql-to-csv.html">Postgres to CSV</a>
-              </li>
-            
-              <li>
-                <a href="/2014/07/04/die-cast-drifting.html">Die Cast Drifting</a>
-              </li>
-            
-              <li>
-                <a href="/2014/02/14/coming-up-for-air.html">Coming Up For Air</a>
-              </li>
-            
-              <li>
-                <a href="/2014/01/01/looking-both-ways-2013-2014.html">Looking Both Ways 2013 2014</a>
-              </li>
-            
-              <li>
-                <a href="/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html">RabbitMQ and Erlang and Ubuntu (12.04) Oh My!</a>
-              </li>
-            
-            </ul>
-          </div>
-          <div class="span4">
-            <h2>Contact</h2>
-            <p>&copy; Scott Helm 2023</p>
-            <p><a href="/rss.rss" style="border 0"><img src="/img/rss.png" alt="rss"/></a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-	  <script src="js/init.js"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/scotthelm" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://linkedin.com/in/scott-helm-4a1aa52" target="_blank" title="linkedin">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#linkedin"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://stackoverflow.com/users/1518852/plasticide" target="_blank" title="stackoverflow">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/scott_helm" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
 
-      ga('create', 'UA-49576057-1', 'scotthelm.com');
-      ga('send', 'pageview');
+  </div>
 
-    </script>
-  </body>
+</footer>
+</body>
+
 </html>

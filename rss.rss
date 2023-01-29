@@ -3,18 +3,18 @@
   <channel>
     <title>scotthelm.com</title>
     <link>http://scotthelm.com/</link>
-    <atom:link href="http://scotthelm.com/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Your Website</description>
+    <atom:link href="http://scotthelm.com/rss.rss" rel="self" type="application/rss+xml" />
+    <description>Scott Helm</description>
     <language>en-us</language>
-    <pubDate>Sat, 28 Jan 2023 17:13:59 -0500</pubDate>
-    <lastBuildDate>Sat, 28 Jan 2023 17:13:59 -0500</lastBuildDate>
+    <pubDate>Sun, 29 Jan 2023 14:56:53 -0500</pubDate>
+    <lastBuildDate>Sun, 29 Jan 2023 14:56:53 -0500</lastBuildDate>
 
     
     <item>
       <title>Been A While</title>
       <link>http://scotthelm.com/2023/01/28/been-a-while.html</link>
       <pubDate>Sat, 28 Jan 2023 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2023/01/28/been-a-while</guid>
       <description>&lt;p&gt;It’s been a while, and a lot has changed. I lost my father. I changed jobs. I wrote some more music. I stopped consuming social media (recently - more to come on that).I’ve decided that the best way for me to engage is with RSS. I’m currently evaluating &lt;a href=&quot;https://feedly.com&quot;&gt;Feedly&lt;/a&gt;, and I’ll post about that when I have a better handle on it. I realized that I miss the google reader a lot.&lt;/p&gt;
 
@@ -28,7 +28,7 @@
       <title>Remembering Nanny</title>
       <link>http://scotthelm.com/2018/09/27/remembering-nanny.html</link>
       <pubDate>Thu, 27 Sep 2018 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2018/09/27/remembering-nanny</guid>
       <description>&lt;p&gt;I don’t remember the first time I met Betty Davis. I was young, probably 9 or so? I didn’t really realize at the time how incredibly lucky I was.&lt;/p&gt;
 
@@ -50,7 +50,7 @@
       <title>Remembering Dean Whitworth</title>
       <link>http://scotthelm.com/2018/09/02/remembering-dean-whitworth.html</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2018/09/02/remembering-dean-whitworth</guid>
       <description>&lt;p&gt;I first met Dean in February of 1993. Claire and I drove her 72 Beetle into the mountains, passing over a bridge that looked like you would just crash into the cliff at the end of it. We kept driving around the mountain and up the hill, where I met Tyler, his dog, for the first time.&lt;/p&gt;
 
@@ -88,7 +88,7 @@
       <title>New Rails App With Docker</title>
       <link>http://scotthelm.com/2016/06/07/new-rails-app-with-docker.html</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2016/06/07/new-rails-app-with-docker</guid>
       <description>&lt;p&gt;There are a ton of posts out there on this topic. The purpose of this post is
 to show the step-by-step creation of a new dockerized rails application, hooked
@@ -388,7 +388,7 @@ export DOCKER_MACHINE_NAME=&quot;default&quot;
       <title>Vimitude</title>
       <link>http://scotthelm.com/2015/02/24/vimitude.html</link>
       <pubDate>Tue, 24 Feb 2015 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2015/02/24/vimitude</guid>
       <description>&lt;h2 id=&quot;love&quot;&gt;Love&lt;/h2&gt;
 &lt;p&gt;I have enjoyed moving to an open-source development stack. I use Ruby and
@@ -477,7 +477,7 @@ and, voila! Happy Vimming!&lt;/p&gt;
       <title>Postgres to CSV</title>
       <link>http://scotthelm.com/2014/07/24/postgresql-to-csv.html</link>
       <pubDate>Thu, 24 Jul 2014 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2014/07/24/postgresql-to-csv</guid>
       <description>&lt;p&gt;Here lately, I have had to produce several reports from psql. If you’re anything
 like me, Then you’re all about automating automatable things. And you’re also
@@ -558,7 +558,7 @@ simple command-line tools.&lt;/p&gt;
       <title>Die Cast Drifting</title>
       <link>http://scotthelm.com/2014/07/04/die-cast-drifting.html</link>
       <pubDate>Fri, 04 Jul 2014 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2014/07/04/die-cast-drifting</guid>
       <description>&lt;p&gt;My brother and I invented a game years ago at our Grandmother’s house. We cleared
 off the table and grabbed a few Hot Wheels and Matchbox cars and started pushing
@@ -577,7 +577,7 @@ kid’s cars. It may be stupid fun, but that’s how we roll.&lt;/p&gt;
       <title>Coming Up For Air</title>
       <link>http://scotthelm.com/2014/02/14/coming-up-for-air.html</link>
       <pubDate>Fri, 14 Feb 2014 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2014/02/14/coming-up-for-air</guid>
       <description>&lt;p&gt;I have spent the last 7 weeks underwater. Rather than exploring the depths of
 some ocean floor, I was plumbing the depths of my knowledge and character.&lt;/p&gt;
@@ -646,7 +646,7 @@ at the bottom of the abyss.&lt;/p&gt;
       <title>Looking Both Ways 2013 2014</title>
       <link>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014.html</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2014/01/01/looking-both-ways-2013-2014</guid>
       <description>&lt;p&gt;This time of year always makes me reflect on what was and look forward to
 what is to come.&lt;/p&gt;
@@ -711,7 +711,7 @@ a physical component to Systema, but I’m including it here for brevity.&lt;/p&
       <title>RabbitMQ and Erlang and Ubuntu (12.04) Oh My!</title>
       <link>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my</guid>
       <description>&lt;p&gt;As part of an upcoming development effort for a new client, I am looking at
 using a message broker to facilitate inter-app communications. The use case
@@ -885,7 +885,7 @@ sudo apt-key add erlang_solutions.asc
       <title>Fencepost</title>
       <link>http://scotthelm.com/2013/11/13/fencepost.html</link>
       <pubDate>Wed, 13 Nov 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/11/13/fencepost</guid>
       <description>&lt;p&gt;When it comes to writing and maintianing software, I’m lazy.
 I don’t like doing mindless work. If I find myself doing the same thing
@@ -1002,7 +1002,7 @@ can make it better.&lt;/p&gt;
       <title>Command Line JSON with JQ</title>
       <link>http://scotthelm.com/2013/09/28/command-line-json-with-jq.html</link>
       <pubDate>Sat, 28 Sep 2013 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/09/28/command-line-json-with-jq</guid>
       <description>&lt;p&gt;I started my first foray in to bash scripting. I have client information stored
 in a Mongo database. I have canonical data in Postgresql. I have indexed data
@@ -1145,7 +1145,7 @@ have found this to be the best option. Cheers, Stedolan, for the great contribut
       <title>Even Now</title>
       <link>http://scotthelm.com/2013/05/22/even-now.html</link>
       <pubDate>Wed, 22 May 2013 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/05/22/even-now</guid>
       <description>&lt;p&gt;Even now&lt;br /&gt;
 I can hear my heartbeat in my ears&lt;br /&gt;
@@ -1180,7 +1180,7 @@ Even still&lt;/p&gt;
       <title>Postgres quick cursors</title>
       <link>http://scotthelm.com/2013/05/15/postgres-quick-cursors.html</link>
       <pubDate>Wed, 15 May 2013 00:00:00 -0400</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/05/15/postgres-quick-cursors</guid>
       <description>&lt;p&gt;I needed to act on individual members of a set. I also didn’t want to write a 
 function. In psql, I discovered the DO block. It allowed me to gain access to
@@ -1213,7 +1213,7 @@ views.&lt;/p&gt;
       <title>American Drone</title>
       <link>http://scotthelm.com/2013/02/10/american-drone.html</link>
       <pubDate>Sun, 10 Feb 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/02/10/american-drone</guid>
       <description>&lt;p&gt;We are using the same drone technology we use in Afghanistan here in the U.S.&lt;/p&gt;
 
@@ -1243,7 +1243,7 @@ we are killing in the name of our “national interest” abroad.&lt;/p&gt;
       <title>Awk - It's not just a prefix for "ward"</title>
       <link>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward.html</link>
       <pubDate>Sun, 27 Jan 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/01/27/awk-its-not-just-a-prefix-for-ward</guid>
       <description>&lt;p&gt;It’s kind of a joke around where I work. I saw a data import script my boss had
 written that used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;awk&lt;/code&gt; to preprocess massive data files, separating them into
@@ -1321,7 +1321,7 @@ makes me happy.&lt;/p&gt;
       <title>More Postgres Magic</title>
       <link>http://scotthelm.com/2013/01/20/more-postgres-magic.html</link>
       <pubDate>Sun, 20 Jan 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/01/20/more-postgres-magic</guid>
       <description>&lt;p&gt;[REASSIGN OWNED BY old_role new_role] (http://www.postgresql.org/docs/9.0/static/sql-reassign-owned.html)&lt;/p&gt;
 
@@ -1384,7 +1384,7 @@ ownage=# \d
       <title>Clojure Is Bending My Brain</title>
       <link>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain.html</link>
       <pubDate>Sat, 05 Jan 2013 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2013/01/05/clojure-is-bending-my-brain</guid>
       <description>&lt;p&gt;My first foray into the world of functional programming is going to be
 &lt;a href=&quot;http://clojure.org/&quot;&gt;Clojure&lt;/a&gt; (pronounced “closure”).&lt;/p&gt;
@@ -1449,7 +1449,7 @@ statically-typed OO language and a functional language, check this out:&lt;/p&gt
       <title>Plans For the New Year</title>
       <link>http://scotthelm.com/2012/12/31/plans-for-the-new-year.html</link>
       <pubDate>Mon, 31 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/31/plans-for-the-new-year</guid>
       <description>&lt;p&gt;I made some major changes over the last year.&lt;/p&gt;
 
@@ -1526,7 +1526,7 @@ year!  Happy 2013 all!&lt;/p&gt;
       <title>Rainbows</title>
       <link>http://scotthelm.com/2012/12/29/rainbows.html</link>
       <pubDate>Sat, 29 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/29/rainbows</guid>
       <description>&lt;p&gt;This is a song I wrote for my mom. My sister found a picture of her and me
 dancing at my wedding. It was a beautiful gift.&lt;/p&gt;
@@ -1563,7 +1563,7 @@ and see rainbows&lt;/p&gt;
       <title>It's the end of the world, and I feel fine</title>
       <link>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine.html</link>
       <pubDate>Thu, 20 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/20/its-the-end-of-the-world-and-i-feel-fine</guid>
       <description>&lt;p&gt;I was amazed by how much the world didn’t end today.&lt;/p&gt;
 </description>
@@ -1573,7 +1573,7 @@ and see rainbows&lt;/p&gt;
       <title>Three Four for Twelve Twelve</title>
       <link>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve.html</link>
       <pubDate>Wed, 12 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/12/three-four-for-twelve-twelve</guid>
       <description>&lt;p&gt;It being 12/12/12, I was put in mind of 3/4 time, of course.&lt;/p&gt;
 
@@ -1601,7 +1601,7 @@ and see rainbows&lt;/p&gt;
       <title>Some Postgres Shortcuts</title>
       <link>http://scotthelm.com/2012/12/11/some-postgres-shortcuts.html</link>
       <pubDate>Tue, 11 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/11/some-postgres-shortcuts</guid>
       <description>&lt;p&gt;###Command Line&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pg_dump &amp;lt;database_name&amp;gt; -s -O -h &amp;lt;host&amp;gt; -U &amp;lt;username&amp;gt; -W -f &amp;lt;path_to_target_file&amp;gt; -n &amp;lt;schema_name&amp;gt; -n &amp;lt;schema_name&amp;gt;
@@ -1633,7 +1633,7 @@ and see rainbows&lt;/p&gt;
       <title>Me and The Boys</title>
       <link>http://scotthelm.com/2012/12/03/me-and-the-boys.html</link>
       <pubDate>Mon, 03 Dec 2012 00:00:00 -0500</pubDate>
-      <author>you@scotthelm.com (Your Name)</author>
+      <author>Scott Helm</author>
       <guid>http://scotthelm.com/2012/12/03/me-and-the-boys</guid>
       <description>&lt;p&gt;Every now and then, I’m able to get the boys together with me long enough to
 take a picture. Their reaction to the countdown in the Photobooth app is 
