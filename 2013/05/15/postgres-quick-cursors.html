@@ -20,16 +20,26 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2013-05-15T00:00:00-04:00","datePublished":"2013-05-15T00:00:00-04:00","description":"I needed to act on individual members of a set. I also didn’t want to write a function. In psql, I discovered the DO block. It allowed me to gain access to pgplsql without being in the context of a UDF (User Defined Function). In this particular case, I created a table called view_refugees. These were views that were causing my rails migration to fail due to a change in an underlying table column’s datatype. The plan is that I will create the view refugees from pg_views, drop the views, run the migration, then recreate the views. do $$declare r record; begin for r in select viewname, schemaname from view_refugees loop execute &#39;drop view &#39; || r.schemaname || &#39;.&#39; || r.viewname || &#39; cascade&#39;; end loop; end$$; DO block makes that easier.","headline":"Postgres quick cursors","mainEntityOfPage":{"@type":"WebPage","@id":"/2013/05/15/postgres-quick-cursors.html"},"url":"/2013/05/15/postgres-quick-cursors.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
 <script>
-  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window['ga-disable-G-5Y41SB1WWT'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
   window.dataLayer = window.dataLayer || [];
   function gtag(){window.dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-49576057-1');
+  gtag('config', 'G-5Y41SB1WWT');
 </script>
+-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-5Y41SB1WWT');
+</script>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">

@@ -20,16 +20,26 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2014-07-24T00:00:00-04:00","datePublished":"2014-07-24T00:00:00-04:00","description":"Here lately, I have had to produce several reports from psql. If you’re anything like me, Then you’re all about automating automatable things. And you’re also probably all about simplicity. So I turned to my old friends, psql and cron. Overview If you want to automate something in Linux, figure out how to run it from the command line. Then run it from cron. You can automate cron from something like puppet or chef or docker The Command First of all - you will probably want to wrap a thing like this in a shell script. I use bash, so my ~/psql_report_script.sh would be like this: #!/bin/bash PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE psql -d &lt;database&gt; -h &lt;host&gt; -U &lt;username&gt; -c &#39;copy (select something from your_tables) TO STDOUT WITH CSV HEADER&#39; -o /path/to/your/file.csv Now chmod +x that file, and let’s break that command down just a little. PGPASSWORD=$YOUR_ENVIRONMENT_VARIABLE Now that&#39;s sensitive information. But it allows us to run the command without having to type the password in, and that&#39;s a good thing. That&#39;s why we use an environment variable. Pro tip - if you don&#39;t want a command to show up in history then put a space before it. psql That&#39;s our actual command -d that&#39;s the name of your database -h that&#39;s the hostname of your database server -U that&#39;s the database username -c that&#39;s the sql command to run. Since we want to output the contents of the query, we use the COPY command.[more on that here](http://www.postgresql.org/docs/current/static/sql-copy.html). This is pretty much the guts of the command. If your SQL is complicated, consider using the -f argument to pass in a file containing your sql command. In our COPY command we&#39;re telling psql to copy the result of the query to STDOUT and in a CSV format with headers -o that&#39;s where we want the file to be saved The Automation I like cron. It’s the easiest, fastest way to make things happen on a schedule on a linux machine. Here’s how to set it up. TLDR: type in crontab -e to edit your crontab file, and read the top line. From the how to set it up link: minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday) The last part of the file is your command. So if I wanted this to run every day at 2am, my crontab line would look like this: 01 02 * * * /home/my_user/reports/psql_report_script.sh 30 02 * * * scp /path/to/your/file.csv some_user@mysftserver:/path/to/outfile.csv Here, I’m also exporting the file out to another server at 2:30am every morning. As you can see it’s not hard at all to set up a repeatable report extract using simple command-line tools.","headline":"Postgres to CSV","mainEntityOfPage":{"@type":"WebPage","@id":"/2014/07/24/postgresql-to-csv.html"},"url":"/2014/07/24/postgresql-to-csv.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-49576057-1"></script>
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
 <script>
-  window['ga-disable-UA-49576057-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window['ga-disable-G-5Y41SB1WWT'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
   window.dataLayer = window.dataLayer || [];
   function gtag(){window.dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-49576057-1');
+  gtag('config', 'G-5Y41SB1WWT');
 </script>
+-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-5Y41SB1WWT');
+</script>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
