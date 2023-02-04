@@ -6,9 +6,180 @@
     <atom:link href="http://scotthelm.com/rss.rss" rel="self" type="application/rss+xml" />
     <description>Scott Helm</description>
     <language>en-us</language>
-    <pubDate>Sun, 29 Jan 2023 22:19:54 -0500</pubDate>
-    <lastBuildDate>Sun, 29 Jan 2023 22:19:54 -0500</lastBuildDate>
+    <pubDate>Sat, 04 Feb 2023 13:06:28 -0500</pubDate>
+    <lastBuildDate>Sat, 04 Feb 2023 13:06:28 -0500</lastBuildDate>
 
+    
+    <item>
+      <title>Diagrams As Text - Plantuml</title>
+      <link>http://scotthelm.com/2023/02/04/diagrams-as-text-plantuml.html</link>
+      <pubDate>Sat, 04 Feb 2023 00:00:00 -0500</pubDate>
+      <author>Scott Helm</author>
+      <guid>http://scotthelm.com/2023/02/04/diagrams-as-text-plantuml</guid>
+      <description>&lt;p&gt;Diagrams are a way of communicating an idea, or answering questions visually.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;Plantuml&lt;/a&gt; is a free and open-source way of creating these diagrams using text.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-would-i-want-to-do-that&quot;&gt;Why Would I Want To Do That?&lt;/h2&gt;
+
+&lt;p&gt;Diagrams help communicate an idea very quickly. Some ideas or questions you can answer with diagrams include&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How do different parts of a system collaborate together?&lt;/li&gt;
+  &lt;li&gt;What are the steps I need to take, and what decisions do I need to make to complete a process?&lt;/li&gt;
+  &lt;li&gt;How can I organize my thoughts around a central theme?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some reasons you might try creating images with text:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Trying to line up boxes and arrows - especially when there are a lot of them - is terrible - and time consuming!
+    &lt;ul&gt;
+      &lt;li&gt;Plantuml to the rescue!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Trying to keep up in a meeting is tough
+    &lt;ul&gt;
+      &lt;li&gt;I find that I can type much faster than I can drag things around&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Being able to regenerate your diagram after making changes is simple
+    &lt;ul&gt;
+      &lt;li&gt;With vscode, the plantuml plugin, and a plantuml server, the diagrams appear as you type&lt;/li&gt;
+      &lt;li&gt;Bonus: it makes you look like a wizard.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Your diagrams can be a part of your source code - very friendly to modern version control systems
+    &lt;ul&gt;
+      &lt;li&gt;This helps us keep our diagrams fresh and alive - actual artifacts, not relics.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Being text, the source of the diagram is human-readable and intuitive
+    &lt;ul&gt;
+      &lt;li&gt;Even without the rendering, I find that I can follow what’s happening even without the picture.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;some-examples&quot;&gt;Some Examples&lt;/h2&gt;
+
+&lt;h3 id=&quot;sequence-diagrams&quot;&gt;Sequence Diagrams&lt;/h3&gt;
+
+&lt;p&gt;Sequences allow us to answer the quetion: “How do different parts of a process collaborate together?”. Plantuml makes the creation of these types of diagrams quick and easy. We can quickly see which participants are involved in a process and what messages they send to each other to accomplish a task.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;//www.plantuml.com/plantuml/png/VP31RW8X48Rl-nJJlVi2FJIIJNiptLHUWB1_bSeE1cPhVFiYHCKcxNNuvkE3TH8JPPbzzoHxp22Bk7WONeL5l6DquiI3-YtWU4UADk7ReU-CbH1f99Ee7ut4m7rtp2fdtT6ma5RbI3jxW93QWUKH62em1BP8oGKc9GAUp6zGwzQapG7n4TXKe8IHtYFNvC1kfDLB3docBJoirF0wrIgFt-E4I5Ardo5IAXmccWkfrLMWqg40HtEUmT8uHdFE9pVBoScUh8bJNhupqR5GpK-DzGEoH2uu6Pv8Ab7jmxtGtdueTSF_JKFJrEurOSLGmJVdFONB7NdwLrLxUtstBcz20ikjEGzNrp3lmucClMpLZSrbuvK5iHZ1N-5CzO_Nu6cP_Gy0&quot; alt=&quot;sequence diagram example&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-plantuml&quot;&gt;@startuml
+!theme cerulean-outline
+title &quot;Seeing A Movie&quot;
+actor P as &quot;Patron&quot;
+participant TA as &quot;Ticket Agent&quot;
+participant CA as &quot;Concession Attendant&quot;
+participant TT as &quot;Ticket Taker&quot;
+participant MT as &quot;Movie Theatre&quot;
+
+P -&amp;gt; P : Select Movie
+P -&amp;gt; TA : Order ticket for selected movie
+TA -&amp;gt; P : Ask for payment
+P -&amp;gt; TA : Pay for ticket with card
+TA -&amp;gt; TA : Print Tickets
+TA -&amp;gt; P : Return card and tickets
+P -&amp;gt; CA : Order concessions
+CA -&amp;gt; P : Ask for payment
+P -&amp;gt; CA : Pay for concessions with card
+CA -&amp;gt; CA : Fill order
+CA -&amp;gt; P : Return card and concessions
+P -&amp;gt; TT : Present tickets
+TT --&amp;gt; P : Allow access
+P -&amp;gt; MT : Enter and enjoy movie
+@enduml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Imagine trying to keep all those boxes and arrows maintained in a graphical program!&lt;/p&gt;
+
+&lt;h3 id=&quot;activity-diagrams&quot;&gt;Activity Diagrams&lt;/h3&gt;
+
+&lt;p&gt;Activity diagrams allow you to answer the question - “What are the steps I need to take, and what decisions do I need to make to complete a process?”. The are fantastic for dialing in the exact steps of a process (including conditions and loops).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Plantuml&lt;/th&gt;
+&lt;th&gt;Image&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;pre&gt;
+```plantuml
+@startuml
+start
+:get bread from pantry;
+:get peanut butter from pantry;
+if(do I want jelly too?) then (yes)
+  :get jelly from the fridge;
+else (no)
+endif
+:place bread in toaster;
+:turn on toaster;
+while(while bread is not toasted)
+    :wait;
+endwhile (done)
+:bread is toasted;
+:remove bread;
+:place peanut butter on bread;
+if(jelly was chosen?) then (yes)
+    :place jelly on bread;
+else (no)
+endif
+:stack the bread with dry sides on top and bottom;
+:clean up;
+:enjoy;
+end
+@enduml
+```
+&lt;/pre&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src=&quot;//www.plantuml.com/plantuml/png/RKz1RiCm3Blx5JmcNsWFwtNFS6ErSUT8WIqloEydn36m3hiOiaYAvAseprgNv8x1NPwak6Vo0Oyi2rRFclThsw_akHfSLIc_u_4n1C4dDllZHIdjK96F4JeJOzYfZ0wmAoVQr0RQ4CEJhevI8GmieoCEyU4kQ_8JdLaYGyKNixKeMZD3VcssEIOQZhVp2rZqP0IpXfblFghvS6XC2ymqkajNTBOvP5ha-xnrxKdUsmjtsAgtIfilc6Ofn7zx0-UDHkpQVqeNzTENYNkHBUgCa7UK6AYqrYiy1zn5LHPBDoKBXhhQIFoI_QZeRlRK9Vq0&quot; alt=&quot;activity diagram&quot; /&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;mind-maps&quot;&gt;Mind Maps&lt;/h3&gt;
+
+&lt;p&gt;Plantuml also supports useful diagrams other than UML. Mind maps are a great way to visualize and organize ideas around a central theme in an ordered, tree-like way&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;//www.plantuml.com/plantuml/png/PP1DRWCX38NtdC9AbsZka0jKwhwg8i_mGb7vcM1JjRUlCqNj8Wi4d_diXpYBSjUIQYYyEqsQGQTdGp8-EUTVdtAAxxhcWJTwoLnrbEoy9_tU8TIk51B7paMiw4bm6wWRxk0l53jOwTew5OXmnBAo8D3UssO5_3QLcVVGj7PELRHrC-AXQclPpjFybAq5JC2NeafgLTooq13Sz-L2jv6sZxzNKgfK0BKXyxvOXjhYDUDVOw5ZzXarpE_v0G00&quot; alt=&quot;mind map example&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-plantuml&quot;&gt;@startmindmap
+title &quot;Mind map&quot;
+
++[#lightblue] Plantuml
+++ types of diagrams
++++ sequence
+++++_ great for message-based processes
++++ mind map
+++++_ great for brainstorming
++++ tooling
+++++_ vscode
+++++_ extensions
+-- uses
+---_ quick diagrams in meetings
+---_ maintainable diagrams as code
+@endmindmap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;in-summary&quot;&gt;In Summary&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;Plantuml&lt;/a&gt; is a free, open source method of creating diagrams with text. It’s fast, efficient, easily versionable, and fun to use! It supports many more types of diagrams than I have outlined here - including &lt;a href=&quot;//https:github.com/plantuml-stdlib/C4-PlantUML&quot;&gt;C4 diagrams&lt;/a&gt;- each with an easy-to-use syntax that is human readable and intuitive to use.&lt;/p&gt;
+
+&lt;p&gt;You can get started generating diagrams &lt;a href=&quot;https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000&quot;&gt;using the plantuml public server&lt;/a&gt;. In fact all of the images in this post are using that server to render the plantuml that you see! (Check the img tags in the source of this page)&lt;/p&gt;
+
+&lt;p&gt;Next, we’ll explore creating a setup using vscode and docker that allows you to generate diagrams as fast as you can type, and even embed them in your markdown documents!&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Been A While</title>

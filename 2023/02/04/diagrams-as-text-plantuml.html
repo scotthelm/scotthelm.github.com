@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Diagrams As Text - Plantuml | Scott Helm</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Diagrams As Text - Plantuml" />
+<meta name="author" content="Scott Helm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Diagrams are a way of communicating an idea, or answering questions visually." />
+<meta property="og:description" content="Diagrams are a way of communicating an idea, or answering questions visually." />
+<link rel="canonical" href="/2023/02/04/diagrams-as-text-plantuml.html" />
+<meta property="og:url" content="/2023/02/04/diagrams-as-text-plantuml.html" />
+<meta property="og:site_name" content="Scott Helm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Diagrams As Text - Plantuml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Helm"},"dateModified":"2023-02-04T00:00:00-05:00","datePublished":"2023-02-04T00:00:00-05:00","description":"Diagrams are a way of communicating an idea, or answering questions visually.","headline":"Diagrams As Text - Plantuml","mainEntityOfPage":{"@type":"WebPage","@id":"/2023/02/04/diagrams-as-text-plantuml.html"},"url":"/2023/02/04/diagrams-as-text-plantuml.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/rss.rss" title="Scott Helm" /><!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
+<script>
+  window['ga-disable-G-5Y41SB1WWT'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Y41SB1WWT');
+</script>
+-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y41SB1WWT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Y41SB1WWT');
+</script>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest"></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Helm</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/all_posts.html">All Posts</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Diagrams As Text - Plantuml</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-02-04T00:00:00-05:00" itemprop="datePublished">
+        2023-02-04
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Diagrams are a way of communicating an idea, or answering questions visually.</p>
+
+<p><a href="https://plantuml.com">Plantuml</a> is a free and open-source way of creating these diagrams using text.</p>
+
+<h2 id="why-would-i-want-to-do-that">Why Would I Want To Do That?</h2>
+
+<p>Diagrams help communicate an idea very quickly. Some ideas or questions you can answer with diagrams include</p>
+
+<ul>
+  <li>How do different parts of a system collaborate together?</li>
+  <li>What are the steps I need to take, and what decisions do I need to make to complete a process?</li>
+  <li>How can I organize my thoughts around a central theme?</li>
+</ul>
+
+<p>Some reasons you might try creating images with text:</p>
+
+<ul>
+  <li>Trying to line up boxes and arrows - especially when there are a lot of them - is terrible - and time consuming!
+    <ul>
+      <li>Plantuml to the rescue!</li>
+    </ul>
+  </li>
+  <li>Trying to keep up in a meeting is tough
+    <ul>
+      <li>I find that I can type much faster than I can drag things around</li>
+    </ul>
+  </li>
+  <li>Being able to regenerate your diagram after making changes is simple
+    <ul>
+      <li>With vscode, the plantuml plugin, and a plantuml server, the diagrams appear as you type</li>
+      <li>Bonus: it makes you look like a wizard.</li>
+    </ul>
+  </li>
+  <li>Your diagrams can be a part of your source code - very friendly to modern version control systems
+    <ul>
+      <li>This helps us keep our diagrams fresh and alive - actual artifacts, not relics.</li>
+    </ul>
+  </li>
+  <li>Being text, the source of the diagram is human-readable and intuitive
+    <ul>
+      <li>Even without the rendering, I find that I can follow what’s happening even without the picture.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="some-examples">Some Examples</h2>
+
+<h3 id="sequence-diagrams">Sequence Diagrams</h3>
+
+<p>Sequences allow us to answer the quetion: “How do different parts of a process collaborate together?”. Plantuml makes the creation of these types of diagrams quick and easy. We can quickly see which participants are involved in a process and what messages they send to each other to accomplish a task.</p>
+
+<p><img src="//www.plantuml.com/plantuml/png/VP31RW8X48Rl-nJJlVi2FJIIJNiptLHUWB1_bSeE1cPhVFiYHCKcxNNuvkE3TH8JPPbzzoHxp22Bk7WONeL5l6DquiI3-YtWU4UADk7ReU-CbH1f99Ee7ut4m7rtp2fdtT6ma5RbI3jxW93QWUKH62em1BP8oGKc9GAUp6zGwzQapG7n4TXKe8IHtYFNvC1kfDLB3docBJoirF0wrIgFt-E4I5Ardo5IAXmccWkfrLMWqg40HtEUmT8uHdFE9pVBoScUh8bJNhupqR5GpK-DzGEoH2uu6Pv8Ab7jmxtGtdueTSF_JKFJrEurOSLGmJVdFONB7NdwLrLxUtstBcz20ikjEGzNrp3lmucClMpLZSrbuvK5iHZ1N-5CzO_Nu6cP_Gy0" alt="sequence diagram example" /></p>
+
+<pre><code class="language-plantuml">@startuml
+!theme cerulean-outline
+title "Seeing A Movie"
+actor P as "Patron"
+participant TA as "Ticket Agent"
+participant CA as "Concession Attendant"
+participant TT as "Ticket Taker"
+participant MT as "Movie Theatre"
+
+P -&gt; P : Select Movie
+P -&gt; TA : Order ticket for selected movie
+TA -&gt; P : Ask for payment
+P -&gt; TA : Pay for ticket with card
+TA -&gt; TA : Print Tickets
+TA -&gt; P : Return card and tickets
+P -&gt; CA : Order concessions
+CA -&gt; P : Ask for payment
+P -&gt; CA : Pay for concessions with card
+CA -&gt; CA : Fill order
+CA -&gt; P : Return card and concessions
+P -&gt; TT : Present tickets
+TT --&gt; P : Allow access
+P -&gt; MT : Enter and enjoy movie
+@enduml
+</code></pre>
+
+<p>Imagine trying to keep all those boxes and arrows maintained in a graphical program!</p>
+
+<h3 id="activity-diagrams">Activity Diagrams</h3>
+
+<p>Activity diagrams allow you to answer the question - “What are the steps I need to take, and what decisions do I need to make to complete a process?”. The are fantastic for dialing in the exact steps of a process (including conditions and loops).</p>
+
+<table>
+<tr>
+<th>Plantuml</th>
+<th>Image</th>
+</tr>
+<tr>
+<td>
+<pre>
+```plantuml
+@startuml
+start
+:get bread from pantry;
+:get peanut butter from pantry;
+if(do I want jelly too?) then (yes)
+  :get jelly from the fridge;
+else (no)
+endif
+:place bread in toaster;
+:turn on toaster;
+while(while bread is not toasted)
+    :wait;
+endwhile (done)
+:bread is toasted;
+:remove bread;
+:place peanut butter on bread;
+if(jelly was chosen?) then (yes)
+    :place jelly on bread;
+else (no)
+endif
+:stack the bread with dry sides on top and bottom;
+:clean up;
+:enjoy;
+end
+@enduml
+```
+</pre>
+</td>
+<td>
+<img src="//www.plantuml.com/plantuml/png/RKz1RiCm3Blx5JmcNsWFwtNFS6ErSUT8WIqloEydn36m3hiOiaYAvAseprgNv8x1NPwak6Vo0Oyi2rRFclThsw_akHfSLIc_u_4n1C4dDllZHIdjK96F4JeJOzYfZ0wmAoVQr0RQ4CEJhevI8GmieoCEyU4kQ_8JdLaYGyKNixKeMZD3VcssEIOQZhVp2rZqP0IpXfblFghvS6XC2ymqkajNTBOvP5ha-xnrxKdUsmjtsAgtIfilc6Ofn7zx0-UDHkpQVqeNzTENYNkHBUgCa7UK6AYqrYiy1zn5LHPBDoKBXhhQIFoI_QZeRlRK9Vq0" alt="activity diagram" />
+</td>
+</tr>
+</table>
+
+<h3 id="mind-maps">Mind Maps</h3>
+
+<p>Plantuml also supports useful diagrams other than UML. Mind maps are a great way to visualize and organize ideas around a central theme in an ordered, tree-like way</p>
+
+<p><img src="//www.plantuml.com/plantuml/png/PP1DRWCX38NtdC9AbsZka0jKwhwg8i_mGb7vcM1JjRUlCqNj8Wi4d_diXpYBSjUIQYYyEqsQGQTdGp8-EUTVdtAAxxhcWJTwoLnrbEoy9_tU8TIk51B7paMiw4bm6wWRxk0l53jOwTew5OXmnBAo8D3UssO5_3QLcVVGj7PELRHrC-AXQclPpjFybAq5JC2NeafgLTooq13Sz-L2jv6sZxzNKgfK0BKXyxvOXjhYDUDVOw5ZzXarpE_v0G00" alt="mind map example" /></p>
+
+<pre><code class="language-plantuml">@startmindmap
+title "Mind map"
+
++[#lightblue] Plantuml
+++ types of diagrams
++++ sequence
+++++_ great for message-based processes
++++ mind map
+++++_ great for brainstorming
++++ tooling
+++++_ vscode
+++++_ extensions
+-- uses
+---_ quick diagrams in meetings
+---_ maintainable diagrams as code
+@endmindmap
+</code></pre>
+
+<h2 id="in-summary">In Summary</h2>
+
+<p><a href="https://plantuml.com">Plantuml</a> is a free, open source method of creating diagrams with text. It’s fast, efficient, easily versionable, and fun to use! It supports many more types of diagrams than I have outlined here - including <a href="//https:github.com/plantuml-stdlib/C4-PlantUML">C4 diagrams</a>- each with an easy-to-use syntax that is human readable and intuitive to use.</p>
+
+<p>You can get started generating diagrams <a href="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000">using the plantuml public server</a>. In fact all of the images in this post are using that server to render the plantuml that you see! (Check the img tags in the source of this page)</p>
+
+<p>Next, we’ll explore creating a setup using vscode and docker that allows you to generate diagrams as fast as you can type, and even embed them in your markdown documents!</p>
+
+<p>Thanks!</p>
+
+
+  </div><div id="disqus_thread"></div>
+  <!--
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+   var s = document.createElement('script'); s.async = true;
+   s.type = 'text/javascript';
+   s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+  -->
+ 
+  <!--
+
+  -->
+  <script>
+    var disqus_shortname = 'scotthelm'; // required: replace example with your forum shortname
+    var disqus_config = function () {
+      this.page.url = 'https://scotthelm.com/2023/02/04/diagrams-as-text-plantuml.html';
+      this.page.identifier = '/2023/02/04/diagrams-as-text-plantuml.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://scotthelm.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/2023/02/04/diagrams-as-text-plantuml.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/rss.rss">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">&copy; Scott Helm 2023</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Father, Husband, Technologist, Actor, Musician, Life-long Learner</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/scotthelm" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://linkedin.com/in/scott-helm-4a1aa52" target="_blank" title="linkedin">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#linkedin"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://stackoverflow.com/users/1518852/plasticide" target="_blank" title="stackoverflow">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/scott_helm" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
