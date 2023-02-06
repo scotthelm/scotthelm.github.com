@@ -6,19 +6,100 @@
     <atom:link href="http://scotthelm.com/rss.rss" rel="self" type="application/rss+xml" />
     <description>Scott Helm</description>
     <language>en-us</language>
-    <pubDate>Sat, 04 Feb 2023 13:13:08 -0500</pubDate>
-    <lastBuildDate>Sat, 04 Feb 2023 13:13:08 -0500</lastBuildDate>
+    <pubDate>Sun, 05 Feb 2023 19:15:43 -0500</pubDate>
+    <lastBuildDate>Sun, 05 Feb 2023 19:15:43 -0500</lastBuildDate>
 
     
     <item>
-      <title>Diagrams As Text - Plantuml</title>
+      <title>PlantUML Diagrams With Vscode</title>
+      <link>http://scotthelm.com/2023/02/05/plantuml-diagrams-with-vs-code.html</link>
+      <pubDate>Sun, 05 Feb 2023 00:00:00 -0500</pubDate>
+      <author>Scott Helm</author>
+      <guid>http://scotthelm.com/2023/02/05/plantuml-diagrams-with-vs-code</guid>
+      <description>&lt;p&gt;The best way to create diagrams with PlantUML is with:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;VSCode&lt;/li&gt;
+  &lt;li&gt;PlantUML vscode extension&lt;/li&gt;
+  &lt;li&gt;PlantUML server (in docker)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you don’t have or don’t want to install Docker on your machine (I would ask “why not?”) you can make sure you have Java &lt;em&gt;and&lt;/em&gt; Graphviz installed to render PlantUML with a jar file. I’ll go through that setup separately.&lt;/p&gt;
+
+&lt;h2 id=&quot;vscode&quot;&gt;VSCode&lt;/h2&gt;
+
+&lt;p&gt;If you’re reading this, you probably already have VSCode, but just for completeness: You can &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;get it here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;plantuml-plugin&quot;&gt;PlantUML Plugin&lt;/h2&gt;
+
+&lt;p&gt;Open up VSCode extension panel and install the PlantUML extension:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-install-extension.png&quot; alt=&quot;install the plantuml extension&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Open up the settings by clicking on the gear once it’s installed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-get-to-settings.png&quot; alt=&quot;settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Add rending PlantUML inside Markdown files by adding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;md&lt;/code&gt; file extension to the list&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-add-md-support.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Add rendering support&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-set-up-rendering.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You should be able to render PlantUML diagrams in markdown files by adding&lt;/p&gt;
+
+&lt;pre&gt;
+```plantuml
+@startuml
+this -&amp;gt; that
+@enduml
+```
+&lt;/pre&gt;
+
+&lt;p&gt;into your markdown file. Your PlantUML diagram syntax goes between the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@startuml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@enduml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point - if you are rendering a diagram that you don’t mind sharing with the Internet, then you’re done! However, if you &lt;em&gt;don’t&lt;/em&gt; want to share your diagrams with the Internet, then you want to do the next part: Install PlantUML Server locally and use &lt;em&gt;that&lt;/em&gt; for rendering.&lt;/p&gt;
+
+&lt;h2 id=&quot;local-plantuml-server-in-docker&quot;&gt;Local PlantUML Server In Docker&lt;/h2&gt;
+
+&lt;p&gt;Once you have Docker installed, it’s very simple to start the plantuml server locally:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8080:8080 plantuml/plantuml-server:jetty
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can now change the plantuml extension PlantUML Server setting to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8080&lt;/code&gt; And… you’re done!&lt;/p&gt;
+
+&lt;h2 id=&quot;plantuml-jar-alternative-install&quot;&gt;PlantUML Jar (Alternative Install)&lt;/h2&gt;
+
+&lt;p&gt;If you don’t have and don’t want docker, but &lt;em&gt;do&lt;/em&gt; have Java &lt;em&gt;and&lt;/em&gt; Graphviz installed on your machine, You can download PlantUML as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.jar&lt;/code&gt; file. The extension settings change to:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-local-jar.png&quot; alt=&quot;local jar settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll have to fill in the path to the jar, the path to Java, and set the rendering to Local.&lt;/p&gt;
+
+&lt;p&gt;I do not recommend this method. The server render is &lt;em&gt;much&lt;/em&gt; faster. Using this method, Java has to spin up and load the jar file every time, so the user experience is much slower and less ideal.&lt;/p&gt;
+
+&lt;h2 id=&quot;putting-it-all-together-a-demo&quot;&gt;Putting it all together: A Demo&lt;/h2&gt;
+
+&lt;p&gt;When everything is working together as intended, you should be able to do something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/plantuml-example.gif&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Many thanks to the developers of &lt;a href=&quot;https://plantuml.com&quot;&gt;PlantUML&lt;/a&gt;, &lt;a href=&quot;https://code.visualstudio.com&quot;&gt;VSCode&lt;/a&gt;, and the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml&quot;&gt;PlauntUML extension&lt;/a&gt;. You have made my life much easier!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Diagrams As Text - PlantUML</title>
       <link>http://scotthelm.com/2023/02/04/diagrams-as-text-plantuml.html</link>
       <pubDate>Sat, 04 Feb 2023 00:00:00 -0500</pubDate>
       <author>Scott Helm</author>
       <guid>http://scotthelm.com/2023/02/04/diagrams-as-text-plantuml</guid>
       <description>&lt;p&gt;Diagrams are a way of communicating an idea, or answering questions visually.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;Plantuml&lt;/a&gt; is a free and open-source way of creating these diagrams using text.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;PlantUML&lt;/a&gt; is a free and open-source way of creating these diagrams using text.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-would-i-want-to-do-that&quot;&gt;Why Would I Want To Do That?&lt;/h2&gt;
 
@@ -35,7 +116,7 @@
 &lt;ul&gt;
   &lt;li&gt;Trying to line up boxes and arrows - especially when there are a lot of them - is terrible - and time consuming!
     &lt;ul&gt;
-      &lt;li&gt;Plantuml to the rescue!&lt;/li&gt;
+      &lt;li&gt;PlantUML to the rescue!&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Trying to keep up in a meeting is tough
@@ -45,7 +126,7 @@
   &lt;/li&gt;
   &lt;li&gt;Being able to regenerate your diagram after making changes is simple
     &lt;ul&gt;
-      &lt;li&gt;With vscode, the plantuml plugin, and a plantuml server, the diagrams appear as you type&lt;/li&gt;
+      &lt;li&gt;With vscode, the PlantUML plugin, and a PlantUML server, the diagrams appear as you type&lt;/li&gt;
       &lt;li&gt;Bonus: it makes you look like a wizard.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -65,7 +146,7 @@
 
 &lt;h3 id=&quot;sequence-diagrams&quot;&gt;Sequence Diagrams&lt;/h3&gt;
 
-&lt;p&gt;Sequences allow us to answer the quetion: “How do different parts of a process collaborate together?”. Plantuml makes the creation of these types of diagrams quick and easy. We can quickly see which participants are involved in a process and what messages they send to each other to accomplish a task.&lt;/p&gt;
+&lt;p&gt;Sequences allow us to answer the quetion: “How do different parts of a process collaborate together?”. PlantUML makes the creation of these types of diagrams quick and easy. We can quickly see which participants are involved in a process and what messages they send to each other to accomplish a task.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;//www.plantuml.com/plantuml/png/VP31RW8X48Rl-nJJlVi2FJIIJNiptLHUWB1_bSeE1cPhVFiYHCKcxNNuvkE3TH8JPPbzzoHxp22Bk7WONeL5l6DquiI3-YtWU4UADk7ReU-CbH1f99Ee7ut4m7rtp2fdtT6ma5RbI3jxW93QWUKH62em1BP8oGKc9GAUp6zGwzQapG7n4TXKe8IHtYFNvC1kfDLB3docBJoirF0wrIgFt-E4I5Ardo5IAXmccWkfrLMWqg40HtEUmT8uHdFE9pVBoScUh8bJNhupqR5GpK-DzGEoH2uu6Pv8Ab7jmxtGtdueTSF_JKFJrEurOSLGmJVdFONB7NdwLrLxUtstBcz20ikjEGzNrp3lmucClMpLZSrbuvK5iHZ1N-5CzO_Nu6cP_Gy0&quot; alt=&quot;sequence diagram example&quot; /&gt;&lt;/p&gt;
 
@@ -146,7 +227,7 @@ end
 
 &lt;h3 id=&quot;mind-maps&quot;&gt;Mind Maps&lt;/h3&gt;
 
-&lt;p&gt;Plantuml also supports useful diagrams other than UML. Mind maps are a great way to visualize and organize ideas around a central theme in an ordered, tree-like way&lt;/p&gt;
+&lt;p&gt;PlantUML also supports useful diagrams other than UML. Mind maps are a great way to visualize and organize ideas around a central theme in an ordered, tree-like way&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;//www.plantuml.com/plantuml/png/PP1DRWCX38NtdC9AbsZka0jKwhwg8i_mGb7vcM1JjRUlCqNj8Wi4d_diXpYBSjUIQYYyEqsQGQTdGp8-EUTVdtAAxxhcWJTwoLnrbEoy9_tU8TIk51B7paMiw4bm6wWRxk0l53jOwTew5OXmnBAo8D3UssO5_3QLcVVGj7PELRHrC-AXQclPpjFybAq5JC2NeafgLTooq13Sz-L2jv6sZxzNKgfK0BKXyxvOXjhYDUDVOw5ZzXarpE_v0G00&quot; alt=&quot;mind map example&quot; /&gt;&lt;/p&gt;
 
@@ -170,11 +251,11 @@ title &quot;Mind map&quot;
 
 &lt;h2 id=&quot;in-summary&quot;&gt;In Summary&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;Plantuml&lt;/a&gt; is a free, open source method of creating diagrams with text. It’s fast, efficient, easily versionable, and fun to use! It supports many more types of diagrams than I have outlined here - including &lt;a href=&quot;//https:github.com/plantuml-stdlib/C4-PlantUML&quot;&gt;C4 diagrams&lt;/a&gt;- each with an easy-to-use syntax that is human readable and intuitive to use.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://plantuml.com&quot;&gt;PlantUML&lt;/a&gt; is a free, open source method of creating diagrams with text. It’s fast, efficient, easily versionable, and fun to use! It supports many more types of diagrams than I have outlined here - including &lt;a href=&quot;//https:github.com/plantuml-stdlib/C4-PlantUML&quot;&gt;C4 diagrams&lt;/a&gt;- each with an easy-to-use syntax that is human readable and intuitive to use.&lt;/p&gt;
 
-&lt;p&gt;You can get started generating diagrams &lt;a href=&quot;https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000&quot;&gt;using the plantuml public server&lt;/a&gt;. In fact all of the images in this post are using that server to render the plantuml that you see! (Check the img tags in the source of this page)&lt;/p&gt;
+&lt;p&gt;You can get started generating diagrams &lt;a href=&quot;https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000&quot;&gt;using the PlantUML public server&lt;/a&gt;. In fact all of the images in this post are using that server to render the plantuml that you see! (Check the img tags in the source of this page)&lt;/p&gt;
 
-&lt;p&gt;Next, we’ll explore creating a setup using vscode and docker that allows you to generate diagrams as fast as you can type, and even embed them in your markdown documents!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/2023/02/05/plantuml-diagrams-with-vs-code.html&quot;&gt;Next, we’ll explore creating a setup using VSCode and Docker&lt;/a&gt; that allows you to generate diagrams as fast as you can type, and even embed them in your markdown documents!&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
